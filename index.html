@@ -29,9 +29,6 @@
             top: 0;
             left: 0;
             z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
 
         .navbar a {
@@ -40,24 +37,11 @@
             margin: 0 15px;
             font-size: 1.2rem;
             transition: color 0.3s;
+            text-shadow: 0 0 5px #fff, 0 0 10px #00ffe5;
         }
 
         .navbar a:hover {
             color: #ffa900;
-        }
-
-        /* Spotify Widget (Black Theme) */
-        .spotify-widget {
-            display: inline-block;
-            vertical-align: middle;
-            margin-right: 20px; /* Adjust spacing */
-        }
-
-        .spotify-widget iframe {
-            border-radius: 8px;
-            width: 180px;
-            height: 65px;
-            background: black; /* Ensures black background */
         }
 
         /* Content with gap */
@@ -91,6 +75,10 @@
             padding: 15px 0;
         }
 
+        footer p {
+            text-shadow: 0 0 5px #fff, 0 0 10px #ff00de;
+        }
+
         /* Social Media Icons */
         .social-icons a {
             margin: 0 10px;
@@ -100,15 +88,18 @@
         }
 
         .social-icons .youtube:hover {
-            color: #FF0000; /* YouTube Red */
+            color: #FF0000;
+            text-shadow: 0 0 10px #FF0000;
         }
 
         .social-icons .twitter:hover {
-            color: #1DA1F2; /* Twitter Blue */
+            color: #1DA1F2;
+            text-shadow: 0 0 10px #1DA1F2;
         }
 
         .social-icons .snapchat:hover {
-            color: #FFFC00; /* Snapchat Yellow */
+            color: #FFFC00;
+            text-shadow: 0 0 10px #FFFC00;
         }
 
         /* Image Zoom Animation */
@@ -123,42 +114,43 @@
         .image-box:hover {
             transform: scale(1.1);
         }
+
+        /* Neon Glow Class */
+        .neon {
+            text-shadow: 0 0 5px #fff, 
+                         0 0 10px #fff, 
+                         0 0 20px #ff00de, 
+                         0 0 30px #ff00de, 
+                         0 0 40px #ff00de, 
+                         0 0 55px #ff00de, 
+                         0 0 75px #ff00de;
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- Navbar with Spotify -->
+    <!-- Navbar -->
     <div class="navbar">
-        <div>
-            <a href="#home"><i class="fa fa-globe"></i> Web Updates</a>
-            <a href="#services"><i class="fa fa-comments"></i> Feedback</a>
-            <a href="#contact"><i class="fa fa-money"></i> Profit</a>
-        </div>
-
-        <!-- Spotify Embed (Black Theme) -->
-        <div class="spotify-widget">
-            <iframe src="https://open.spotify.com/embed/track/75saTKONGJgXlZSItREc60?utm_source=generator&theme=0" 
-                frameborder="0" allowfullscreen 
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                loading="lazy">
-            </iframe>
-        </div>
+        <a href="#home"><i class="fa fa-globe"></i> Web Updates</a>
+        <a href="#services"><i class="fa fa-comments"></i> Feedback</a>
+        <a href="#contact"><i class="fa fa-money"></i> Profit</a>
     </div>
 
     <!-- Content Section -->
     <div class="content">
-        <h1 class="welcome-text">Welcome to Our Website!</h1>
-        <h2 class="fade-in">About Us</h2>
-        <p class="fade-in"> a🚀 Creative UI/UX Designer | Web Developer | Content Strategist 🎨💻✨
+        <h1 class="welcome-text neon">Welcome to Our Website!</h1>
+        <h2 class="fade-in neon">About Us</h2>
+        <p class="fade-in">a🚀 Creative UI/UX Designer | Web Developer | Content Strategist 🎨💻✨
 
 Passionate about crafting engaging digital experiences 🌍 through intuitive design, seamless user interfaces, and visually compelling themes. 🖌️🎭 Skilled in UI/UX, web development, and content creation, with a proven ability to drive high engagement 📊📈 on digital platforms.
 
 🔍 Constantly evolving to stay ahead in the ever-changing design & tech industry, blending creativity 🎨 with strategy 🧩 to deliver impactful solutions. 🚀💡Hello! I'm Arun, a curious learner with a passion for design and technology. This website is a reflection of my journey in UI/UX design.</p>
+</p>
 
         <hr>
 
-        <h2 class="fade-in">Our Services</h2>
+        <h2 class="fade-in neon">Our Services</h2>
         <div class="container">
             <div class="image-box fade-in">
                 <img src="445.gif" width="100%" alt="Service 1">
@@ -179,13 +171,13 @@ Passionate about crafting engaging digital experiences 🌍 through intuitive de
     <footer>
         <p>© 2025 Arun. All Rights Reserved.</p>
         <div class="social-icons">
-            <a href="https://youtube.com/@arudeep1yt?si=QsrAMV4hhARTUGEd" target="_blank" class="youtube">
+            <a href="https://www.youtube.com" target="_blank" class="youtube">
                 <i class="fab fa-youtube"></i>
             </a>
-            <a href="https://x.com/Arundee50525290?t=0OcJ2Xud0mOihDunUjDqlw&s=09" target="_blank" class="twitter">
+            <a href="https://twitter.com" target="_blank" class="twitter">
                 <i class="fab fa-x-twitter"></i>
             </a>
-            <a href="https://www.snapchat.com/add/arun_deep202270?share_id=0VY660-4Fr4&locale=en-IN" target="_blank" class="snapchat">
+            <a href="https://www.snapchat.com" target="_blank" class="snapchat">
                 <i class="fab fa-snapchat"></i>
             </a>
         </div>
