@@ -1,268 +1,271 @@
-<!DOCTYPE 
-html><html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arun's Website</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        body {
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            background: linear-gradient(to right, #00e9a1, #ffa900, #ff0e69);
-            color: white;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }.navbar {
-        background: black;
-        padding: 10px;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        left: 0;
-        z-index: 1000;
-    }
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
+  <title>Arun's Website</title>  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>  
+  <style>  
+    :root {  
+      --bg: linear-gradient(to right, #00e9a1, #ffa900, #ff0e69);  
+      --text-color: white;  
+      --card-bg: rgba(0, 0, 0, 0.6);  
+    }  
+    body {  
+      opacity: 0;  
+      transition: opacity 1.5s ease-in-out;  
+      background: var(--bg);  
+      color: var(--text-color);  
+      text-align: center;  
+      margin: 0;  
+      padding: 0;  
+      font-family: Arial, sans-serif;  
+    }  
+    .dark-mode {  
+      --bg: #121212;  
+      --text-color: #fff;  
+      --card-bg: #1f1f1f;  
+      background: var(--bg);  
+      color: var(--text-color);  
+    }  
+    .navbar {  
+      background: black;  
+      padding: 10px;  
+      position: fixed;  
+      width: 100%;  
+      top: 0;  
+      z-index: 1000;  
+    }  
+    .navbar a {  
+      color: white;  
+      text-decoration: none;  
+      margin: 0 15px;  
+      font-size: 1.2rem;  
+      transition: color 0.3s;  
+      text-shadow: 0 0 5px #fff, 0 0 10px #00ffe5;  
+    }  
+    .navbar a:hover {  
+      color: #ffa900;  
+    }  
+    .content {  
+      margin-top: 100px;  
+      padding-bottom: 100px;  
+    }  
+    .fade-in {  
+      opacity: 0;  
+      transform: translateY(30px);  
+      transition: opacity 1.5s ease-out, transform 1.5s ease-out;  
+    }  
+    .welcome-text {  
+      font-size: 2.5rem;  
+    }  
+    .typing {  
+      border-right: 2px solid white;  
+      display: inline-block;  
+      white-space: nowrap;  
+      overflow: hidden;  
+      animation: typing 4s steps(30, end), blink 0.75s step-end infinite;  
+    }  
+    @keyframes typing {  
+      from { width: 0; }  
+      to { width: 100%; }  
+    }  
+    @keyframes blink {  
+      from, to { border-color: transparent; }  
+      50% { border-color: white; }  
+    }  
+    .image-box {  
+      display: inline-block;  
+      margin: 20px;  
+      width: 30%;  
+      transition: transform 0.3s ease-in-out;  
+      cursor: pointer;  
+    }  
+    .image-box:hover {  
+      transform: scale(1.1);  
+    }  
+    .neon {  
+      text-shadow: 0 0 5px #fff, 0 0 20px #ff00de, 0 0 40px #ff00de;  
+    }  
+    .neon-section, .skills-section, .contact-form {  
+      background-color: var(--card-bg);  
+      margin: 50px auto;  
+      padding: 30px;  
+      border-radius: 15px;  
+      max-width: 900px;  
+      box-shadow: 0 0 15px #ff00de;  
+    }  
+    .skill {  
+      margin: 20px 0;  
+      text-align: left;  
+    }  
+    .progress {  
+      background: rgba(255, 255, 255, 0.2);  
+      border-radius: 20px;  
+      overflow: hidden;  
+      height: 20px;  
+    }  
+    .progress-bar {  
+      height: 100%;  
+      background: linear-gradient(90deg, #00ffc8, #ff00b3);  
+      width: 0;  
+    }  
+    footer {  
+      background: rgba(0, 0, 0, 0.8);  
+      color: white;  
+      text-align: center;  
+      padding: 15px 0;  
+    }  
+    .social-icons a {  
+      margin: 0 10px;  
+      color: white;  
+      font-size: 24px;  
+      transition: color 0.3s ease;  
+    }  
+    .social-icons .youtube:hover { color: #FF0000; text-shadow: 0 0 10px #FF0000; }  
+    .social-icons .twitter:hover { color: #1DA1F2; text-shadow: 0 0 10px #1DA1F2; }  
+    .social-icons .snapchat:hover { color: #FFFC00; text-shadow: 0 0 10px #FFFC00; }  
+    #topBtn {  
+      display: none;  
+      position: fixed;  
+      bottom: 40px;  
+      right: 20px;  
+      z-index: 999;  
+      font-size: 18px;  
+      padding: 10px;  
+      background: #000;  
+      color: white;  
+      border: none;  
+      border-radius: 10px;  
+      cursor: pointer;  
+    }  
+    #modeToggle {  
+      position: fixed;  
+      top: 10px;  
+      right: 20px;  
+      z-index: 1001;  
+      background: #fff;  
+      color: #000;  
+      border: none;  
+      padding: 8px 12px;  
+      border-radius: 8px;  
+      cursor: pointer;  
+    }  
+    .contact-form input, .contact-form textarea {  
+      width: 90%;  
+      padding: 10px;  
+      margin: 10px auto;  
+      border-radius: 8px;  
+      border: none;  
+      display: block;  
+    }  
+    .loader {  
+      position: fixed;  
+      width: 100%;  
+      height: 100%;  
+      background: #000;  
+      display: flex;  
+      align-items: center;  
+      justify-content: center;  
+      z-index: 9999;  
+    }  
+    .spinner {  
+      width: 50px;  
+      height: 50px;  
+      border: 6px solid #fff;  
+      border-top: 6px solid #00e9a1;  
+      border-radius: 50%;  
+      animation: spin 1s linear infinite;  
+    }  
+    @keyframes spin {  
+      to { transform: rotate(360deg); }  
+    }  
+  </style>  
+</head>  
+<body>  
+  <div class="loader"><div class="spinner"></div></div>  <button id="modeToggle">Toggle Mode</button>
 
-    .navbar a {
-        color: white;
-        text-decoration: none;
-        margin: 0 15px;
-        font-size: 1.2rem;
-        transition: color 0.3s;
-        text-shadow: 0 0 5px #fff, 0 0 10px #00ffe5;
-    }
+  <div class="navbar">  
+    <a href="#home"><i class="fa fa-globe"></i> Web Updates</a>  
+    <a href="#services"><i class="fa fa-comments"></i> Feedback</a>  
+    <a href="#contact"><i class="fa fa-money"></i> Profit</a>  
+  </div>    <div class="content">  
+    <h1 class="welcome-text neon"><span class="typing">Welcome to Arun's Website!</span></h1>  <h2 class="fade-in neon">About Me</h2>  
+<p class="fade-in">🚀 Creative UI/UX Designer | Web Developer | Content Strategist 🎨💻✨ Passionate about crafting engaging digital experiences. Hello! I'm Arun, a curious learner with a passion for design and technology. This website reflects my journey in UI/UX design.</p>  
+  
+<hr/>  
 
-    .navbar a:hover {
-        color: #ffa900;
-    }
+<h2 class="fade-in neon">Services</h2>  
+<div class="container">  
+  <div class="image-box fade-in"><img src="445.gif" width="100%" alt="1"><p>“Even if I knew that tomorrow the world would go to pieces, I would still plant my apple tree.”</p></div>  
+  <div class="image-box fade-in"><img src="166.gif" width="100%" alt="2"><p>“There is nothing impossible to him who will try.”</p></div>  
+  <div class="image-box fade-in"><img src="188.gif" width="100%" alt="3"><p>“Perfection is not attainable, but if we chase perfection, we can catch excellence.”</p></div>  
+</div>  
 
-    .content {
-        margin-top: 100px;
-        padding-bottom: 100px;
-    }
+<div class="skills-section fade-in">  
+  <h2 class="neon">My Skills</h2>  
+  <div class="skill">HTML & CSS<div class="progress"><div class="progress-bar" style="width: 90%;"></div></div></div>  
+  <div class="skill">JavaScript<div class="progress"><div class="progress-bar" style="width: 80%;"></div></div></div>  
+  <div class="skill">UI/UX Design<div class="progress"><div class="progress-bar" style="width: 85%;"></div></div></div>  
+  <div class="skill">Web Development<div class="progress"><div class="progress-bar" style="width: 100%;"></div></div></div>  
+  <div class="skill">Node.js<div class="progress"><div class="progress-bar" style="width: 100%;"></div></div></div>  
+  <h2 class="neon">Languages Known</h2>  
+  <div class="skill">English<div class="progress"><div class="progress-bar" style="width: 90%;"></div></div></div>  
+  <div class="skill">Hindi<div class="progress"><div class="progress-bar" style="width: 80%;"></div></div></div>  
+  <div class="skill">German<div class="progress"><div class="progress-bar" style="width: 80%;"></div></div></div>  
+  <div class="skill">Japanese<div class="progress"><div class="progress-bar" style="width: 12%;"></div></div></div>  
+</div>  
 
-    .welcome-text {
-        opacity: 0;
-        transform: scale(0.5);
-        transition: transform 1.5s ease-out, opacity 1.5s ease-out;
-    }
-
-    .fade-in {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 1.5s ease-out, transform 1.5s ease-out;
-    }
-
-    footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        text-align: center;
-        padding: 15px 0;
-    }
-
-    footer p {
-        text-shadow: 0 0 5px #fff, 0 0 10px #ff00de;
-    }
-
-    .social-icons a {
-        margin: 0 10px;
-        color: white;
-        font-size: 24px;
-        transition: color 0.3s ease;
-    }
-
-    .social-icons .youtube:hover {
-        color: #FF0000;
-        text-shadow: 0 0 10px #FF0000;
-    }
-
-    .social-icons .twitter:hover {
-        color: #1DA1F2;
-        text-shadow: 0 0 10px #1DA1F2;
-    }
-
-    .social-icons .snapchat:hover {
-        color: #FFFC00;
-        text-shadow: 0 0 10px #FFFC00;
-    }
-
-    .image-box {
-        display: inline-block;
-        margin: 20px;
-        width: 30%;
-        transition: transform 0.3s ease-in-out;
-        cursor: pointer;
-    }
-
-    .image-box:hover {
-        transform: scale(1.1);
-    }
-
-    .neon {
-        text-shadow: 0 0 5px #fff, 0 0 20px #ff00de, 0 0 40px #ff00de;
-    }
-
-    .neon-section {
-        background-color: rgba(0, 0, 0, 0.6);
-        margin: 50px auto;
-        padding: 30px;
-        border-radius: 15px;
-        max-width: 900px;
-        box-shadow: 0 0 15px #ff00de;
-    }
-
-    .skills-section {
-        margin-top: 50px;
-        padding: 20px;
-        background: rgba(0, 0, 0, 0.6);
-        border-radius: 15px;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .skill {
-        margin: 20px 0;
-        text-align: left;
-        color: #fff;
-    }
-
-    .progress {
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 20px;
-        overflow: hidden;
-        height: 20px;
-    }
-
-    .progress-bar {
-        height: 100%;
-        background: linear-gradient(90deg, #00ffc8, #ff00b3);
-        width: 0;
-    }
-</style>
-
-</head>
-<body>
-    <div class="navbar">
-        <a href="#home"><i class="fa fa-globe"></i> Web Updates</a>
-        <a href="#services"><i class="fa fa-comments"></i> Feedback</a>
-        <a href="#contact"><i class="fa fa-money"></i> Profit</a>
-    </div><div class="content">
-    <h1 class="welcome-text neon">Welcome to Our Website!</h1>
-    <h2 class="fade-in neon">About Us</h2>
-    <p class="fade-in">a🚀 Creative UI/UX Designer | Web Developer | Content Strategist 🎨💻✨ Passionate about crafting engaging digital experiences 🌍 through intuitive design, seamless user interfaces, and visually compelling themes. 🖌️🎭 Skilled in UI/UX, web development, and content creation, with a proven ability to drive high engagement 📊📈 on digital platforms. 🔍 Constantly evolving to stay ahead in the ever-changing design & tech industry, blending creativity 🎨 with strategy 🧩 to deliver impactful solutions. 🚀💡Hello! I'm Arun, a curious learner with a passion for design and technology. This website is a reflection of my journey in UI/UX design.
-
-</p>
-    <hr>
-
-    <h2 class="fade-in neon">Our Services</h2>
-    <div class="container">
-        <div class="image-box fade-in">
-            <img src="445.gif" width="100%" alt="Service 1">
-            <p>“Even if I knew that tomorrow the world would go to pieces, I would still plant my apple tree.”</p>
-        </div>
-        <div class="image-box fade-in">
-            <img src="166.gif" width="100%" alt="Service 2">
-            <p>“There is nothing impossible to him who will try.”</p>
-        </div>
-        <div class="image-box fade-in">
-            <img src="188.gif" width="100%" alt="Service 3">
-            <p>“Perfection is not attainable, but if we chase perfection, we can catch excellence.”</p>
-        </div>
-    </div>
-
-    
-
-    <div class="skills-section fade-in">
-        <h2 class="neon">My Skills</h2>
-        <div class="skill">
-            HTML & CSS
-            <div class="progress"><div class="progress-bar" style="width: 90%;"></div></div>
-        </div>
-        <div class="skill">
-            JavaScript
-            <div class="progress"><div class="progress-bar" style="width: 80%;"></div></div>
-        </div>
-        <div class="skill">
-            UI/UX Design
-            <div class="progress"><div class="progress-bar" style="width: 85%;"></div></div>
-        </div>
-        <div class="skill">
-            Web develepoment
-            <div class="progress"><div class="progress-bar" style="width: 100%;"></div></div>
-
-        </div>
-        <div class="skill">
-            
-            <div class="progress"><div class="progress-bar" style="width: 100%;"></div></div>
-        </div>
-        <h2 class="neon">Languages Known</h2>
-        <div class="skill">
-            English
-            <div class="progress"><div class="progress-bar" style="width: 90%;"></div></div>
-        </div>
-        <div class="skill">
-            Hindi
-            <div class="progress"><div class="progress-bar" style="width: 80%;"></div></div>
-        </div>
-        <div class="skill">
-            German
-            <div class="progress"><div class="progress-bar" style="width: 80%;"></div></div>
-        </div>
-        <div class="skill">
-            Japense
-            <div class="progress"><div class="progress-bar" style="width: 12%;"></div></div>
-        </div>
-    </div>
+<div class="contact-form fade-in" id="contact">  
+  <h2 class="neon">Contact Me</h2>  
+  <form>  
+    <input type="text" placeholder="Your Name" required/>  
+    <input type="email" placeholder="Your Email" required/>  
+    <textarea rows="5" placeholder="Your Message" required></textarea>  
+    <button type="submit" style="padding: 10px 20px; background: #00e9a1; color: #000; border: none; border-radius: 5px;">Send</button>  
+  </form>  
 </div>
 
-<footer>
-    <p>© 2025 Arun. All Rights Reserved.</p>
-    <div class="social-icons">
-        <a href="https://www.youtube.com" target="_blank" class="youtube">
-            <i class="fab fa-youtube"></i>
-        </a>
-        <a href="https://twitter.com" target="_blank" class="twitter">
-            <i class="fab fa-x-twitter"></i>
-        </a>
-        <a href="https://www.snapchat.com" target="_blank" class="snapchat">
-            <i class="fab fa-snapchat"></i>
-        </a>
-    </div>
-</footer>
+  </div>    <footer>  
+    <p>© 2025 Arun. All Rights Reserved.</p>  
+    <div class="social-icons">  
+      <a href="https://www.youtube.com" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>  
+      <a href="https://github.com/Arundeepyt" target="_blank" class="github"><i class="fab fa-github"></i></a>  
+      <a href="https://www.snapchat.com" target="_blank" class="snapchat"><i class="fab fa-snapchat"></i></a>  
+    </div>  
+  </footer>  <button id="topBtn" onclick="scrollToTop()">Top</button>
 
-<script>
-    window.onload = function () {
-        document.body.style.opacity = "1";
-
-        let welcomeText = document.querySelector('.welcome-text');
-        welcomeText.style.opacity = "1";
-        welcomeText.style.transform = "scale(1)";
-
-        let fadeElements = document.querySelectorAll('.fade-in');
-        fadeElements.forEach((el, index) => {
-            setTimeout(() => {
-                el.style.opacity = "1";
-                el.style.transform = "translateY(0)";
-            }, index * 300);
-        });
-
-        // Animate progress bars
-        const progressBars = document.querySelectorAll('.progress-bar');
-        progressBars.forEach(bar => {
-            let targetWidth = bar.style.width;
-            bar.style.width = "0";
-            setTimeout(() => {
-                bar.style.transition = "width 2s ease-in-out";
-                bar.style.width = targetWidth;
-            }, 1000);
-        });
-    };
-</script>
-
-</body>
-</html>
+  <script>  
+    window.onload = function () {  
+      document.querySelector(".loader").style.display = "none";  
+      document.body.style.opacity = "1";  
+  
+      document.querySelectorAll(".fade-in").forEach((el, i) => {  
+        setTimeout(() => {  
+          el.style.opacity = "1";  
+          el.style.transform = "translateY(0)";  
+        }, i * 300);  
+      });  
+  
+      document.querySelectorAll(".progress-bar").forEach((bar) => {  
+        let target = bar.style.width;  
+        bar.style.width = "0";  
+        setTimeout(() => {  
+          bar.style.transition = "width 2s ease-in-out";  
+          bar.style.width = target;  
+        }, 1000);  
+      });  
+    };  
+  
+    const topBtn = document.getElementById("topBtn");  
+    window.onscroll = function () {  
+      topBtn.style.display = window.scrollY > 200 ? "block" : "none";  
+    };  
+    function scrollToTop() {  
+      window.scrollTo({ top: 0, behavior: "smooth" });  
+    }  
+  
+    document.getElementById("modeToggle").onclick = function () {  
+      document.body.classList.toggle("dark-mode");  
+    };  
+  </script>  </body>  
+</html>  
