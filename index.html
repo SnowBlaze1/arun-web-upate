@@ -1,277 +1,160 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Arun's Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arun's Neon Website</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
   <style>
     :root {
-      --bg: linear-gradient(to right, #00e9a1, #ffa900, #ff0e69);
-      --text-color: white;
-      --card-bg: rgba(0, 0, 0, 0.6);
-    }
-    body {
-      opacity: 0;
-      transition: opacity 1.5s ease-in-out;
-      background: var(--bg);
-      color: var(--text-color);
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-    .dark-mode {
-      --bg: #121212;
       --text-color: #fff;
-      --card-bg: #1f1f1f;
-      background: var(--bg);
-      color: var(--text-color);
-    }
-    .navbar {
-      background: black;
-      padding: 10px;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-    }
-    .navbar a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-size: 1.2rem;
-      transition: color 0.3s;
-      text-shadow: 0 0 5px #fff, 0 0 10px #00ffe5;
-    }
-    .navbar a:hover {
-      color: #ffa900;
-    }
-    .content {
-      margin-top: 100px;
-      padding-bottom: 100px;
-    }
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1.5s ease-out, transform 1.5s ease-out;
-    }
-    .welcome-text {
-      font-size: 2.5rem;
-    }
-    .typing {
-      border-right: 2px solid white;
-      display: inline-block;
-      white-space: nowrap;
-      overflow: hidden;
-      animation: typing 4s steps(30, end), blink 0.75s step-end infinite;
-    }
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-    @keyframes blink {
-      from, to { border-color: transparent; }
-      50% { border-color: white; }
-    }
-    .image-box {
-      display: inline-block;
-      margin: 20px;
-      width: 30%;
-      transition: transform 0.3s ease-in-out;
-      cursor: pointer;
-    }
-    .image-box:hover {
-      transform: scale(1.1);
-    }
-    .neon {
-      text-shadow: 0 0 5px #fff, 0 0 20px #ff00de, 0 0 40px #ff00de;
-    }
-    .neon-section, .skills-section, .contact-form {
-      background-color: var(--card-bg);
-      margin: 50px auto;
-      padding: 30px;
-      border-radius: 15px;
-      max-width: 900px;
-      box-shadow: 0 0 15px #ff00de;
-    }
-    .skill {
-      margin: 20px 0;
-      text-align: left;
-    }
-    .progress {
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      overflow: hidden;
-      height: 20px;
-    }
-    .progress-bar {
-      height: 100%;
-      background: linear-gradient(90deg, #00ffc8, #ff00b3);
-      width: 0;
-    }
-    footer {
-      background: rgba(0, 0, 0, 0.8);
-      color: white;
-      text-align: center;
-      padding: 15px 0;
-    }
-    .social-icons a {
-      margin: 0 10px;
-      color: white;
-      font-size: 24px;
-      transition: color 0.3s ease;
-    }
-    .social-icons .youtube:hover { color: #FF0000; text-shadow: 0 0 10px #FF0000; }
-    .social-icons .twitter:hover { color: #1DA1F2; text-shadow: 0 0 10px #1DA1F2; }
-    .social-icons .snapchat:hover { color: #FFFC00; text-shadow: 0 0 10px #FFFC00; }
-    #topBtn {
-      display: none;
-      position: fixed;
-      bottom: 40px;
-      right: 20px;
-      z-index: 999;
-      font-size: 18px;
-      padding: 10px;
-      background: #000;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-    #modeToggle {
-      position: fixed;
-      top: 10px;
-      right: 20px;
-      z-index: 1001;
-      background: #fff;
-      color: #000;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .contact-form input, .contact-form textarea {
-      width: 90%;
-      padding: 10px;
-      margin: 10px auto;
-      border-radius: 8px;
-      border: none;
-      display: block;
-    }
-    .loader {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-    .spinner {
-      width: 50px;
-      height: 50px;
-      border: 6px solid #fff;
-      border-top: 6px solid #00e9a1;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+      --card-bg: rgba(0, 0, 0, 0.6);
+    }body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--text-color);
+  text-align: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Animated Background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('188.gif') no-repeat center center/cover;
+  filter: brightness(0.2) blur(8px);
+  z-index: -1;
+  animation: zoom 30s infinite alternate;
+}
+
+@keyframes zoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.2); }
+}
+
+.navbar {
+  background: rgba(0,0,0,0.8);
+  padding: 12px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 1.1rem;
+  transition: 0.3s;
+}
+
+.navbar a:hover {
+  color: #ffa900;
+  text-shadow: 0 0 8px #ff00de;
+}
+
+.content {
+  margin-top: 100px;
+}
+
+.neon {
+  font-size: 2.5rem;
+  text-shadow: 0 0 10px #fff, 0 0 20px #ff00de, 0 0 40px #ff00de;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { text-shadow: 0 0 10px #fff, 0 0 20px #ff00de, 0 0 40px #ff00de; }
+  50% { text-shadow: 0 0 20px #fff, 0 0 40px #ff00de, 0 0 60px #ff00de; }
+}
+
+.typing {
+  border-right: 2px solid white;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  animation: typing 4s steps(30, end), blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: white; }
+}
+
+.neon-section, .skills-section {
+  background: var(--card-bg);
+  padding: 25px;
+  margin: 40px auto;
+  border-radius: 15px;
+  max-width: 900px;
+  box-shadow: 0 0 25px #ff00de;
+}
+
+.image-box {
+  display: inline-block;
+  width: 250px;
+  margin: 15px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  transition: transform 0.3s;
+}
+
+.image-box:hover {
+  transform: scale(1.08);
+}
+
+.progress {
+  background: #444;
+  border-radius: 15px;
+  height: 18px;
+  margin-top: 5px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #00ffc8, #ff00b3);
+}
+
+footer {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  color: #fff;
+}
+
+.social-icons a {
+  color: white;
+  margin: 0 10px;
+  font-size: 24px;
+}
+
+.social-icons a:hover {
+  color: #ff00de;
+  text-shadow: 0 0 10px #ff00de;
+}
+
   </style>
 </head>
 <body>
-  <div class="loader"><div class="spinner"></div></div>
-  <button id="modeToggle">Toggle Mode</button>
-
   <div class="navbar">
-    <a href="#home"><i class="fa fa-globe"></i> Web Updates</a>
-    <a href="#services"><i class="fa fa-comments"></i> Feedback</a>
-    <a href="#contact"><i class="fa fa-money"></i> Profit</a>
-  </div>
+    <a href="#">Web Updates</a>
+    <a href="#">Feedback</a>
+    <a href="#">Profit</a>
+  </div>  <div class="content">
+    <h1 class="neon"><span class="typing">Welcome to Arun's Website!</span></h1><div class="neon-section">
+  <h2 class="neon">About Me</h2>
+  <p>Creative UI/UX Designer | Web Developer | Content Strategist</p>
+  <p>Hello! I'm Arun, passionate about digital
 
-  <div class="content">
-    <h1 class="welcome-text neon"><span class="typing">Welcome to Arun's Website!</span></h1>
-    <h2 class="fade-in neon">About Me</h2>
-    <p class="fade-in">🚀 Creative UI/UX Designer | Web Developer | Content Strategist 🎨💻✨ Passionate about crafting engaging digital experiences. Hello! I'm Arun, a curious learner with a passion for design and technology. This website reflects my journey in UI/UX design.</p>
-
-    <hr/>
-
-    <h2 class="fade-in neon">Services</h2>
-    <div class="container">
-      <div class="image-box fade-in"><img src="445.gif" width="100%" alt="1"><p>“Even if I knew that tomorrow the world would go to pieces, I would still plant my apple tree.”</p></div>
-      <div class="image-box fade-in"><img src="166.gif" width="100%" alt="2"><p>“There is nothing impossible to him who will try.”</p></div>
-      <div class="image-box fade-in"><img src="188.gif" width="100%" alt="3"><p>“Perfection is not attainable, but if we chase perfection, we can catch excellence.”</p></div>
-    </div>
-
-    <div class="skills-section fade-in">
-      <h2 class="neon">My Skills</h2>
-      <div class="skill">HTML & CSS<div class="progress"><div class="progress-bar" style="width: 90%;"></div></div></div>
-      <div class="skill">JavaScript<div class="progress"><div class="progress-bar" style="width: 80%;"></div></div></div>
-      <div class="skill">UI/UX Design<div class="progress"><div class="progress-bar" style="width: 85%;"></div></div></div>
-      <div class="skill">Web Development<div class="progress"><div class="progress-bar" style="width: 100%;"></div></div></div>
-      <div class="skill">Node.js<div class="progress"><div class="progress-bar" style="width: 100%;"></div></div></div>
-
-      <h2 class="neon">Languages Known</h2>
-      <div class="skill">English<div class="progress"><div class="progress-bar" style="width: 90%;"></div></div></div>
-      <div class="skill">Hindi<div class="progress"><div class="progress-bar" style="width: 80%;"></div></div></div>
-      <div class="skill">German<div class="progress"><div class="progress-bar" style="width: 80%;"></div></div></div>
-      <div class="skill">Japanese<div class="progress"><div class="progress-bar" style="width: 60%;"></div></div></div>
-    </div>
-
-    <div class="contact-form fade-in" id="contact">
-      <h2 class="neon">Contact Me</h2>
-      <input type="text" placeholder="Your Name"/>
-      <input type="email" placeholder="Your Email"/>
-      <textarea rows="5" placeholder="Your Message"></textarea>
-    </div>
-  </div>
-
-  <footer>
-    <p>Connect with me</p>
-    <div class="social-icons">
-      <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
-      <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
-      <a href="#" class="snapchat"><i class="fab fa-snapchat"></i></a>
-    </div>
-  </footer>
-
-  <button onclick="scrollToTop()" id="topBtn">Top</button>
-
-  <script>
-    window.onload = () => {
-      document.querySelector('.loader').style.display = 'none';
-      document.body.style.opacity = 1;
-
-      const fadeEls = document.querySelectorAll('.fade-in');
-      fadeEls.forEach((el, i) => {
-        setTimeout(() => {
-          el.style.opacity = 1;
-          el.style.transform = "translateY(0)";
-        }, 300 * i);
-      });
-
-      const progressBars = document.querySelectorAll('.progress-bar');
-      progressBars.forEach(bar => {
-        const width = bar.style.width;
-        bar.style.width = "0";
-        setTimeout(() => { bar.style.width = width; }, 1000);
-      });
-    };
-
-    document.getElementById('modeToggle').onclick = () => {
-      document.body.classList.toggle('dark-mode');
-    };
-
-    window.onscroll = function () {
-      document.getElementById('topBtn').style.display = window.scrollY > 20 ? "block" : "none";
-    };
-
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  </script>
-</body>
-</html>
