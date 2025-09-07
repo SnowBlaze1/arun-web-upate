@@ -1,4 +1,5 @@
-!DOCTYPE html> <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
@@ -14,7 +15,7 @@
 
     body {
       opacity: 0;
-      transition: opacity 1.5s ease-in-out;
+      transition: opacity 1.5s ease-in-out, background 1s ease, color 1s ease;
       background: var(--bg);
       color: var(--text-color);
       text-align: center;
@@ -31,6 +32,14 @@
       color: var(--text-color);
     }
 
+    .dark-mode h2,
+    .dark-mode p,
+    .dark-mode a,
+    .dark-mode .neon {
+      text-shadow: 0 0 10px #00ffe5, 0 0 20px #ff00de;
+      transition: all 0.6s ease;
+    }
+
     .navbar {
       background: black;
       padding: 10px;
@@ -45,12 +54,12 @@
       text-decoration: none;
       margin: 0 15px;
       font-size: 1.2rem;
-      transition: color 0.3s;
-      text-shadow: 0 0 5px #fff, 0 0 10px #00ffe5;
+      transition: color 0.3s, text-shadow 0.3s;
     }
 
     .navbar a:hover {
       color: #ffa900;
+      text-shadow: 0 0 10px #ffa900, 0 0 20px #ff0e69;
     }
 
     .content {
@@ -66,6 +75,7 @@
 
     .welcome-text {
       font-size: 2.5rem;
+      animation: glow-text 3s infinite alternate;
     }
 
     .typing {
@@ -98,6 +108,16 @@
       }
     }
 
+    @keyframes glow-text {
+      from {
+        text-shadow: 0 0 5px #fff, 0 0 20px #ff00de, 0 0 40px #ff00de;
+      }
+
+      to {
+        text-shadow: 0 0 10px #00ffe5, 0 0 30px #00ffc8, 0 0 60px #ff0e69;
+      }
+    }
+
     .image-box {
       display: inline-block;
       margin: 20px;
@@ -107,7 +127,8 @@
     }
 
     .image-box:hover {
-      transform: scale(1.1);
+      transform: scale(1.1) rotate(2deg);
+      filter: drop-shadow(0 0 15px #ff00de);
     }
 
     .neon {
@@ -123,6 +144,12 @@
       border-radius: 15px;
       max-width: 900px;
       box-shadow: 0 0 15px #ff00de;
+      transition: box-shadow 0.6s ease;
+    }
+
+    .skills-section:hover,
+    .contact-form:hover {
+      box-shadow: 0 0 25px #00ffc8;
     }
 
     .skill {
@@ -154,22 +181,11 @@
       margin: 0 10px;
       color: white;
       font-size: 24px;
-      transition: color 0.3s ease;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
     }
 
-    .social-icons .youtube:hover {
-      color: #FF0000;
-      text-shadow: 0 0 10px #FF0000;
-    }
-
-    .social-icons .twitter:hover {
-      color: #1DA1F2;
-      text-shadow: 0 0 10px #1DA1F2;
-    }
-
-    .social-icons .snapchat:hover {
-      color: #FFFC00;
-      text-shadow: 0 0 10px #FFFC00;
+    .social-icons a:hover {
+      text-shadow: 0 0 15px #00ffe5, 0 0 30px #ff00de;
     }
 
     #topBtn {
@@ -198,6 +214,13 @@
       padding: 8px 12px;
       border-radius: 8px;
       cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .dark-mode #modeToggle {
+      background: #00ffc8;
+      color: #000;
+      box-shadow: 0 0 15px #00ffe5;
     }
 
     .contact-form input,
@@ -241,20 +264,20 @@
 <body>
   <div class="loader">
     <div class="spinner"></div>
-  </div> <button id="modeToggle">Toggle Mode</button>
+  </div>
+  <button id="modeToggle">Toggle Mode</button>
 
   <div class="navbar">
     <a href="#home"><i class="fa fa-globe"></i> Web Updates</a>
     <a href="#services"><i class="fa fa-comments"></i> Feedback</a>
     <a href="#Profit"><i class="fas fa-chart-line"></i> Profit</a>
-
   </div>
+
   <div class="content">
     <h1 class="welcome-text neon"><span class="typing">Welcome to Arun's Website!</span></h1>
     <h2 class="fade-in neon">About Me</h2>
     <p class="fade-in">🚀 Creative UI/UX Designer | Web Developer | Content Strategist 🎨💻✨ Passionate about crafting
-      engaging digital experiences. Hello! I'm Arun, a curious learner with a passion for design and technology. This
-      website reflects my journey in UI/UX design and full stack dev rn experinced person in tech field and non IT student.</p>
+      engaging digital experiences. Hello! I'm Arun, a curious learner with a passion for design and technology.</p>
 
     <hr />
 
@@ -271,102 +294,161 @@
       </div>
     </div>
 
+    <!-- My Skills -->
     <div class="skills-section fade-in">
       <h2 class="neon">My Skills</h2>
-
-      <div class="skill">
-        <i class="fab fa-html5 skill-icon"></i> HTML & CSS
+      <div class="skill"><i class="fab fa-html5"></i> HTML & CSS
         <div class="progress">
-          <div class="progress-bar" style="width: 90%;"></div>
+          <div class="progress-bar" style="width: 90%"></div>
         </div>
       </div>
-
-      <div class="skill">
-        <i class="fab fa-js-square skill-icon"></i> JavaScript
+      <div class="skill"><i class="fab fa-js"></i> JavaScript
         <div class="progress">
-          <div class="progress-bar" style="width: 80%;"></div>
+          <div class="progress-bar" style="width: 75%"></div>
         </div>
       </div>
-
-      <div class="skill">
-        <i class="fas fa-pencil-ruler skill-icon"></i> UI/UX Design
+      <div class="skill"><i class="fas fa-pencil-ruler"></i> UI/UX Design
         <div class="progress">
-          <div class="progress-bar" style="width: 85%;"></div>
+          <div class="progress-bar" style="width: 70%"></div>
         </div>
       </div>
-
-      <div class="skill">
-        <i class="fas fa-code skill-icon"></i> Web Development
+      <div class="skill"><i class="fas fa-code"></i> Web Development
         <div class="progress">
-          <div class="progress-bar" style="width: 100%;"></div>
+          <div class="progress-bar" style="width: 85%"></div>
         </div>
       </div>
-
-      <div class="skill">
-        <i class="fab fa-node-js skill-icon"></i> Node.js
+      <div class="skill"><i class="fab fa-node"></i> Node.js
         <div class="progress">
-          <div class="progress-bar" style="width: 100%;"></div>
+          <div class="progress-bar" style="width: 60%"></div>
         </div>
       </div>
-
-      <div class="skill">
-        <i class="fab fa-react skill-icon"></i> React
+      <div class="skill"><i class="fab fa-react"></i> React
         <div class="progress">
-          <div class="progress-bar" style="width: 50%;"></div>
-        </div>
-      </div>
-
-      <h2 class="neon">Languages Known</h2>
-
-      <div class="skill">
-        <i class="fas fa-language skill-icon"></i> English
-        <div class="progress">
-          <div class="progress-bar" style="width: 90%;"></div>
-        </div>
-      </div>
-
-      <div class="skill">
-        <i class="fas fa-language skill-icon"></i> Hindi
-        <div class="progress">
-          <div class="progress-bar" style="width: 80%;"></div>
-        </div>
-      </div>
-
-      <div class="skill">
-        <i class="fas fa-language skill-icon"></i> German
-        <div class="progress">
-          <div class="progress-bar" style="width: 80%;"></div>
-        </div>
-      </div>
-
-      <div class="skill">
-        <i class="fas fa-language skill-icon"></i> Japanese
-        <div class="progress">
-          <div class="progress-bar" style="width: 25%;"></div>
+          <div class="progress-bar" style="width: 65%"></div>
         </div>
       </div>
     </div>
 
+    <!-- Languages Known -->
+    <div class="skills-section fade-in">
+      <h2 class="neon">Languages Known</h2>
+      <div class="skill"><i class="fas fa-language"></i> English
+        <div class="progress">
+          <div class="progress-bar" style="width: 95%"></div>
+        </div>
+      </div>
+      <div class="skill"><i class="fas fa-language"></i> Hindi
+        <div class="progress">
+          <div class="progress-bar" style="width: 90%"></div>
+        </div>
+      </div>
+      <div class="skill"><i class="fas fa-language"></i> German
+        <div class="progress">
+          <div class="progress-bar" style="width: 50%"></div>
+        </div>
+      </div>
+      <div class="skill"><i class="fas fa-language"></i> Japanese
+        <div class="progress">
+          <div class="progress-bar" style="width: 40%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact -->
     <div class="contact-form fade-in" id="contact">
       <h2 class="neon">Contact Me</h2>
-      <form>
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea rows="5" placeholder="Your Message" required></textarea>
+      <form action="https://formspree.io/f/yourFormID" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
         <button type="submit"
-          style="padding: 10px 20px; background: #00e9a1; color: #000; border: none; border-radius: 5px;">Send</button>
+          style="padding: 10px 20px; background: #00e9a1; color: #000; border: none; border-radius: 5px;">
+          Send
+        </button>
       </form>
+      <p style="font-size:14px;margin-top:10px;">
+        </ </p>
     </div>
-
   </div>
+
   <footer>
     <p>© 2025 Arun. All Rights Reserved.</p>
     <div class="social-icons">
-      <a href="https://www.youtube.com" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
-      <a href="https://github.com/Arundeepyt" target="_blank" class="github"><i class="fab fa-github"></i></a>
-      <a href="https://www.snapchat.com" target="_blank" class="snapchat"><i class="fab fa-snapchat"></i></a>
+      <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://github.com/Arundeepyt" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.snapchat.com" target="_blank"><i class="fab fa-snapchat"></i></a>
     </div>
-  </footer> <button id="topBtn" onclick="scrollToTop()">Top</button>
+  </footer>
+  <!-- Replace your old Top button -->
+  <button id="topBtn"><i class="fas fa-arrow-up"></i></button>
+
+  <style>
+    /* Scroll-to-top button styled like a glowing icon */
+    #topBtn {
+      display: none;
+      position: fixed;
+      bottom: 40px;
+      right: 20px;
+      z-index: 999;
+      background: linear-gradient(145deg, #00ffc8, #ff00b3);
+      color: #111;
+      border: none;
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00ffc8, 0 0 25px #ff00b3;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.2s ease;
+    }
+
+    #topBtn.show {
+      opacity: 1;
+      pointer-events: auto;
+      animation: glowPulse 2s infinite;
+    }
+
+    #topBtn:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 20px #00ffc8, 0 0 40px #ff00b3;
+    }
+
+    @keyframes glowPulse {
+      0% {
+        box-shadow: 0 0 15px #00ffc8, 0 0 25px #ff00b3;
+      }
+
+      50% {
+        box-shadow: 0 0 25px #ff00b3, 0 0 40px #00ffc8;
+      }
+
+      100% {
+        box-shadow: 0 0 15px #00ffc8, 0 0 25px #ff00b3;
+      }
+    }
+  </style>
+
+  <script>
+    // Only add scroll event for show/hide class, do not redeclare topBtn
+    window.addEventListener("scroll", () => {
+      const topBtn = document.getElementById("topBtn");
+      if (window.scrollY > 200) {
+        topBtn.classList.add("show");
+      } else {
+        topBtn.classList.remove("show");
+      }
+    });
+
+    // Attach click event to scroll to top
+    document.getElementById("topBtn").onclick = function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+  </script>
 
   <script>
     window.onload = function () {
@@ -390,17 +472,10 @@
       });
     };
 
-    const topBtn = document.getElementById("topBtn");
-    window.onscroll = function () {
-      topBtn.style.display = window.scrollY > 200 ? "block" : "none";
-    };
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
     document.getElementById("modeToggle").onclick = function () {
       document.body.classList.toggle("dark-mode");
-    };  
+    };
+  </script>
   </script>
 </body>
 
