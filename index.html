@@ -10,7 +10,8 @@
     :root {
       --bg: linear-gradient(to right, #00e9a1, #ffa900, #ff0e69);
       --text-color: white;
-      --card-bg: rgba(15, 15, 15, 0.95); /* dark solid to stop side overlap */
+      /* Changed to solid black to prevent background bleed on the sides */
+      --card-bg: rgba(15, 15, 15, 1);
     }
 
     body {
@@ -135,7 +136,9 @@
       text-shadow: 0 0 5px #fff, 0 0 20px #ff00de, 0 0 40px #ff00de;
     }
 
-    .neon-section,
+    /* Combined styles for all card sections */
+    .about-section,
+    .services-section,
     .skills-section,
     .contact-form {
       background-color: var(--card-bg);
@@ -285,6 +288,28 @@
         transform: rotate(360deg);
       }
     }
+
+    /* === FIX FOR OVERLAP (Mobile Responsiveness) === */
+    @media (max-width: 950px) {
+      .about-section,
+      .services-section,
+      .skills-section,
+      .contact-form {
+        max-width: 100%;
+        /* Take up full width */
+        margin-left: 0;
+        margin-right: 0;
+        /* Remove horizontal margin */
+        border-radius: 0;
+        /* Optional: make corners square on full-width mobile */
+        padding: 30px 15px;
+      }
+
+      .container {
+        /* Ensure images and text don't hug the screen edge too much */
+        padding: 0 10px;
+      }
+    }
   </style>
 </head>
 
@@ -302,26 +327,30 @@
 
   <div class="content">
     <h1 class="welcome-text neon"><span class="typing">Welcome to Arun's Website!</span></h1>
-    <h2 class="fade-in neon">About Me</h2>
-    <p class="fade-in">🚀 Creative UI/UX Designer | Web Developer | Content Strategist 🎨💻✨ Passionate about crafting
-      engaging digital experiences. Hello! I'm Arun, a curious learner with a passion for design and technology.</p>
+
+    <div class="about-section fade-in">
+      <h2 class="neon">About Me</h2>
+      <p>🚀 Creative UI/UX Designer | Web Developer | Content Strategist 🎨💻✨ Passionate about crafting
+        engaging digital experiences. Hello! I'm Arun, a curious learner with a passion for design and technology.</p>
+    </div>
 
     <hr />
 
-    <h2 class="fade-in neon">Services</h2>
-    <div class="container">
-      <div class="image-box fade-in"><img src="445.gif" width="100%" alt="1">
-        <p>“Even if I knew that tomorrow the world would go to pieces, I would still plant my apple tree.”</p>
-      </div>
-      <div class="image-box fade-in"><img src="166.gif" width="100%" alt="2">
-        <p>“There is nothing impossible to him who will try.”</p>
-      </div>
-      <div class="image-box fade-in"><img src="188.gif" width="100%" alt="3">
-        <p>“Perfection is not attainable, but if we chase perfection, we can catch excellence.”</p>
+    <div class="services-section fade-in">
+      <h2 class="neon">Services</h2>
+      <div class="container">
+        <div class="image-box fade-in"><img src="445.gif" width="100%" alt="1">
+          <p>“Even if I knew that tomorrow the world would go to pieces, I would still plant my apple tree.”</p>
+        </div>
+        <div class="image-box fade-in"><img src="166.gif" width="100%" alt="2">
+          <p>“There is nothing impossible to him who will try.”</p>
+        </div>
+        <div class="image-box fade-in"><img src="188.gif" width="100%" alt="3">
+          <p>“Perfection is not attainable, but if we chase perfection, we can catch excellence.”</p>
+        </div>
       </div>
     </div>
 
-    <!-- My Skills -->
     <div class="skills-section fade-in">
       <h2 class="neon">My Skills</h2>
       <div class="skill"><i class="fab fa-html5"></i> HTML & CSS
@@ -356,7 +385,6 @@
       </div>
     </div>
 
-    <!-- Languages Known -->
     <div class="skills-section fade-in">
       <h2 class="neon">Languages Known</h2>
       <div class="skill"><i class="fas fa-language"></i> English
@@ -381,10 +409,8 @@
       </div>
     </div>
 
-    <!-- Contact -->
     <div class="contact-form fade-in" id="contact">
       <h2 class="neon">Contact Me</h2>
-      <!-- Fixed Formspree Integration -->
       <form id="my-form" action="https://formspree.io/f/xwpnabab" method="POST">
         <input type="text" name="name" placeholder="Your Name" required />
         <input type="email" name="email" placeholder="Your Email" required />
@@ -404,7 +430,6 @@
     </div>
   </footer>
 
-  <!-- Scroll To Top -->
   <button id="topBtn"><i class="fas fa-arrow-up"></i></button>
 
   <style>
