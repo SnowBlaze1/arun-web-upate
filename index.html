@@ -10,7 +10,7 @@
     :root {
       --bg: linear-gradient(to right, #00e9a1, #ffa900, #ff0e69);
       --text-color: white;
-      /* Ensure full opacity for the content background */
+      /* Changed to solid black to prevent background bleed on the sides */
       --card-bg: rgba(15, 15, 15, 1);
     }
 
@@ -66,12 +66,6 @@
     .content {
       margin-top: 100px;
       padding-bottom: 100px;
-      /* FIX: Apply the dark background to the whole content area */
-      background-color: var(--card-bg);
-      /* FIX: Constrain the width of the entire dark column */
-      max-width: 960px; 
-      margin-left: auto;
-      margin-right: auto;
     }
 
     .fade-in {
@@ -83,7 +77,6 @@
     .welcome-text {
       font-size: 2.5rem;
       animation: glow-text 3s infinite alternate;
-      padding-top: 20px; /* Added padding to space out from navbar */
     }
 
     .typing {
@@ -148,8 +141,7 @@
     .services-section,
     .skills-section,
     .contact-form {
-      /* Remove background color here as it's handled by .content */
-      background-color: transparent; 
+      background-color: var(--card-bg);
       margin: 50px auto;
       padding: 30px;
       border-radius: 15px;
@@ -297,33 +289,24 @@
       }
     }
 
-    /* === MOBILE FIXES (Focus on max-width: 960px) === */
-    @media (max-width: 960px) {
+    /* === MOBILE FIXES (Focus on max-width: 950px) === */
+    @media (max-width: 950px) {
 
-      /* Pushes the dark background column to fill the screen edge-to-edge on mobile */
-      .content {
-        max-width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-      }
-
-      /* Adjust internal card spacing to look good inside the now full-width .content */
+      /* Make all card sections full width, eliminating side margins */
       .about-section,
       .services-section,
       .skills-section,
       .contact-form {
         max-width: 100%;
-        margin-top: 0;
-        margin-bottom: 0;
-        /* Use negative margins to span the width of the parent .content (which is 100% of the screen) */
-        margin-left: -15px;
-        margin-right: -15px; 
-        padding: 30px 15px;
-        border-radius: 0; /* Remove rounded corners for a seamless edge-to-edge look */
+        margin-left: 0;
+        margin-right: 0;
+        /* Keep some internal padding */
+        padding: 30px 15px; 
       }
 
       /* Target the progress bar elements to fill the container */
       .skills-section .skill {
+        /* Remove left/right padding from skill to allow progress bar to extend */
         padding: 0;
         margin-left: 0;
         margin-right: 0;
@@ -331,6 +314,7 @@
 
       /* Ensure progress container is full width of its parent */
       .skills-section .progress {
+        /* Uses 100% of the skill container */
         width: 100%;
         margin: 5px 0;
       }
@@ -338,10 +322,17 @@
       /* Target the Contact Form elements to fill the container */
       .contact-form input,
       .contact-form textarea {
+        /* Important: Set width to 100% and use box-sizing for padding */
         width: 100%;
         box-sizing: border-box;
+        /* Remove horizontal margins */
         margin-left: 0;
         margin-right: 0;
+      }
+
+      .container {
+        /* Ensure images and text don't hug the screen edge too much */
+        padding: 0 5px;
       }
     }
   </style>
