@@ -1,616 +1,623 @@
-import React, { useState, useEffect, useRef } from 'react';
-import './ArunWebsite.css'; // Assuming you save the CSS in a file named ArunWebsite.css
+<!DOCTYPE html>
+<html lang="en">
 
-// --- CSS Content (for reference/placement in ArunWebsite.css) ---
-/* :root {
-  --bg: #111111;
-  --text-color: white;
-  --card-bg: rgba(15, 15, 15, 1);
-}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arun's Website</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root {
+      /* FIX 1: Change body's default background to solid dark color */
+      --bg: #111111;
+      --text-color: white;
+      /* Ensure full opacity for the content background */
+      --card-bg: rgba(15, 15, 15, 1);
+    }
 
-body {
-  opacity: 0;
-  transition: opacity 1.5s ease-in-out, background 1s ease, color 1s ease;
-  background: var(--bg);
-  color: var(--text-color);
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
+    body {
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out, background 1s ease, color 1s ease;
+      /* Now uses the solid dark color defined in :root */
+      background: var(--bg);
+      color: var(--text-color);
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
 
-.dark-mode {
-  --bg: #121212;
-  --text-color: #fff;
-  --card-bg: #1f1f1f;
-  background: var(--bg);
-  color: var(--text-color);
-}
+    .dark-mode {
+      --bg: #121212;
+      --text-color: #fff;
+      --card-bg: #1f1f1f;
+      background: var(--bg);
+      color: var(--text-color);
+    }
 
-.dark-mode h2,
-.dark-mode p,
-.dark-mode a,
-.dark-mode .neon {
-  text-shadow: 0 0 10px #00ffe5, 0 0 20px #ff00de;
-  transition: all 0.6s ease;
-}
+    .dark-mode h2,
+    .dark-mode p,
+    .dark-mode a,
+    .dark-mode .neon {
+      text-shadow: 0 0 10px #00ffe5, 0 0 20px #ff00de;
+      transition: all 0.6s ease;
+    }
 
-.navbar {
-  background: black;
-  padding: 10px;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-}
+    .navbar {
+      background: black;
+      padding: 10px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
 
-.navbar a {
-  color: white;
-  text-decoration: none;
-  margin: 0 15px;
-  font-size: 1.2rem;
-  transition: color 0.3s, text-shadow 0.3s;
-}
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 1.2rem;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
 
-.navbar a:hover {
-  color: #ffa900;
-  text-shadow: 0 0 10px #ffa900, 0 0 20px #ff0e69;
-}
+    .navbar a:hover {
+      color: #ffa900;
+      text-shadow: 0 0 10px #ffa900, 0 0 20px #ff0e69;
+    }
 
-.content {
-  margin-top: 100px;
-  padding-bottom: 100px;
-  background-color: var(--card-bg);
-  max-width: 960px;
-  margin-left: auto;
-  margin-right: auto;
-  border: 5px solid transparent;
-  border-image: linear-gradient(to right, #00e9a1, #ffa900, #ff0e69) 1;
-  border-image-slice: 1;
-}
+    .content {
+      margin-top: 100px;
+      padding-bottom: 100px;
+      /* Apply the dark background to the whole content area */
+      background-color: var(--card-bg);
+      /* Constrain the width of the entire dark column */
+      max-width: 960px;
+      margin-left: auto;
+      margin-right: auto;
 
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
-}
+      /* New: Apply the gradient as a subtle border effect on desktop */
+      border: 5px solid transparent;
+      border-image: linear-gradient(to right, #00e9a1, #ffa900, #ff0e69) 1;
+      border-image-slice: 1;
+    }
 
-.welcome-text {
-  font-size: 2.5rem;
-  animation: glow-text 3s infinite alternate;
-  padding-top: 20px;
-}
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+    }
 
-.typing {
-  border-right: 2px solid white;
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  animation: typing 4s steps(30, end), blink 0.75s step-end infinite;
-}
+    .welcome-text {
+      font-size: 2.5rem;
+      animation: glow-text 3s infinite alternate;
+      padding-top: 20px;
+      /* Added padding to space out from navbar */
+    }
 
-@keyframes typing {
-  from {
-    width: 0;
-  }
+    .typing {
+      border-right: 2px solid white;
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 4s steps(30, end), blink 0.75s step-end infinite;
+    }
 
-  to {
-    width: 100%;
-  }
-}
+    @keyframes typing {
+      from {
+        width: 0;
+      }
 
-@keyframes blink {
+      to {
+        width: 100%;
+      }
+    }
 
-  from,
-  to {
-    border-color: transparent;
-  }
+    @keyframes blink {
 
-  50% {
-    border-color: white;
-  }
-}
+      from,
+      to {
+        border-color: transparent;
+      }
 
-@keyframes glow-text {
-  from {
-    text-shadow: 0 0 5px #fff, 0 0 20px #ff00de, 0 0 40px #ff00de;
-  }
+      50% {
+        border-color: white;
+      }
+    }
 
-  to {
-    text-shadow: 0 0 10px #00ffe5, 0 0 30px #00ffc8, 0 0 60px #ff0e69;
-  }
-}
+    @keyframes glow-text {
+      from {
+        text-shadow: 0 0 5px #fff, 0 0 20px #ff00de, 0 0 40px #ff00de;
+      }
 
-.image-box {
-  display: inline-block;
-  margin: 20px;
-  width: 30%;
-  transition: transform 0.3s ease-in-out;
-  cursor: pointer;
-}
+      to {
+        text-shadow: 0 0 10px #00ffe5, 0 0 30px #00ffc8, 0 0 60px #ff0e69;
+      }
+    }
 
-.image-box:hover {
-  transform: scale(1.1) rotate(2deg);
-  filter: drop-shadow(0 0 15px #ff00de);
-}
+    .image-box {
+      display: inline-block;
+      margin: 20px;
+      width: 30%;
+      transition: transform 0.3s ease-in-out;
+      cursor: pointer;
+    }
 
-.neon {
-  text-shadow: 0 0 5px #fff, 0 0 20px #ff00de, 0 0 40px #ff00de;
-}
+    .image-box:hover {
+      transform: scale(1.1) rotate(2deg);
+      filter: drop-shadow(0 0 15px #ff00de);
+    }
 
-.about-section,
-.services-section,
-.skills-section,
-.contact-form {
-  background-color: transparent;
-  margin: 50px auto;
-  padding: 30px;
-  border-radius: 15px;
-  max-width: 900px;
-  box-shadow: 0 0 15px #ff00de;
-  transition: box-shadow 0.6s ease;
-}
+    .neon {
+      text-shadow: 0 0 5px #fff, 0 0 20px #ff00de, 0 0 40px #ff00de;
+    }
 
-.skills-section:hover,
-.contact-form:hover {
-  box-shadow: 0 0 25px #00ffc8;
-}
+    /* Combined styles for all card sections */
+    .about-section,
+    .services-section,
+    .skills-section,
+    .contact-form {
+      /* Remove background color here as it's handled by .content */
+      background-color: transparent;
+      margin: 50px auto;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 900px;
+      box-shadow: 0 0 15px #ff00de;
+      transition: box-shadow 0.6s ease;
+    }
 
-.skill {
-  margin: 20px 0;
-  text-align: left;
-}
+    .skills-section:hover,
+    .contact-form:hover {
+      box-shadow: 0 0 25px #00ffc8;
+    }
 
-.progress {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  overflow: hidden;
-  height: 20px;
-}
+    .skill {
+      margin: 20px 0;
+      text-align: left;
+    }
 
-.progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg, #00ffc8, #ff00b3);
-  width: 0;
-}
+    .progress {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      overflow: hidden;
+      height: 20px;
+    }
 
-footer {
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  text-align: center;
-  padding: 15px 0;
-}
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00ffc8, #ff00b3);
+      width: 0;
+    }
 
-.social-icons a {
-  margin: 0 10px;
-  color: white;
-  font-size: 24px;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-}
+    footer {
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+    }
 
-.social-icons a:hover {
-  text-shadow: 0 0 15px #00ffe5, 0 0 30px #ff00de;
-}
+    .social-icons a {
+      margin: 0 10px;
+      color: white;
+      font-size: 24px;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
 
-#topBtn {
-  display: none;
-  position: fixed;
-  bottom: 40px;
-  right: 20px;
-  z-index: 999;
-  font-size: 18px;
-  padding: 10px;
-  background: #000;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
+    .social-icons a:hover {
+      text-shadow: 0 0 15px #00ffe5, 0 0 30px #ff00de;
+    }
 
-#modeToggle {
-  position: fixed;
-  top: 10px;
-  right: 20px;
-  z-index: 1001;
-  width: 50px;
-  height: 50px;
-  padding: 0;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  cursor: pointer;
-  font-size: 22px;
-  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
-  background: #fff;
-  color: #ffa900;
-  box-shadow: 0 0 15px #ffa900;
-}
+    /* Original top button styles (for scrolling) */
+    #topBtn {
+      display: none;
+      position: fixed;
+      bottom: 40px;
+      right: 20px;
+      z-index: 999;
+      font-size: 18px;
+      padding: 10px;
+      background: #000;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
 
-.dark-mode #modeToggle {
-  background: #1f1f1f;
-  color: #00ffc8;
-  box-shadow: 0 0 15px #00ffe5;
-}
+    /* --- START OF TOGGLE MODE BUTTON FIXES --- */
+    #modeToggle {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      z-index: 1001;
+      /* Increased size for better touch target */
+      width: 50px;
+      height: 50px;
+      padding: 0;
+      border-radius: 50%; /* Make it a circle */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+      font-size: 22px; /* Increased icon size */
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
 
-.contact-form input,
-.contact-form textarea {
-  width: 90%;
-  padding: 10px;
-  margin: 10px auto;
-  border-radius: 8px;
-  border: 2px solid transparent;
-  display: block;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  outline: none;
-  transition: border 0.3s, box-shadow 0.3s;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border: 2px solid #00ffc8;
-  box-shadow: 0 0 10px #00ffc8, 0 0 20px #ff00b3;
-}
-
-.contact-form button {
-  background: linear-gradient(145deg, #00ffc8, #ff00b3);
-  color: #111 !important;
-  font-weight: bold;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.3s;
-  box-shadow: 0 0 10px #00ffc8, 0 0 20px #ff00b3;
-}
-
-.contact-form button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px #00ffc8, 0 0 40px #ff00b3;
-}
-
-.loader {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.spinner {
-  width: 50px;
-  height: 50px;
-  border: 6px solid #fff;
-  border-top: 6px solid #00e9a1;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (max-width: 960px) {
-
-  .content {
-    max-width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    border: none;
-  }
-
-  .about-section,
-  .services-section,
-  .skills-section,
-  .contact-form {
-    max-width: 100%;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 30px 15px;
-    border-radius: 0;
-  }
-
-  .skills-section .skill {
-    padding: 0;
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .skills-section .progress {
-    width: 100%;
-    margin: 5px 0;
-  }
-
-  .contact-form input,
-  .contact-form textarea {
-    width: 100%;
-    box-sizing: border-box;
-    margin-left: 0;
-    margin-right: 0;
-  }
+      /* Light Mode Default (Sun Icon) */
+      background: #fff;
+      color: #ffa900; /* Sun-like color */
+      box-shadow: 0 0 15px #ffa900;
+    }
     
-  #modeToggle {
-    top: auto;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1002;
-    animation: glowPulseMode 2s infinite;
-  }
+    .dark-mode #modeToggle {
+      /* Dark Mode State (Moon/Star Icon) */
+      background: #1f1f1f; /* Dark background for the button */
+      color: #00ffc8;
+      box-shadow: 0 0 15px #00ffe5;
+    }
+    
+    /* Reposition on Mobile (Below 960px) */
+    @media (max-width: 960px) {
+        #modeToggle {
+            /* Move button to a prominent, easily accessible bottom corner */
+            top: auto;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1002; /* Ensure it stays above the topBtn */
+            
+            /* Give it a glow pulse similar to the topBtn */
+            animation: glowPulseMode 2s infinite;
+        }
+        
+        @keyframes glowPulseMode {
+            0% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+            50% { box-shadow: 0 0 20px var(--text-color); }
+            100% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+        }
+    }
+    /* --- END OF TOGGLE MODE BUTTON FIXES --- */
 
-  @keyframes glowPulseMode {
-    0% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
-    50% { box-shadow: 0 0 20px var(--text-color); }
-    100% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
-  }
-}
- 
-#topBtn {
-  display: none;
-  position: fixed;
-  bottom: 40px;
-  right: 20px;
-  z-index: 999;
-  background: linear-gradient(145deg, #00ffc8, #ff00b3);
-  color: #111;
-  border: none;
-  border-radius: 50%;
-  width: 55px;
-  height: 55px;
-  font-size: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 0 15px #00ffc8, 0 0 25px #ff00b3;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.2s ease;
-}
 
-#topBtn.show {
-  opacity: 1;
-  pointer-events: auto;
-  animation: glowPulse 2s infinite;
-}
+    .contact-form input,
+    .contact-form textarea {
+      width: 90%;
+      padding: 10px;
+      margin: 10px auto;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      display: block;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      outline: none;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
 
-#topBtn:hover {
-  transform: scale(1.15);
-  box-shadow: 0 0 20px #00ffc8, 0 0 40px #ff00b3;
-}
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border: 2px solid #00ffc8;
+      box-shadow: 0 0 10px #00ffc8, 0 0 20px #ff00b3;
+    }
 
-@keyframes glowPulse {
-  0% {
-    box-shadow: 0 0 15px #00ffc8, 0 0 25px #ff00b3;
-  }
+    .contact-form button {
+      background: linear-gradient(145deg, #00ffc8, #ff00b3);
+      color: #111 !important;
+      font-weight: bold;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 0 10px #00ffc8, 0 0 20px #ff00b3;
+    }
 
-  50% {
-    box-shadow: 0 0 25px #ff00b3, 0 0 40px #00ffc8;
-  }
+    .contact-form button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffc8, 0 0 40px #ff00b3;
+    }
 
-  100% {
-    box-shadow: 0 0 15px #00ffc8, 0 0 25px #ff00b3;
-  }
-}
-*/
-// --- End of CSS Content ---
+    .loader {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
 
-const ArunWebsite = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [showTopBtn, setShowTopBtn] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 6px solid #fff;
+      border-top: 6px solid #00e9a1;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
 
-  // Refs for tracking elements that need animations
-  const fadeRefs = useRef([]);
-  const progressRefs = useRef([]);
-  const contentRef = useRef(null);
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
-  // --- Initial Loading/Fade-In Effects ---
-  useEffect(() => {
-    // 1. Loader removal
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-      
-      // 2. Initial Body Fade-In (Re-applied to content wrapper for React)
-      if (contentRef.current) {
-        contentRef.current.style.opacity = "1";
+    /* === MOBILE FIXES (Focus on max-width: 960px) === */
+    @media (max-width: 960px) {
+
+      /* Pushes the dark background column to fill the screen edge-to-edge on mobile */
+      .content {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        /* Remove the gradient border on mobile for a clean look */
+        border: none;
       }
 
-      // 3. Sequential Fade-In Animations
-      fadeRefs.current.forEach((el, i) => {
-        if (el) {
-          setTimeout(() => {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-          }, i * 300 + 100); // 100ms delay after loader hides
-        }
-      });
+      /* Adjust internal card spacing to look good inside the now full-width .content */
+      .about-section,
+      .services-section,
+      .skills-section,
+      .contact-form {
+        max-width: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+        /* FIX 2: Set margins to 0 to prevent background bleed on mobile */
+        margin-left: 0;
+        margin-right: 0;
+        padding: 30px 15px;
+        border-radius: 0;
+        /* Remove rounded corners for a seamless edge-to-edge look */
+      }
 
-      // 4. Progress Bar Animations
-      progressRefs.current.forEach((bar) => {
-        if (bar) {
-          const target = bar.style.width;
-          bar.style.width = "0";
-          setTimeout(() => {
-            bar.style.transition = "width 2s ease-in-out";
-            bar.style.width = target;
-          }, 1000);
-        }
-      });
-    }, 500); // Shorter duration for loader in React context
+      /* Target the progress bar elements to fill the container */
+      .skills-section .skill {
+        padding: 0;
+        margin-left: 0;
+        margin-right: 0;
+      }
 
-    return () => clearTimeout(timer);
-  }, []);
+      /* Ensure progress container is full width of its parent */
+      .skills-section .progress {
+        width: 100%;
+        margin: 5px 0;
+      }
 
-  // --- Scroll Logic for Top Button ---
-  useEffect(() => {
-    const handleScroll = () => {
+      /* Target the Contact Form elements to fill the container */
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        box-sizing: border-box;
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="loader">
+    <div class="spinner"></div>
+  </div>
+  <button id="modeToggle"><i class="fas fa-sun"></i></button>
+
+  <div class="navbar">
+    <a href="#home"><i class="fa fa-globe"></i> Web Updates</a>
+    <a href="#services"><i class="fa fa-comments"></i> Feedback</a>
+    <a href="#Profit"><i class="fas fa-chart-line"></i> Profit</a>
+  </div>
+
+  <div class="content">
+    <h1 class="welcome-text neon"><span class="typing">Welcome to Arun's Website!</span></h1>
+
+    <div class="about-section fade-in">
+      <h2 class="neon">About Me</h2>
+      <p>🚀 Creative UI/UX Designer | Web Developer | Content Strategist 🎨💻✨ Passionate about crafting
+        engaging digital experiences. Hello! I'm Arun, a curious learner with a passion for design and technology.</p>
+    </div>
+
+    <hr />
+
+    <div class="services-section fade-in">
+      <h2 class="neon">Services</h2>
+      <div class="container">
+        <div class="image-box fade-in"><img src="445.gif" width="100%" alt="1">
+          <p>“Even if I knew that tomorrow the world would go to pieces, I would still plant my apple tree.”</p>
+        </div>
+        <div class="image-box fade-in"><img src="166.gif" width="100%" alt="2">
+          <p>“There is nothing impossible to him who will try.”</p>
+        </div>
+        <div class="image-box fade-in"><img src="188.gif" width="100%" alt="3">
+          <p>“Perfection is not attainable, but if we chase perfection, we can catch excellence.”</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="skills-section fade-in">
+      <h2 class="neon">My Skills</h2>
+      <div class="skill"><i class="fab fa-html5"></i> HTML & CSS
+        <div class="progress">
+          <div class="progress-bar" style="width: 90%"></div>
+        </div>
+      </div>
+      <div class="skill"><i class="fab fa-js"></i> JavaScript
+        <div class="progress">
+          <div class="progress-bar" style="width: 75%"></div>
+        </div>
+      </div>
+      <div class="skill"><i class="fas fa-pencil-ruler"></i> UI/UX Design
+        <div class="progress">
+          <div class="progress-bar" style="width: 70%"></div>
+        </div>
+      </div>
+      <div class="skill"><i class="fas fa-code"></i> Web Development
+        <div class="progress">
+          <div class="progress-bar" style="width: 85%"></div>
+        </div>
+      </div>
+      <div class="skill"><i class="fab fa-node"></i> Node.js
+        <div class="progress">
+          <div class="progress-bar" style="width: 60%"></div>
+        </div>
+      </div>
+      <div class="skill"><i class="fab fa-react"></i> React
+        <div class="progress">
+          <div class="progress-bar" style="width: 65%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skills-section fade-in">
+      <h2 class="neon">Languages Known</h2>
+      <div class="skill"><i class="fas fa-language"></i> English
+        <div class="progress">
+          <div class="progress-bar" style="width: 95%"></div>
+        </div>
+      </div>
+      <div class="skill"><i class="fas fa-language"></i> Hindi
+        <div class="progress">
+          <div class="progress-bar" style="width: 90%"></div>
+        </div>
+      </div>
+      <div class="skill"><i class="fas fa-language"></i> German
+        <div class="progress">
+          <div class="progress-bar" style="width: 50%"></div>
+        </div>
+      </div>
+      <div class="skill"><i class="fas fa-language"></i> Japanese
+        <div class="progress">
+          <div class="progress-bar" style="width: 40%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form fade-in" id="contact">
+      <h2 class="neon">Contact Me</h2>
+      <form id="my-form" action="https://formspree.io/f/xwpnabab" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+        <p id="form-status" class="status"></p>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Arun. All Rights Reserved.</p>
+    <div class="social-icons">
+      <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://github.com/Arundeepyt" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.snapchat.com" target="_blank"><i class="fab fa-snapchat"></i></a>
+    </div>
+  </footer>
+
+  <button id="topBtn"><i class="fas fa-arrow-up"></i></button>
+
+  <style>
+    /* This style block remains separate as it defines the appearance and animation of the top button */
+    #topBtn {
+      display: none;
+      position: fixed;
+      bottom: 40px;
+      right: 20px;
+      z-index: 999;
+      background: linear-gradient(145deg, #00ffc8, #ff00b3);
+      color: #111;
+      border: none;
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00ffc8, 0 0 25px #ff00b3;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.2s ease;
+    }
+
+    #topBtn.show {
+      opacity: 1;
+      pointer-events: auto;
+      animation: glowPulse 2s infinite;
+    }
+
+    #topBtn:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 20px #00ffc8, 0 0 40px #ff00b3;
+    }
+
+    @keyframes glowPulse {
+      0% {
+        box-shadow: 0 0 15px #00ffc8, 0 0 25px #ff00b3;
+      }
+
+      50% {
+        box-shadow: 0 0 25px #ff00b3, 0 0 40px #00ffc8;
+      }
+
+      100% {
+        box-shadow: 0 0 15px #00ffc8, 0 0 25px #ff00b3;
+      }
+    }
+  </style>
+
+  <script>
+    // Scroll-to-top button
+    window.addEventListener("scroll", () => {
+      const topBtn = document.getElementById("topBtn");
+      // Check if the mode toggle button is also at the bottom for collision avoidance (optional but good practice)
+      // For this solution, we rely on Z-index for the main fix.
       if (window.scrollY > 200) {
-        setShowTopBtn(true);
+        topBtn.classList.add("show");
       } else {
-        setShowTopBtn(false);
+        topBtn.classList.remove("show");
       }
+    });
+
+    document.getElementById("topBtn").onclick = function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    // Loader + animations
+    window.onload = function () {
+      document.querySelector(".loader").style.display = "none";
+      document.body.style.opacity = "1";
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+      document.querySelectorAll(".fade-in").forEach((el, i) => {
+        setTimeout(() => {
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+        }, i * 300);
+      });
 
-  // --- Dark Mode Toggle Handler ---
-  const toggleMode = () => {
-    setIsDarkMode(prevMode => !prevMode);
-  };
+      document.querySelectorAll(".progress-bar").forEach((bar) => {
+        let target = bar.style.width;
+        bar.style.width = "0";
+        setTimeout(() => {
+          bar.style.transition = "width 2s ease-in-out";
+          bar.style.width = target;
+        }, 1000);
+      });
+    };
 
-  // Apply dark mode class to the body element (React best practice for global styles)
-  useEffect(() => {
-    if (isDarkMode) {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
-  }, [isDarkMode]);
+    // Toggle Mode Logic: Toggles the class and switches the icon
+    document.getElementById("modeToggle").onclick = function () {
+      document.body.classList.toggle("dark-mode");
+      const icon = this.querySelector('i');
 
-  // Helper component for skill bars
-  const SkillBar = ({ iconClass, name, percentage, index }) => (
-    <div className="skill" ref={el => progressRefs.current[index] = el}>
-      <i className={iconClass}></i> {name}
-      <div className="progress">
-        <div className="progress-bar" style={{ width: `${percentage}%` }}></div>
-      </div>
-    </div>
-  );
+      if (document.body.classList.contains('dark-mode')) {
+        // Switch to moon/star icon for dark mode
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      } else {
+        // Switch back to sun icon for light mode
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      }
+    };
+  </script>
+</body>
 
-  const skills = [
-    { icon: 'fab fa-html5', name: 'HTML & CSS', percentage: 90 },
-    { icon: 'fab fa-js', name: 'JavaScript', percentage: 75 },
-    { icon: 'fas fa-pencil-ruler', name: 'UI/UX Design', percentage: 70 },
-    { icon: 'fas fa-code', name: 'Web Development', percentage: 85 },
-    { icon: 'fab fa-node', name: 'Node.js', percentage: 60 },
-    { icon: 'fab fa-react', name: 'React', percentage: 65 },
-  ];
-
-  const languages = [
-    { icon: 'fas fa-language', name: 'English', percentage: 95 },
-    { icon: 'fas fa-language', name: 'Hindi', percentage: 90 },
-    { icon: 'fas fa-language', name: 'German', percentage: 50 },
-    { icon: 'fas fa-language', name: 'Japanese', percentage: 40 },
-  ];
-  
-  // Use index counter for setting refs on fade-in elements
-  let fadeIndex = -1;
-
-  // Render Loader conditionally
-  if (isLoading) {
-    return (
-      <div className="loader">
-        <div className="spinner"></div>
-      </div>
-    );
-  }
-
-  return (
-    // Note: The main content wrapper now handles the initial opacity/fade-in
-    <div ref={contentRef} style={{opacity: 0, transition: 'opacity 1.5s ease-in-out'}}> 
-      <button id="modeToggle" onClick={toggleMode}>
-        <i className={isDarkMode ? "fas fa-moon" : "fas fa-sun"}></i>
-      </button>
-
-      <div className="navbar">
-        <a href="#home"><i className="fa fa-globe"></i> Web Updates</a>
-        <a href="#services"><i className="fa fa-comments"></i> Feedback</a>
-        <a href="#Profit"><i className="fas fa-chart-line"></i> Profit</a>
-      </div>
-
-      <div className="content">
-        <h1 className="welcome-text neon"><span className="typing">Welcome to Arun's Website!</span></h1>
-
-        <div className="about-section fade-in" ref={el => fadeRefs.current[++fadeIndex] = el}>
-          <h2 className="neon">About Me</h2>
-          <p>🚀 Creative UI/UX Designer | Web Developer | Content Strategist 🎨💻✨ Passionate about crafting
-            engaging digital experiences. Hello! I'm Arun, a curious learner with a passion for design and technology.</p>
-        </div>
-
-        <hr />
-
-        <div className="services-section fade-in" ref={el => fadeRefs.current[++fadeIndex] = el}>
-          <h2 className="neon">Services</h2>
-          <div className="container">
-            <div className="image-box fade-in" ref={el => fadeRefs.current[++fadeIndex] = el}><img src="445.gif" width="100%" alt="1" />
-              <p>“Even if I knew that tomorrow the world would go to pieces, I would still plant my apple tree.”</p>
-            </div>
-            <div className="image-box fade-in" ref={el => fadeRefs.current[++fadeIndex] = el}><img src="166.gif" width="100%" alt="2" />
-              <p>“There is nothing impossible to him who will try.”</p>
-            </div>
-            <div className="image-box fade-in" ref={el => fadeRefs.current[++fadeIndex] = el}><img src="188.gif" width="100%" alt="3" />
-              <p>“Perfection is not attainable, but if we chase perfection, we can catch excellence.”</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="skills-section fade-in" ref={el => fadeRefs.current[++fadeIndex] = el}>
-          <h2 className="neon">My Skills</h2>
-          {skills.map((skill, index) => (
-            <SkillBar 
-              key={skill.name} 
-              iconClass={skill.icon} 
-              name={skill.name} 
-              percentage={skill.percentage} 
-              index={index}
-            />
-          ))}
-        </div>
-
-        <div className="skills-section fade-in" ref={el => fadeRefs.current[++fadeIndex] = el}>
-          <h2 className="neon">Languages Known</h2>
-          {languages.map((language, index) => (
-            <SkillBar 
-              key={language.name} 
-              iconClass={language.icon} 
-              name={language.name} 
-              percentage={language.percentage} 
-              index={skills.length + index} // Continue the index count
-            />
-          ))}
-        </div>
-
-        <div className="contact-form fade-in" id="contact" ref={el => fadeRefs.current[++fadeIndex] = el}>
-          <h2 className="neon">Contact Me</h2>
-          <form id="my-form" action="https://formspree.io/f/xwpnabab" method="POST">
-            <input type="text" name="name" placeholder="Your Name" required />
-            <input type="email" name="email" placeholder="Your Email" required />
-            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-            <button type="submit">Send</button>
-            <p id="form-status" className="status"></p>
-          </form>
-        </div>
-      </div>
-
-      <footer>
-        <p>© 2025 Arun. All Rights Reserved.</p>
-        <div className="social-icons">
-          <a href="https://www.youtube.com" target="_blank"><i className="fab fa-youtube"></i></a>
-          <a href="https://github.com/Arundeepyt" target="_blank"><i className="fab fa-github"></i></a>
-          <a href="https://www.snapchat.com" target="_blank"><i className="fab fa-snapchat"></i></a>
-        </div>
-      </footer>
-
-      <button id="topBtn" className={showTopBtn ? 'show' : ''} onClick={scrollToTop}>
-        <i className="fas fa-arrow-up"></i>
-      </button>
-    </div>
-  );
-};
-
-export default ArunWebsite;
+</html>
