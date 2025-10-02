@@ -8,15 +8,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
     :root {
-      --bg: linear-gradient(to right, #00e9a1, #ffa900, #ff0e69);
+      /* FIX 1: Change body's default background to solid dark color */
+      --bg: #111111;
       --text-color: white;
-      /* Changed to solid black to prevent background bleed on the sides */
+      /* Ensure full opacity for the content background */
       --card-bg: rgba(15, 15, 15, 1);
     }
 
     body {
       opacity: 0;
       transition: opacity 1.5s ease-in-out, background 1s ease, color 1s ease;
+      /* Now uses the solid dark color defined in :root */
       background: var(--bg);
       color: var(--text-color);
       text-align: center;
@@ -66,6 +68,17 @@
     .content {
       margin-top: 100px;
       padding-bottom: 100px;
+      /* Apply the dark background to the whole content area */
+      background-color: var(--card-bg);
+      /* Constrain the width of the entire dark column */
+      max-width: 960px;
+      margin-left: auto;
+      margin-right: auto;
+      
+      /* New: Apply the gradient as a subtle border effect on desktop */
+      border: 5px solid transparent; 
+      border-image: linear-gradient(to right, #00e9a1, #ffa900, #ff0e69) 1;
+      border-image-slice: 1;
     }
 
     .fade-in {
@@ -77,6 +90,8 @@
     .welcome-text {
       font-size: 2.5rem;
       animation: glow-text 3s infinite alternate;
+      padding-top: 20px;
+      /* Added padding to space out from navbar */
     }
 
     .typing {
@@ -141,7 +156,8 @@
     .services-section,
     .skills-section,
     .contact-form {
-      background-color: var(--card-bg);
+      /* Remove background color here as it's handled by .content */
+      background-color: transparent;
       margin: 50px auto;
       padding: 30px;
       border-radius: 15px;
@@ -289,24 +305,36 @@
       }
     }
 
-    /* === MOBILE FIXES (Focus on max-width: 950px) === */
-    @media (max-width: 950px) {
+    /* === MOBILE FIXES (Focus on max-width: 960px) === */
+    @media (max-width: 960px) {
 
-      /* Make all card sections full width, eliminating side margins */
+      /* Pushes the dark background column to fill the screen edge-to-edge on mobile */
+      .content {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        /* Remove the gradient border on mobile for a clean look */
+        border: none;
+      }
+
+      /* Adjust internal card spacing to look good inside the now full-width .content */
       .about-section,
       .services-section,
       .skills-section,
       .contact-form {
         max-width: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+        /* FIX 2: Set margins to 0 to prevent background bleed on mobile */
         margin-left: 0;
         margin-right: 0;
-        /* Keep some internal padding */
-        padding: 30px 15px; 
+        padding: 30px 15px;
+        border-radius: 0;
+        /* Remove rounded corners for a seamless edge-to-edge look */
       }
 
       /* Target the progress bar elements to fill the container */
       .skills-section .skill {
-        /* Remove left/right padding from skill to allow progress bar to extend */
         padding: 0;
         margin-left: 0;
         margin-right: 0;
@@ -314,7 +342,6 @@
 
       /* Ensure progress container is full width of its parent */
       .skills-section .progress {
-        /* Uses 100% of the skill container */
         width: 100%;
         margin: 5px 0;
       }
@@ -322,17 +349,10 @@
       /* Target the Contact Form elements to fill the container */
       .contact-form input,
       .contact-form textarea {
-        /* Important: Set width to 100% and use box-sizing for padding */
         width: 100%;
         box-sizing: border-box;
-        /* Remove horizontal margins */
         margin-left: 0;
         margin-right: 0;
-      }
-
-      .container {
-        /* Ensure images and text don't hug the screen edge too much */
-        padding: 0 5px;
       }
     }
   </style>
@@ -458,6 +478,7 @@
   <button id="topBtn"><i class="fas fa-arrow-up"></i></button>
 
   <style>
+    /* This style block remains separate as it defines the appearance and animation of the top button */
     #topBtn {
       display: none;
       position: fixed;
