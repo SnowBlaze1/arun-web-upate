@@ -74,9 +74,9 @@
       max-width: 960px;
       margin-left: auto;
       margin-right: auto;
-      
+
       /* New: Apply the gradient as a subtle border effect on desktop */
-      border: 5px solid transparent; 
+      border: 5px solid transparent;
       border-image: linear-gradient(to right, #00e9a1, #ffa900, #ff0e69) 1;
       border-image-slice: 1;
     }
@@ -207,6 +207,7 @@
       text-shadow: 0 0 15px #00ffe5, 0 0 30px #ff00de;
     }
 
+    /* Original top button styles (for scrolling) */
     #topBtn {
       display: none;
       position: fixed;
@@ -222,25 +223,59 @@
       cursor: pointer;
     }
 
+    /* --- START OF TOGGLE MODE BUTTON FIXES --- */
     #modeToggle {
       position: fixed;
       top: 10px;
       right: 20px;
       z-index: 1001;
-      background: #fff;
-      color: #000;
+      /* Increased size for better touch target */
+      width: 50px;
+      height: 50px;
+      padding: 0;
+      border-radius: 50%; /* Make it a circle */
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border: none;
-      padding: 8px 12px;
-      border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s, color 0.3s;
-    }
+      font-size: 22px; /* Increased icon size */
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
 
+      /* Light Mode Default (Sun Icon) */
+      background: #fff;
+      color: #ffa900; /* Sun-like color */
+      box-shadow: 0 0 15px #ffa900;
+    }
+    
     .dark-mode #modeToggle {
-      background: #00ffc8;
-      color: #000;
+      /* Dark Mode State (Moon/Star Icon) */
+      background: #1f1f1f; /* Dark background for the button */
+      color: #00ffc8;
       box-shadow: 0 0 15px #00ffe5;
     }
+    
+    /* Reposition on Mobile (Below 960px) */
+    @media (max-width: 960px) {
+        #modeToggle {
+            /* Move button to a prominent, easily accessible bottom corner */
+            top: auto;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1002; /* Ensure it stays above the topBtn */
+            
+            /* Give it a glow pulse similar to the topBtn */
+            animation: glowPulseMode 2s infinite;
+        }
+        
+        @keyframes glowPulseMode {
+            0% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+            50% { box-shadow: 0 0 20px var(--text-color); }
+            100% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+        }
+    }
+    /* --- END OF TOGGLE MODE BUTTON FIXES --- */
+
 
     .contact-form input,
     .contact-form textarea {
@@ -362,7 +397,7 @@
   <div class="loader">
     <div class="spinner"></div>
   </div>
-  <button id="modeToggle">Toggle Mode</button>
+  <button id="modeToggle"><i class="fas fa-sun"></i></button>
 
   <div class="navbar">
     <a href="#home"><i class="fa fa-globe"></i> Web Updates</a>
@@ -532,6 +567,8 @@
     // Scroll-to-top button
     window.addEventListener("scroll", () => {
       const topBtn = document.getElementById("topBtn");
+      // Check if the mode toggle button is also at the bottom for collision avoidance (optional but good practice)
+      // For this solution, we rely on Z-index for the main fix.
       if (window.scrollY > 200) {
         topBtn.classList.add("show");
       } else {
@@ -565,8 +602,20 @@
       });
     };
 
+    // Toggle Mode Logic: Toggles the class and switches the icon
     document.getElementById("modeToggle").onclick = function () {
       document.body.classList.toggle("dark-mode");
+      const icon = this.querySelector('i');
+
+      if (document.body.classList.contains('dark-mode')) {
+        // Switch to moon/star icon for dark mode
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      } else {
+        // Switch back to sun icon for light mode
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      }
     };
   </script>
 </body>
