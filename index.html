@@ -25,7 +25,7 @@
       font-family: Arial, sans-serif;
     }
 
-    /* === MODIFIED: This now represents a Light Mode appearance === */
+    /* === MODIFIED: This now represents a Light Mode appearance (Your Requested "Dark Mode") === */
     .dark-mode {
       --bg: #ffffff;
       --text-color: #333;
@@ -37,14 +37,28 @@
     /* Remove neon effects and set dark text color for readability on light background */
     .dark-mode h2,
     .dark-mode p,
-    .dark-mode a:not(.navbar a),
-    .dark-mode .neon {
+    .dark-mode .neon,
+    /* FIX: Target skill text and other general text inside sections */
+    .dark-mode .skill {
       text-shadow: none;
       color: var(--text-color) !important;
       transition: all 0.6s ease;
     }
 
-    /* Ensure navbar links remain visible on the dark navbar */
+    /* Ensure link color is fixed for light mode, but not social links (handled later) */
+    .dark-mode a:not(.navbar a):not(.social-icons a) {
+      color: var(--text-color);
+    }
+
+    .navbar {
+      background: black;
+      padding: 10px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
     .navbar a {
       color: white;
       text-decoration: none;
@@ -124,12 +138,12 @@
     }
 
     .dark-mode .welcome-text {
-        animation: none; /* Remove glow animation in light mode */
+        animation: none;
         color: #333;
     }
     
     .dark-mode .typing {
-        border-right: 2px solid #333; /* Darker cursor */
+        border-right: 2px solid #333;
     }
 
     .image-box {
@@ -213,9 +227,9 @@
       padding: 15px 0;
     }
     
-    /* Footer links adjustment for light mode */
-    .dark-mode footer {
-        color: white; /* Keep text light for the dark footer */
+    /* FIX: Ensure footer text remains white on the dark footer in light mode */
+    .dark-mode footer p {
+        color: white;
     }
 
     .social-icons a {
@@ -223,6 +237,11 @@
       color: white;
       font-size: 24px;
       transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+    
+    /* FIX: Explicitly ensure social icons are white in light mode to be visible on the dark footer */
+    .dark-mode .social-icons a {
+        color: white;
     }
 
     .social-icons a:hover {
@@ -271,7 +290,7 @@
     
     .dark-mode #modeToggle {
       /* Now represents Light Mode View - Moon Icon */
-      background: #333; /* Dark button background on light page */
+      background: #333;
       color: #00ffc8;
       box-shadow: 0 0 15px #00ffc8;
     }
