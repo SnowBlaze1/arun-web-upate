@@ -289,25 +289,50 @@
       }
     }
 
-    /* === FIX FOR OVERLAP (Mobile Responsiveness) === */
+    /* === MOBILE FIXES (Focus on max-width: 950px) === */
     @media (max-width: 950px) {
+
+      /* Make all card sections full width, eliminating side margins */
       .about-section,
       .services-section,
       .skills-section,
       .contact-form {
         max-width: 100%;
-        /* Take up full width */
         margin-left: 0;
         margin-right: 0;
-        /* Remove horizontal margin */
-        border-radius: 0;
-        /* Optional: make corners square on full-width mobile */
-        padding: 30px 15px;
+        /* Keep some internal padding */
+        padding: 30px 15px; 
+      }
+
+      /* Target the progress bar elements to fill the container */
+      .skills-section .skill {
+        /* Remove left/right padding from skill to allow progress bar to extend */
+        padding: 0;
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      /* Ensure progress container is full width of its parent */
+      .skills-section .progress {
+        /* Uses 100% of the skill container */
+        width: 100%;
+        margin: 5px 0;
+      }
+
+      /* Target the Contact Form elements to fill the container */
+      .contact-form input,
+      .contact-form textarea {
+        /* Important: Set width to 100% and use box-sizing for padding */
+        width: 100%;
+        box-sizing: border-box;
+        /* Remove horizontal margins */
+        margin-left: 0;
+        margin-right: 0;
       }
 
       .container {
         /* Ensure images and text don't hug the screen edge too much */
-        padding: 0 10px;
+        padding: 0 5px;
       }
     }
   </style>
