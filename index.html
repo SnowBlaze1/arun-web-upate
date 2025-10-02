@@ -8,17 +8,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
     :root {
-      /* FIX 1: Change body's default background to solid dark color */
+      /* Default: Dark Mode */
       --bg: #111111;
       --text-color: white;
-      /* Ensure full opacity for the content background */
       --card-bg: rgba(15, 15, 15, 1);
     }
 
     body {
       opacity: 0;
       transition: opacity 1.5s ease-in-out, background 1s ease, color 1s ease;
-      /* Now uses the solid dark color defined in :root */
       background: var(--bg);
       color: var(--text-color);
       text-align: center;
@@ -27,31 +25,26 @@
       font-family: Arial, sans-serif;
     }
 
+    /* === MODIFIED: This now represents a Light Mode appearance === */
     .dark-mode {
-      --bg: #121212;
-      --text-color: #fff;
-      --card-bg: #1f1f1f;
+      --bg: #ffffff;
+      --text-color: #333;
+      --card-bg: #f5f5f5;
       background: var(--bg);
       color: var(--text-color);
     }
 
+    /* Remove neon effects and set dark text color for readability on light background */
     .dark-mode h2,
     .dark-mode p,
-    .dark-mode a,
+    .dark-mode a:not(.navbar a),
     .dark-mode .neon {
-      text-shadow: 0 0 10px #00ffe5, 0 0 20px #ff00de;
+      text-shadow: none;
+      color: var(--text-color) !important;
       transition: all 0.6s ease;
     }
 
-    .navbar {
-      background: black;
-      padding: 10px;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-    }
-
+    /* Ensure navbar links remain visible on the dark navbar */
     .navbar a {
       color: white;
       text-decoration: none;
@@ -68,17 +61,14 @@
     .content {
       margin-top: 100px;
       padding-bottom: 100px;
-      /* Apply the dark background to the whole content area */
       background-color: var(--card-bg);
-      /* Constrain the width of the entire dark column */
       max-width: 960px;
       margin-left: auto;
       margin-right: auto;
-
-      /* New: Apply the gradient as a subtle border effect on desktop */
       border: 5px solid transparent;
       border-image: linear-gradient(to right, #00e9a1, #ffa900, #ff0e69) 1;
       border-image-slice: 1;
+      transition: background-color 1s ease;
     }
 
     .fade-in {
@@ -91,7 +81,6 @@
       font-size: 2.5rem;
       animation: glow-text 3s infinite alternate;
       padding-top: 20px;
-      /* Added padding to space out from navbar */
     }
 
     .typing {
@@ -134,6 +123,15 @@
       }
     }
 
+    .dark-mode .welcome-text {
+        animation: none; /* Remove glow animation in light mode */
+        color: #333;
+    }
+    
+    .dark-mode .typing {
+        border-right: 2px solid #333; /* Darker cursor */
+    }
+
     .image-box {
       display: inline-block;
       margin: 20px;
@@ -156,7 +154,6 @@
     .services-section,
     .skills-section,
     .contact-form {
-      /* Remove background color here as it's handled by .content */
       background-color: transparent;
       margin: 50px auto;
       padding: 30px;
@@ -166,10 +163,25 @@
       transition: box-shadow 0.6s ease;
     }
 
+    /* Adjusted shadow for the new light-mode background */
+    .dark-mode .about-section,
+    .dark-mode .services-section,
+    .dark-mode .skills-section,
+    .dark-mode .contact-form {
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    }
+
     .skills-section:hover,
     .contact-form:hover {
       box-shadow: 0 0 25px #00ffc8;
     }
+    
+    /* Adjusted hover shadow for the new light-mode background */
+    .dark-mode .skills-section:hover,
+    .dark-mode .contact-form:hover {
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+    }
+
 
     .skill {
       margin: 20px 0;
@@ -181,6 +193,11 @@
       border-radius: 20px;
       overflow: hidden;
       height: 20px;
+    }
+    
+    /* Adjust progress background for light mode */
+    .dark-mode .progress {
+        background: rgba(0, 0, 0, 0.1);
     }
 
     .progress-bar {
@@ -194,6 +211,11 @@
       color: white;
       text-align: center;
       padding: 15px 0;
+    }
+    
+    /* Footer links adjustment for light mode */
+    .dark-mode footer {
+        color: white; /* Keep text light for the dark footer */
     }
 
     .social-icons a {
@@ -229,42 +251,38 @@
       top: 10px;
       right: 20px;
       z-index: 1001;
-      /* Increased size for better touch target */
       width: 50px;
       height: 50px;
       padding: 0;
-      border-radius: 50%; /* Make it a circle */
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       border: none;
       cursor: pointer;
-      font-size: 22px; /* Increased icon size */
+      font-size: 22px;
       transition: background 0.3s, color 0.3s, box-shadow 0.3s;
 
-      /* Light Mode Default (Sun Icon) */
+      /* Default (Dark Mode View) - Sun Icon */
       background: #fff;
-      color: #ffa900; /* Sun-like color */
+      color: #ffa900;
       box-shadow: 0 0 15px #ffa900;
     }
     
     .dark-mode #modeToggle {
-      /* Dark Mode State (Moon/Star Icon) */
-      background: #1f1f1f; /* Dark background for the button */
+      /* Now represents Light Mode View - Moon Icon */
+      background: #333; /* Dark button background on light page */
       color: #00ffc8;
-      box-shadow: 0 0 15px #00ffe5;
+      box-shadow: 0 0 15px #00ffc8;
     }
     
     /* Reposition on Mobile (Below 960px) */
     @media (max-width: 960px) {
         #modeToggle {
-            /* Move button to a prominent, easily accessible bottom corner */
             top: auto;
             bottom: 20px;
             right: 20px;
-            z-index: 1002; /* Ensure it stays above the topBtn */
-            
-            /* Give it a glow pulse similar to the topBtn */
+            z-index: 1002;
             animation: glowPulseMode 2s infinite;
         }
         
@@ -290,11 +308,27 @@
       outline: none;
       transition: border 0.3s, box-shadow 0.3s;
     }
+    
+    /* Adjust input styles for light mode */
+    .dark-mode .contact-form input,
+    .dark-mode .contact-form textarea {
+        background: #fff;
+        color: #333;
+        border: 2px solid #ccc;
+    }
+
 
     .contact-form input:focus,
     .contact-form textarea:focus {
       border: 2px solid #00ffc8;
       box-shadow: 0 0 10px #00ffc8, 0 0 20px #ff00b3;
+    }
+    
+    /* Adjust input focus for light mode */
+    .dark-mode .contact-form input:focus,
+    .dark-mode .contact-form textarea:focus {
+      border: 2px solid #ff00de;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
 
     .contact-form button {
@@ -343,16 +377,13 @@
     /* === MOBILE FIXES (Focus on max-width: 960px) === */
     @media (max-width: 960px) {
 
-      /* Pushes the dark background column to fill the screen edge-to-edge on mobile */
       .content {
         max-width: 100%;
         margin-left: 0;
         margin-right: 0;
-        /* Remove the gradient border on mobile for a clean look */
         border: none;
       }
 
-      /* Adjust internal card spacing to look good inside the now full-width .content */
       .about-section,
       .services-section,
       .skills-section,
@@ -360,28 +391,23 @@
         max-width: 100%;
         margin-top: 0;
         margin-bottom: 0;
-        /* FIX 2: Set margins to 0 to prevent background bleed on mobile */
         margin-left: 0;
         margin-right: 0;
         padding: 30px 15px;
         border-radius: 0;
-        /* Remove rounded corners for a seamless edge-to-edge look */
       }
 
-      /* Target the progress bar elements to fill the container */
       .skills-section .skill {
         padding: 0;
         margin-left: 0;
         margin-right: 0;
       }
 
-      /* Ensure progress container is full width of its parent */
       .skills-section .progress {
         width: 100%;
         margin: 5px 0;
       }
 
-      /* Target the Contact Form elements to fill the container */
       .contact-form input,
       .contact-form textarea {
         width: 100%;
@@ -567,8 +593,6 @@
     // Scroll-to-top button
     window.addEventListener("scroll", () => {
       const topBtn = document.getElementById("topBtn");
-      // Check if the mode toggle button is also at the bottom for collision avoidance (optional but good practice)
-      // For this solution, we rely on Z-index for the main fix.
       if (window.scrollY > 200) {
         topBtn.classList.add("show");
       } else {
@@ -608,11 +632,11 @@
       const icon = this.querySelector('i');
 
       if (document.body.classList.contains('dark-mode')) {
-        // Switch to moon/star icon for dark mode
+        // Switch to moon/star icon for Light Mode (your requested "dark mode" look)
         icon.classList.remove('fa-sun');
         icon.classList.add('fa-moon');
       } else {
-        // Switch back to sun icon for light mode
+        // Switch back to sun icon for the Default Dark Mode
         icon.classList.remove('fa-moon');
         icon.classList.add('fa-sun');
       }
