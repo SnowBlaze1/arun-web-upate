@@ -2,665 +2,464 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arun's Website</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <style>
-    :root {
-      /* Default: Dark Mode */
-      --bg: #111111;
-      --text-color: white;
-      --card-bg: rgba(15, 15, 15, 1);
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arun's Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        :root {
+            --bg-dark: #111111;
+            --text-dark: #fff;
+            --card-dark: rgba(15, 15, 15, 0.9);
+            --bg-light: #f5f5f5;
+            --text-light: #111;
+            --card-light: rgba(255, 255, 255, 0.9);
+        }
 
-    body {
-      opacity: 0;
-      transition: opacity 1.5s ease-in-out, background 1s ease, color 1s ease;
-      background: var(--bg);
-      color: var(--text-color);
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-dark);
+            transition: all 0.5s ease;
+            overflow-x: hidden;
+        }
 
-    /* === MODIFIED: This now represents a Light Mode appearance (Your Requested "Dark Mode") === */
-    .dark-mode {
-      --bg: #ffffff;
-      --text-color: #333;
-      --card-bg: #f5f5f5;
-      background: var(--bg);
-      color: var(--text-color);
-    }
+        body.light-mode {
+            background: var(--bg-light);
+            color: var(--text-light);
+        }
 
-    /* Remove neon effects and set dark text color for readability on light background */
-    .dark-mode h2,
-    .dark-mode p,
-    .dark-mode .neon,
-    /* FIX: Target skill text and other general text inside sections */
-    .dark-mode .skill {
-      text-shadow: none;
-      color: var(--text-color) !important;
-      transition: all 0.6s ease;
-    }
+        /* Cyberpunk Background */
+        #cyber-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, #ff00de, #00ffe5, #ff0e69, #00ffc8);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            z-index: -1;
+        }
 
-    /* Ensure link color is fixed for light mode, but not social links (handled later) */
-    .dark-mode a:not(.navbar a):not(.social-icons a) {
-      color: var(--text-color);
-    }
+        #cyber-bg::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(#00ffc822 1px, transparent 1px),
+                linear-gradient(90deg, #ff00de22 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridMove 10s linear infinite;
+        }
 
-    .navbar {
-      background: black;
-      padding: 10px;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-    }
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
 
-    .navbar a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-size: 1.2rem;
-      transition: color 0.3s, text-shadow 0.3s;
-    }
+            50% {
+                background-position: 100% 50%;
+            }
 
-    .navbar a:hover {
-      color: #ffa900;
-      text-shadow: 0 0 10px #ffa900, 0 0 20px #ff0e69;
-    }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
 
-    .content {
-      margin-top: 100px;
-      padding-bottom: 100px;
-      background-color: var(--card-bg);
-      max-width: 960px;
-      margin-left: auto;
-      margin-right: auto;
-      border: 5px solid transparent;
-      border-image: linear-gradient(to right, #00e9a1, #ffa900, #ff0e69) 1;
-      border-image-slice: 1;
-      transition: background-color 1s ease;
-    }
+        @keyframes gridMove {
+            0% {
+                transform: translateY(0);
+            }
 
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1.5s ease-out, transform 1.5s ease-out;
-    }
+            100% {
+                transform: translateY(60px);
+            }
+        }
 
-    .welcome-text {
-      font-size: 2.5rem;
-      animation: glow-text 3s infinite alternate;
-      padding-top: 20px;
-    }
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            z-index: 1000;
+            transition: background 0.5s;
+        }
 
-    .typing {
-      border-right: 2px solid white;
-      display: inline-block;
-      white-space: nowrap;
-      overflow: hidden;
-      animation: typing 4s steps(30, end), blink 0.75s step-end infinite;
-    }
+        body.light-mode .navbar {
+            background: rgba(255, 255, 255, 0.9);
+        }
 
-    @keyframes typing {
-      from {
-        width: 0;
-      }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
 
-      to {
-        width: 100%;
-      }
-    }
+        body.light-mode .navbar a {
+            color: var(--text-light);
+        }
 
-    @keyframes blink {
+        .navbar a:hover {
+            color: #ffa900;
+            text-shadow: 0 0 10px #ffa900, 0 0 20px #ff0e69;
+        }
 
-      from,
-      to {
-        border-color: transparent;
-      }
-
-      50% {
-        border-color: white;
-      }
-    }
-
-    @keyframes glow-text {
-      from {
-        text-shadow: 0 0 5px #fff, 0 0 20px #ff00de, 0 0 40px #ff00de;
-      }
-
-      to {
-        text-shadow: 0 0 10px #00ffe5, 0 0 30px #00ffc8, 0 0 60px #ff0e69;
-      }
-    }
-
-    .dark-mode .welcome-text {
-        animation: none;
-        color: #333;
-    }
-    
-    .dark-mode .typing {
-        border-right: 2px solid #333;
-    }
-
-    .image-box {
-      display: inline-block;
-      margin: 20px;
-      width: 30%;
-      transition: transform 0.3s ease-in-out;
-      cursor: pointer;
-    }
-
-    .image-box:hover {
-      transform: scale(1.1) rotate(2deg);
-      filter: drop-shadow(0 0 15px #ff00de);
-    }
-
-    .neon {
-      text-shadow: 0 0 5px #fff, 0 0 20px #ff00de, 0 0 40px #ff00de;
-    }
-
-    /* Combined styles for all card sections */
-    .about-section,
-    .services-section,
-    .skills-section,
-    .contact-form {
-      background-color: transparent;
-      margin: 50px auto;
-      padding: 30px;
-      border-radius: 15px;
-      max-width: 900px;
-      box-shadow: 0 0 15px #ff00de;
-      transition: box-shadow 0.6s ease;
-    }
-
-    /* Adjusted shadow for the new light-mode background */
-    .dark-mode .about-section,
-    .dark-mode .services-section,
-    .dark-mode .skills-section,
-    .dark-mode .contact-form {
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-    }
-
-    .skills-section:hover,
-    .contact-form:hover {
-      box-shadow: 0 0 25px #00ffc8;
-    }
-    
-    /* Adjusted hover shadow for the new light-mode background */
-    .dark-mode .skills-section:hover,
-    .dark-mode .contact-form:hover {
-        box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
-    }
-
-
-    .skill {
-      margin: 20px 0;
-      text-align: left;
-    }
-
-    .progress {
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      overflow: hidden;
-      height: 20px;
-    }
-    
-    /* Adjust progress background for light mode */
-    .dark-mode .progress {
-        background: rgba(0, 0, 0, 0.1);
-    }
-
-    .progress-bar {
-      height: 100%;
-      background: linear-gradient(90deg, #00ffc8, #ff00b3);
-      width: 0;
-    }
-
-    footer {
-      background: rgba(0, 0, 0, 0.8);
-      color: white;
-      text-align: center;
-      padding: 15px 0;
-    }
-    
-    /* FIX: Ensure footer text remains white on the dark footer in light mode */
-    .dark-mode footer p {
-        color: white;
-    }
-
-    .social-icons a {
-      margin: 0 10px;
-      color: white;
-      font-size: 24px;
-      transition: color 0.3s ease, text-shadow 0.3s ease;
-    }
-    
-    /* FIX: Explicitly ensure social icons are white in light mode to be visible on the dark footer */
-    .dark-mode .social-icons a {
-        color: white;
-    }
-
-    .social-icons a:hover {
-      text-shadow: 0 0 15px #00ffe5, 0 0 30px #ff00de;
-    }
-
-    /* Original top button styles (for scrolling) */
-    #topBtn {
-      display: none;
-      position: fixed;
-      bottom: 40px;
-      right: 20px;
-      z-index: 999;
-      font-size: 18px;
-      padding: 10px;
-      background: #000;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-
-    /* --- START OF TOGGLE MODE BUTTON FIXES --- */
-    #modeToggle {
-      position: fixed;
-      top: 10px;
-      right: 20px;
-      z-index: 1001;
-      width: 50px;
-      height: 50px;
-      padding: 0;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: none;
-      cursor: pointer;
-      font-size: 22px;
-      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
-
-      /* Default (Dark Mode View) - Sun Icon */
-      background: #fff;
-      color: #ffa900;
-      box-shadow: 0 0 15px #ffa900;
-    }
-    
-    .dark-mode #modeToggle {
-      /* Now represents Light Mode View - Moon Icon */
-      background: #333;
-      color: #00ffc8;
-      box-shadow: 0 0 15px #00ffc8;
-    }
-    
-    /* Reposition on Mobile (Below 960px) */
-    @media (max-width: 960px) {
-        #modeToggle {
-            top: auto;
-            bottom: 20px;
+        /* White mode toggle button */
+        #themeBtn {
+            position: fixed;
+            top: 15px;
             right: 20px;
-            z-index: 1002;
-            animation: glowPulseMode 2s infinite;
+            padding: 10px 15px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background: #00ffc8;
+            color: #111;
+            font-weight: bold;
+            z-index: 1001;
         }
-        
-        @keyframes glowPulseMode {
-            0% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
-            50% { box-shadow: 0 0 20px var(--text-color); }
-            100% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+
+        /* Sections */
+        .section {
+            margin: 120px auto;
+            padding: 50px;
+            max-width: 900px;
+            background: var(--card-dark);
+            border-radius: 15px;
+            box-shadow: 0 0 20px #00ffc8;
+            backdrop-filter: blur(5px);
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(30px);
         }
-    }
-    /* --- END OF TOGGLE MODE BUTTON FIXES --- */
 
+        body.light-mode .section {
+            background: var(--card-light);
+            box-shadow: 0 0 20px #aaa;
+        }
 
-    .contact-form input,
-    .contact-form textarea {
-      width: 90%;
-      padding: 10px;
-      margin: 10px auto;
-      border-radius: 8px;
-      border: 2px solid transparent;
-      display: block;
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      outline: none;
-      transition: border 0.3s, box-shadow 0.3s;
-    }
-    
-    /* Adjust input styles for light mode */
-    .dark-mode .contact-form input,
-    .dark-mode .contact-form textarea {
-        background: #fff;
-        color: #333;
-        border: 2px solid #ccc;
-    }
+        /* Section text animation */
+        .section.show {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 1s ease;
+        }
 
+        /* Neon headings */
+        .neon-heading {
+            font-size: 36px;
+            display: inline-block;
+            color: #fff;
+            background: linear-gradient(45deg, #ff00de, #00ffc8);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 5px #ff00de, 0 0 10px #ff00de, 0 0 20px #00ffc8, 0 0 40px #00ffc8;
+            animation: rotateNeon 3s linear infinite;
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      border: 2px solid #00ffc8;
-      box-shadow: 0 0 10px #00ffc8, 0 0 20px #ff00b3;
-    }
-    
-    /* Adjust input focus for light mode */
-    .dark-mode .contact-form input:focus,
-    .dark-mode .contact-form textarea:focus {
-      border: 2px solid #ff00de;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
+        @keyframes rotateNeon {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
 
-    .contact-form button {
-      background: linear-gradient(145deg, #00ffc8, #ff00b3);
-      color: #111 !important;
-      font-weight: bold;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.3s;
-      box-shadow: 0 0 10px #00ffc8, 0 0 20px #ff00b3;
-    }
+            25% {
+                transform: rotateX(10deg) rotateY(5deg);
+            }
 
-    .contact-form button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #00ffc8, 0 0 40px #ff00b3;
-    }
+            50% {
+                transform: rotateX(0deg) rotateY(10deg);
+            }
 
-    .loader {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
+            75% {
+                transform: rotateX(-10deg) rotateY(5deg);
+            }
 
-    .spinner {
-      width: 50px;
-      height: 50px;
-      border: 6px solid #fff;
-      border-top: 6px solid #00e9a1;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
+            100% {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+        }
 
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
+        /* Paragraph animation inside sections */
+        .animated-text {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease;
+        }
 
-    /* === MOBILE FIXES (Focus on max-width: 960px) === */
-    @media (max-width: 960px) {
+        .animated-text.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-      .content {
-        max-width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-        border: none;
-      }
+        p {
+            line-height: 1.6;
+            text-align: center;
+        }
 
-      .about-section,
-      .services-section,
-      .skills-section,
-      .contact-form {
-        max-width: 100%;
-        margin-top: 0;
-        margin-bottom: 0;
-        margin-left: 0;
-        margin-right: 0;
-        padding: 30px 15px;
-        border-radius: 0;
-      }
+        /* Progress bars */
+        .progress {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 10px 0;
+            height: 20px;
+        }
 
-      .skills-section .skill {
-        padding: 0;
-        margin-left: 0;
-        margin-right: 0;
-      }
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #00ffc8, #ff00b3);
+            transition: width 2s ease-in-out;
+        }
 
-      .skills-section .progress {
-        width: 100%;
-        margin: 5px 0;
-      }
+        /* Contact form */
+        .contact-form input,
+        .contact-form textarea {
+            width: 90%;
+            margin: 10px auto;
+            display: block;
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
 
-      .contact-form input,
-      .contact-form textarea {
-        width: 100%;
-        box-sizing: border-box;
-        margin-left: 0;
-        margin-right: 0;
-      }
-    }
-  </style>
+        body.light-mode .contact-form input,
+        body.light-mode .contact-form textarea {
+            background: rgba(0, 0, 0, 0.05);
+            color: #111;
+        }
+
+        .contact-form button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: linear-gradient(145deg, #00ffc8, #ff00b3);
+            color: #111;
+            font-weight: bold;
+            box-shadow: 0 0 10px #00ffc8, 0 0 20px #ff00b3;
+            transition: transform 0.2s;
+        }
+
+        .contact-form button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Scroll to Top Button */
+        #topBtn {
+            display: none;
+            position: fixed;
+            bottom: 40px;
+            right: 20px;
+            z-index: 999;
+            font-size: 18px;
+            padding: 12px 18px;
+            background: #111;
+            color: #00ffc8;
+            border: 2px solid #00ffc8;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 10px #00ffc8, 0 0 20px #ff00de inset;
+            animation: neonPulse 1.5s infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            0% {
+                box-shadow: 0 0 10px #00ffc8, 0 0 20px #ff00de inset;
+            }
+
+            100% {
+                box-shadow: 0 0 20px #00ffc8, 0 0 40px #ff00de inset;
+            }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 0 20px #00ffc8 inset;
+        }
+
+        footer a {
+            margin: 0 10px;
+            color: #00ffc8;
+            font-size: 24px;
+            transition: transform 0.2s, color 0.3s;
+        }
+
+        footer a:hover {
+            color: #ff00de;
+            transform: scale(1.2);
+            text-shadow: 0 0 10px #ff00de, 0 0 20px #00ffc8;
+        }
+    </style>
 </head>
 
 <body>
-  <div class="loader">
-    <div class="spinner"></div>
-  </div>
-  <button id="modeToggle"><i class="fas fa-sun"></i></button>
 
-  <div class="navbar">
-    <a href="#home"><i class="fa fa-globe"></i> Web Updates</a>
-    <a href="#services"><i class="fa fa-comments"></i> Feedback</a>
-    <a href="#Profit"><i class="fas fa-chart-line"></i> Profit</a>
-  </div>
+    <div id="cyber-bg"></div>
 
-  <div class="content">
-    <h1 class="welcome-text neon"><span class="typing">Welcome to Arun's Website!</span></h1>
-
-    <div class="about-section fade-in">
-      <h2 class="neon">About Me</h2>
-      <p>🚀 Creative UI/UX Designer | Web Developer | Content Strategist 🎨💻✨ Passionate about crafting
-        engaging digital experiences. Hello! I'm Arun, a curious learner with a passion for design and technology.</p>
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
     </div>
 
-    <hr />
+    <button id="themeBtn">Light Mode</button>
 
-    <div class="services-section fade-in">
-      <h2 class="neon">Services</h2>
-      <div class="container">
-        <div class="image-box fade-in"><img src="445.gif" width="100%" alt="1">
-          <p>“Even if I knew that tomorrow the world would go to pieces, I would still plant my apple tree.”</p>
-        </div>
-        <div class="image-box fade-in"><img src="166.gif" width="100%" alt="2">
-          <p>“There is nothing impossible to him who will try.”</p>
-        </div>
-        <div class="image-box fade-in"><img src="188.gif" width="100%" alt="3">
-          <p>“Perfection is not attainable, but if we chase perfection, we can catch excellence.”</p>
-        </div>
-      </div>
+    <!-- Welcome Section -->
+    <div class="section" id="home">
+        <h1 class="neon-heading">Welcome to Arun's Website</h1>
+        <p class="animated-text">Hello! I'm Arun, a passionate developer and creative designer. Explore my
+            cyberpunk-themed portfolio!</p>
     </div>
 
-    <div class="skills-section fade-in">
-      <h2 class="neon">My Skills</h2>
-      <div class="skill"><i class="fab fa-html5"></i> HTML & CSS
-        <div class="progress">
-          <div class="progress-bar" style="width: 90%"></div>
-        </div>
-      </div>
-      <div class="skill"><i class="fab fa-js"></i> JavaScript
-        <div class="progress">
-          <div class="progress-bar" style="width: 75%"></div>
-        </div>
-      </div>
-      <div class="skill"><i class="fas fa-pencil-ruler"></i> UI/UX Design
-        <div class="progress">
-          <div class="progress-bar" style="width: 70%"></div>
-        </div>
-      </div>
-      <div class="skill"><i class="fas fa-code"></i> Web Development
-        <div class="progress">
-          <div class="progress-bar" style="width: 85%"></div>
-        </div>
-      </div>
-      <div class="skill"><i class="fab fa-node"></i> Node.js
-        <div class="progress">
-          <div class="progress-bar" style="width: 60%"></div>
-        </div>
-      </div>
-      <div class="skill"><i class="fab fa-react"></i> React
-        <div class="progress">
-          <div class="progress-bar" style="width: 65%"></div>
-        </div>
-      </div>
+    <!-- About Section -->
+    <div class="section" id="about">
+        <h2 class="neon-heading">About Me</h2>
+        <p class="animated-text">Creative UI/UX Designer | Web Developer | Content Strategist. Passionate about crafting
+            engaging digital experiences.</p>
     </div>
 
-    <div class="skills-section fade-in">
-      <h2 class="neon">Languages Known</h2>
-      <div class="skill"><i class="fas fa-language"></i> English
-        <div class="progress">
-          <div class="progress-bar" style="width: 95%"></div>
+    <!-- Services Section -->
+    <div class="section" id="services">
+        <h2 class="neon-heading">Services</h2>
+        <div class="service">
+            <p class="animated-text">Web Development</p>
+            <div class="progress">
+                <div class="progress-bar" data-width="90%"></div>
+            </div>
         </div>
-      </div>
-      <div class="skill"><i class="fas fa-language"></i> Hindi
-        <div class="progress">
-          <div class="progress-bar" style="width: 90%"></div>
+        <div class="service">
+            <p class="animated-text">UI/UX Design</p>
+            <div class="progress">
+                <div class="progress-bar" data-width="80%"></div>
+            </div>
         </div>
-      </div>
-      <div class="skill"><i class="fas fa-language"></i> German
-        <div class="progress">
-          <div class="progress-bar" style="width: 50%"></div>
+        <div class="service">
+            <p class="animated-text">SEO & Marketing</p>
+            <div class="progress">
+                <div class="progress-bar" data-width="70%"></div>
+            </div>
         </div>
-      </div>
-      <div class="skill"><i class="fas fa-language"></i> Japanese
-        <div class="progress">
-          <div class="progress-bar" style="width: 40%"></div>
-        </div>
-      </div>
     </div>
 
-    <div class="contact-form fade-in" id="contact">
-      <h2 class="neon">Contact Me</h2>
-      <form id="my-form" action="https://formspree.io/f/xwpnabab" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="email" name="email" placeholder="Your Email" required />
-        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-        <button type="submit">Send</button>
-        <p id="form-status" class="status"></p>
-      </form>
+    <!-- Skills Section -->
+    <div class="section" id="skills">
+        <h2 class="neon-heading">Skills</h2>
+        <div class="skill">
+            <p class="animated-text">HTML & CSS</p>
+            <div class="progress">
+                <div class="progress-bar" data-width="95%"></div>
+            </div>
+        </div>
+        <div class="skill">
+            <p class="animated-text">JavaScript</p>
+            <div class="progress">
+                <div class="progress-bar" data-width="85%"></div>
+            </div>
+        </div>
+        <div class="skill">
+            <p class="animated-text">C++</p>
+            <div class="progress">
+                <div class="progress-bar" data-width="75%"></div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <footer>
-    <p>© 2025 Arun. All Rights Reserved.</p>
-    <div class="social-icons">
-      <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
-      <a href="https://github.com/Arundeepyt" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://www.snapchat.com" target="_blank"><i class="fab fa-snapchat"></i></a>
+    <!-- Contact Section -->
+    <div class="section contact-form" id="contact">
+        <h2 class="neon-heading">Contact Me</h2>
+        <input type="text" placeholder="Your Name" class="animated-text" />
+        <input type="email" placeholder="Your Email" class="animated-text" />
+        <textarea placeholder="Your Message" class="animated-text"></textarea>
+        <button class="animated-text">Send Message</button>
     </div>
-  </footer>
 
-  <button id="topBtn"><i class="fas fa-arrow-up"></i></button>
+    <button id="topBtn"><i class="fas fa-arrow-up"></i></button>
 
-  <style>
-    /* This style block remains separate as it defines the appearance and animation of the top button */
-    #topBtn {
-      display: none;
-      position: fixed;
-      bottom: 40px;
-      right: 20px;
-      z-index: 999;
-      background: linear-gradient(145deg, #00ffc8, #ff00b3);
-      color: #111;
-      border: none;
-      border-radius: 50%;
-      width: 55px;
-      height: 55px;
-      font-size: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 0 15px #00ffc8, 0 0 25px #ff00b3;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s ease, transform 0.2s ease;
-    }
+    <!-- Footer -->
+    <footer>
+        <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.snapchat.com/" target="_blank"><i class="fab fa-snapchat"></i></a>
+        <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+        <p>&copy; 2025 Arun Deep. All rights reserved.</p>
+    </footer>
 
-    #topBtn.show {
-      opacity: 1;
-      pointer-events: auto;
-      animation: glowPulse 2s infinite;
-    }
+    <script>
+        // Scroll to top button
+        const topBtn = document.getElementById("topBtn");
+        window.onscroll = () => {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                topBtn.style.display = "block";
+            } else {
+                topBtn.style.display = "none";
+            }
 
-    #topBtn:hover {
-      transform: scale(1.15);
-      box-shadow: 0 0 20px #00ffc8, 0 0 40px #ff00b3;
-    }
+            // Reveal sections
+            document.querySelectorAll('.section').forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    section.classList.add('show');
+                    // Animate inner text
+                    section.querySelectorAll('.animated-text').forEach((txt, i) => {
+                        setTimeout(() => txt.classList.add('show'), i * 200);
+                    });
+                }
+            });
+        };
+        topBtn.onclick = () => { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
-    @keyframes glowPulse {
-      0% {
-        box-shadow: 0 0 15px #00ffc8, 0 0 25px #ff00b3;
-      }
+        // Animate progress bars
+        const progressBars = document.querySelectorAll('.progress-bar');
+        window.addEventListener('scroll', () => {
+            progressBars.forEach(bar => {
+                const rect = bar.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 50) {
+                    bar.style.width = bar.getAttribute('data-width');
+                }
+            });
+        });
 
-      50% {
-        box-shadow: 0 0 25px #ff00b3, 0 0 40px #00ffc8;
-      }
+        // Initial animation on load
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.section').forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    section.classList.add('show');
+                    section.querySelectorAll('.animated-text').forEach((txt, i) => {
+                        setTimeout(() => txt.classList.add('show'), i * 200);
+                    });
+                }
+            });
+        });
 
-      100% {
-        box-shadow: 0 0 15px #00ffc8, 0 0 25px #ff00b3;
-      }
-    }
-  </style>
+        // White/Dark mode toggle
+        const themeBtn = document.getElementById("themeBtn");
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            themeBtn.textContent = document.body.classList.contains('light-mode') ? "Dark Mode" : "Light Mode";
+        });
+    </script>
 
-  <script>
-    // Scroll-to-top button
-    window.addEventListener("scroll", () => {
-      const topBtn = document.getElementById("topBtn");
-      if (window.scrollY > 200) {
-        topBtn.classList.add("show");
-      } else {
-        topBtn.classList.remove("show");
-      }
-    });
-
-    document.getElementById("topBtn").onclick = function () {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    };
-
-    // Loader + animations
-    window.onload = function () {
-      document.querySelector(".loader").style.display = "none";
-      document.body.style.opacity = "1";
-
-      document.querySelectorAll(".fade-in").forEach((el, i) => {
-        setTimeout(() => {
-          el.style.opacity = "1";
-          el.style.transform = "translateY(0)";
-        }, i * 300);
-      });
-
-      document.querySelectorAll(".progress-bar").forEach((bar) => {
-        let target = bar.style.width;
-        bar.style.width = "0";
-        setTimeout(() => {
-          bar.style.transition = "width 2s ease-in-out";
-          bar.style.width = target;
-        }, 1000);
-      });
-    };
-
-    // Toggle Mode Logic: Toggles the class and switches the icon
-    document.getElementById("modeToggle").onclick = function () {
-      document.body.classList.toggle("dark-mode");
-      const icon = this.querySelector('i');
-
-      if (document.body.classList.contains('dark-mode')) {
-        // Switch to moon/star icon for Light Mode (your requested "dark mode" look)
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-      } else {
-        // Switch back to sun icon for the Default Dark Mode
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-      }
-    };
-  </script>
 </body>
 
 </html>
