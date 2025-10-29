@@ -4,462 +4,337 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arun's Website</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <title>Arun's Cyberpunk Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root {
-            --bg-dark: #111111;
-            --text-dark: #fff;
-            --card-dark: rgba(15, 15, 15, 0.9);
-            --bg-light: #f5f5f5;
-            --text-light: #111;
-            --card-light: rgba(255, 255, 255, 0.9);
-        }
-
+        /* ---------- Base Styles ---------- */
         body {
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-dark);
-            transition: all 0.5s ease;
-            overflow-x: hidden;
-        }
-
-        body.light-mode {
-            background: var(--bg-light);
-            color: var(--text-light);
-        }
-
-        /* Cyberpunk Background */
-        #cyber-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(120deg, #ff00de, #00ffe5, #ff0e69, #00ffc8);
-            background-size: 400% 400%;
-            animation: gradientAnimation 15s ease infinite;
-            z-index: -1;
-        }
-
-        #cyber-bg::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image: linear-gradient(#00ffc822 1px, transparent 1px),
-                linear-gradient(90deg, #ff00de22 1px, transparent 1px);
-            background-size: 60px 60px;
-            animation: gridMove 10s linear infinite;
-        }
-
-        @keyframes gradientAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        @keyframes gridMove {
-            0% {
-                transform: translateY(0);
-            }
-
-            100% {
-                transform: translateY(60px);
-            }
-        }
-
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            padding: 15px 0;
-            z-index: 1000;
-            transition: background 0.5s;
-        }
-
-        body.light-mode .navbar {
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            margin: 0 20px;
-            font-size: 18px;
-            transition: color 0.3s, text-shadow 0.3s;
-        }
-
-        body.light-mode .navbar a {
-            color: var(--text-light);
-        }
-
-        .navbar a:hover {
-            color: #ffa900;
-            text-shadow: 0 0 10px #ffa900, 0 0 20px #ff0e69;
-        }
-
-        /* White mode toggle button */
-        #themeBtn {
-            position: fixed;
-            top: 15px;
-            right: 20px;
-            padding: 10px 15px;
-            cursor: pointer;
-            border: none;
-            border-radius: 8px;
-            background: #00ffc8;
-            color: #111;
-            font-weight: bold;
-            z-index: 1001;
-        }
-
-        /* Sections */
-        .section {
-            margin: 120px auto;
-            padding: 50px;
-            max-width: 900px;
-            background: var(--card-dark);
-            border-radius: 15px;
-            box-shadow: 0 0 20px #00ffc8;
-            backdrop-filter: blur(5px);
-            transition: all 0.5s ease;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        body.light-mode .section {
-            background: var(--card-light);
-            box-shadow: 0 0 20px #aaa;
-        }
-
-        /* Section text animation */
-        .section.show {
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 1s ease;
-        }
-
-        /* Neon headings */
-        .neon-heading {
-            font-size: 36px;
-            display: inline-block;
             color: #fff;
-            background: linear-gradient(45deg, #ff00de, #00ffc8);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 5px #ff00de, 0 0 10px #ff00de, 0 0 20px #00ffc8, 0 0 40px #00ffc8;
-            animation: rotateNeon 3s linear infinite;
+            background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+            transition: background 0.6s, color 0.6s;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 40px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            color: #0ff;
+            font-size: 22px;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #0ff;
+        }
+
+        /* Light Mode */
+        body.light {
+            background: linear-gradient(135deg, #ffffff, #e9e9ff);
+            color: #111;
+        }
+
+        body.light header {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        body.light nav a {
+            color: #000;
+        }
+
+        body.light nav a:hover {
+            color: #6a00ff;
+        }
+
+        /* Toggle Button */
+        .mode-toggle {
+            cursor: pointer;
+            font-size: 22px;
+            color: #fff;
+            transition: transform 0.3s;
+        }
+
+        .mode-toggle:hover {
+            transform: rotate(20deg);
+        }
+
+        section {
             text-align: center;
-            margin-bottom: 20px;
-        }
-
-        @keyframes rotateNeon {
-            0% {
-                transform: rotateX(0deg) rotateY(0deg);
-            }
-
-            25% {
-                transform: rotateX(10deg) rotateY(5deg);
-            }
-
-            50% {
-                transform: rotateX(0deg) rotateY(10deg);
-            }
-
-            75% {
-                transform: rotateX(-10deg) rotateY(5deg);
-            }
-
-            100% {
-                transform: rotateX(0deg) rotateY(0deg);
-            }
-        }
-
-        /* Paragraph animation inside sections */
-        .animated-text {
+            margin: 40px auto;
+            max-width: 900px;
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+            transition: transform 0.6s ease, opacity 0.6s ease;
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 1s ease;
+            transform: translateY(50px);
         }
 
-        .animated-text.show {
+        section.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        p {
-            line-height: 1.6;
-            text-align: center;
+        h2 {
+            color: #0ff;
+            text-shadow: 0 0 10px #0ff;
         }
 
-        /* Progress bars */
+        /* ---------- Progress Bars ---------- */
         .progress {
-            background: rgba(255, 255, 255, 0.2);
+            margin: 15px auto;
+            width: 80%;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             overflow: hidden;
-            margin: 10px 0;
             height: 20px;
         }
 
         .progress-bar {
             height: 100%;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
             width: 0;
-            background: linear-gradient(90deg, #00ffc8, #ff00b3);
-            transition: width 2s ease-in-out;
+            transition: width 1.5s ease-in-out;
         }
 
-        /* Contact form */
-        .contact-form input,
-        .contact-form textarea {
-            width: 90%;
-            margin: 10px auto;
-            display: block;
+        /* ---------- Contact Form ---------- */
+        form input,
+        form textarea {
+            width: 80%;
+            margin: 10px 0;
             padding: 10px;
-            border-radius: 8px;
-            border: 2px solid transparent;
+            border: none;
+            border-radius: 10px;
             outline: none;
             background: rgba(255, 255, 255, 0.1);
-            color: white;
+            color: #fff;
+            box-shadow: 0 0 5px #ff00ff;
         }
 
-        body.light-mode .contact-form input,
-        body.light-mode .contact-form textarea {
-            background: rgba(0, 0, 0, 0.05);
-            color: #111;
-        }
-
-        .contact-form button {
-            padding: 12px 25px;
+        form button {
+            background: linear-gradient(90deg, #ff00ff, #00ffff);
             border: none;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 10px;
             cursor: pointer;
-            background: linear-gradient(145deg, #00ffc8, #ff00b3);
-            color: #111;
+            color: #fff;
             font-weight: bold;
-            box-shadow: 0 0 10px #00ffc8, 0 0 20px #ff00b3;
-            transition: transform 0.2s;
+            box-shadow: 0 0 10px #0ff;
         }
 
-        .contact-form button:hover {
-            transform: scale(1.05);
+        /* ---------- Update Timeline ---------- */
+        .timeline {
+            position: relative;
+            margin: 40px auto;
+            padding-left: 30px;
+            border-left: 3px solid #0ff;
+            max-width: 700px;
         }
 
-        /* Scroll to Top Button */
-        #topBtn {
-            display: none;
-            position: fixed;
-            bottom: 40px;
-            right: 20px;
-            z-index: 999;
-            font-size: 18px;
-            padding: 12px 18px;
-            background: #111;
-            color: #00ffc8;
-            border: 2px solid #00ffc8;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 0 10px #00ffc8, 0 0 20px #ff00de inset;
-            animation: neonPulse 1.5s infinite alternate;
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
         }
 
-        @keyframes neonPulse {
-            0% {
-                box-shadow: 0 0 10px #00ffc8, 0 0 20px #ff00de inset;
-            }
-
-            100% {
-                box-shadow: 0 0 20px #00ffc8, 0 0 40px #ff00de inset;
-            }
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            background: #ff00ff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ff00ff;
         }
 
-        /* Footer */
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+        }
+
+        /* ---------- Footer ---------- */
         footer {
             text-align: center;
-            padding: 30px 0;
-            margin-top: 50px;
-            color: #fff;
-            background: rgba(0, 0, 0, 0.9);
-            box-shadow: 0 0 20px #00ffc8 inset;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        footer a {
+        .social-icons a {
             margin: 0 10px;
-            color: #00ffc8;
+            color: #fff;
             font-size: 24px;
-            transition: transform 0.2s, color 0.3s;
+            transition: transform 0.3s, color 0.3s;
         }
 
-        footer a:hover {
-            color: #ff00de;
+        .social-icons a:hover {
+            color: #0ff;
             transform: scale(1.2);
-            text-shadow: 0 0 10px #ff00de, 0 0 20px #00ffc8;
+            text-shadow: 0 0 10px #0ff;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 
 <body>
+    <header>
+        <h1>Arun's Cyberpunk WEBSITE</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="mode-toggle" id="modeToggle"><i class="fas fa-moon"></i></div>
+    </header>
 
-    <div id="cyber-bg"></div>
+    <section id="welcome">
+        <h2>⚡ Welcome to Arun's Cyberpunk WEBSITE⚡</h2>
+    </section>
 
-    <div class="navbar">
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-    </div>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I'm Arun, a passionate programmer and designer blending futuristic aesthetics with functional code. I love
+            creating dynamic web experiences that look and feel alive.</p>
+    </section>
 
-    <button id="themeBtn">Light Mode</button>
+    <section id="services">
+        <h2>Services</h2>
+        <p>Web Design | Frontend Development | Creative UI/UX | Responsive Layouts | Animations</p>
+    </section>
 
-    <!-- Welcome Section -->
-    <div class="section" id="home">
-        <h1 class="neon-heading">Welcome to Arun's Website</h1>
-        <p class="animated-text">Hello! I'm Arun, a passionate developer and creative designer. Explore my
-            cyberpunk-themed portfolio!</p>
-    </div>
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="progress">
+            <div class="progress-bar" data-skill="90"></div>
+        </div>
+        <p>HTML</p>
+        <div class="progress">
+            <div class="progress-bar" data-skill="85"></div>
+        </div>
+        <p>CSS</p>
+        <div class="progress">
+            <div class="progress-bar" data-skill="80"></div>
+        </div>
+        <p>JavaScript</p>
+        <div class="progress">
+            <div class="progress-bar" data-skill="75"></div>
+        </div>
+        <p>Bootstrap</p>
+        <div class="progress">
+            <div class="progress-bar" data-skill="70"></div>
+        </div>
+        <p>C++</p>
+        <div class="progress">
+            <div class="progress-bar" data-skill="65"></div>
+        </div>
+        <p>Java</p>
+    </section>
 
-    <!-- About Section -->
-    <div class="section" id="about">
-        <h2 class="neon-heading">About Me</h2>
-        <p class="animated-text">Creative UI/UX Designer | Web Developer | Content Strategist. Passionate about crafting
-            engaging digital experiences.</p>
-    </div>
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required><br>
+            <input type="email" placeholder="Your Email" required><br>
+            <textarea placeholder="Your Message" rows="4"></textarea><br>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
 
-    <!-- Services Section -->
-    <div class="section" id="services">
-        <h2 class="neon-heading">Services</h2>
-        <div class="service">
-            <p class="animated-text">Web Development</p>
-            <div class="progress">
-                <div class="progress-bar" data-width="90%"></div>
+    <section id="updates">
+        <h2>⚡ Update Log & Version History ⚡</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>v1.0</h3>
+                    <p>Initial Launch – Basic layout and sections.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>v2.0</h3>
+                    <p>Cyberpunk redesign with animations, neon effects, and update log section.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>v3.0</h3>
+                    <p>Added Light/Dark mode, animated progress bars, and footer social links. Optimized layout spacing.
+                    </p>
+                </div>
             </div>
         </div>
-        <div class="service">
-            <p class="animated-text">UI/UX Design</p>
-            <div class="progress">
-                <div class="progress-bar" data-width="80%"></div>
-            </div>
-        </div>
-        <div class="service">
-            <p class="animated-text">SEO & Marketing</p>
-            <div class="progress">
-                <div class="progress-bar" data-width="70%"></div>
-            </div>
-        </div>
-    </div>
+    </section>
 
-    <!-- Skills Section -->
-    <div class="section" id="skills">
-        <h2 class="neon-heading">Skills</h2>
-        <div class="skill">
-            <p class="animated-text">HTML & CSS</p>
-            <div class="progress">
-                <div class="progress-bar" data-width="95%"></div>
-            </div>
-        </div>
-        <div class="skill">
-            <p class="animated-text">JavaScript</p>
-            <div class="progress">
-                <div class="progress-bar" data-width="85%"></div>
-            </div>
-        </div>
-        <div class="skill">
-            <p class="animated-text">C++</p>
-            <div class="progress">
-                <div class="progress-bar" data-width="75%"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Contact Section -->
-    <div class="section contact-form" id="contact">
-        <h2 class="neon-heading">Contact Me</h2>
-        <input type="text" placeholder="Your Name" class="animated-text" />
-        <input type="email" placeholder="Your Email" class="animated-text" />
-        <textarea placeholder="Your Message" class="animated-text"></textarea>
-        <button class="animated-text">Send Message</button>
-    </div>
-
-    <button id="topBtn"><i class="fas fa-arrow-up"></i></button>
-
-    <!-- Footer -->
     <footer>
-        <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="https://www.snapchat.com/" target="_blank"><i class="fab fa-snapchat"></i></a>
-        <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
-        <p>&copy; 2025 Arun Deep. All rights reserved.</p>
+        <p>© 2025 Arun Deep | All Rights Reserved</p>
+        <div class="social-icons">
+            <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" title="Snapchat"><i class="fab fa-snapchat"></i></a>
+            <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+        </div>
     </footer>
 
     <script>
-        // Scroll to top button
-        const topBtn = document.getElementById("topBtn");
-        window.onscroll = () => {
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                topBtn.style.display = "block";
-            } else {
-                topBtn.style.display = "none";
-            }
+        // Toggle Light/Dark Mode
+        const modeToggle = document.getElementById('modeToggle');
+        const body = document.body;
+        modeToggle.addEventListener('click', () => {
+            body.classList.toggle('light');
+            modeToggle.innerHTML = body.classList.contains('light')
+                ? '<i class="fas fa-sun"></i>'
+                : '<i class="fas fa-moon"></i>';
+        });
 
-            // Reveal sections
-            document.querySelectorAll('.section').forEach(section => {
-                const rect = section.getBoundingClientRect();
-                if (rect.top < window.innerHeight - 100) {
-                    section.classList.add('show');
-                    // Animate inner text
-                    section.querySelectorAll('.animated-text').forEach((txt, i) => {
-                        setTimeout(() => txt.classList.add('show'), i * 200);
-                    });
-                }
+        // Reveal sections on scroll
+        const sections = document.querySelectorAll('section');
+        window.addEventListener('scroll', () => {
+            sections.forEach(sec => {
+                const rect = sec.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) sec.classList.add('visible');
             });
-        };
-        topBtn.onclick = () => { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+        });
 
         // Animate progress bars
-        const progressBars = document.querySelectorAll('.progress-bar');
+        const bars = document.querySelectorAll('.progress-bar');
         window.addEventListener('scroll', () => {
-            progressBars.forEach(bar => {
+            bars.forEach(bar => {
                 const rect = bar.getBoundingClientRect();
-                if (rect.top < window.innerHeight - 50) {
-                    bar.style.width = bar.getAttribute('data-width');
-                }
-            });
-        });
-
-        // Initial animation on load
-        window.addEventListener('load', () => {
-            document.querySelectorAll('.section').forEach(section => {
-                const rect = section.getBoundingClientRect();
                 if (rect.top < window.innerHeight - 100) {
-                    section.classList.add('show');
-                    section.querySelectorAll('.animated-text').forEach((txt, i) => {
-                        setTimeout(() => txt.classList.add('show'), i * 200);
-                    });
+                    bar.style.width = bar.dataset.skill + '%';
                 }
             });
-        });
-
-        // White/Dark mode toggle
-        const themeBtn = document.getElementById("themeBtn");
-        themeBtn.addEventListener('click', () => {
-            document.body.classList.toggle('light-mode');
-            themeBtn.textContent = document.body.classList.contains('light-mode') ? "Dark Mode" : "Light Mode";
         });
     </script>
-
 </body>
 
 </html>
