@@ -1,356 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arun's Cyberpunk Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arun's Cyberpunk WEBSITE</title>
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-<!-- Lottie -->
-<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <style>
+    * {
+      box-sizing: border-box
+    }
 
-<style>
-/* ================= BASE ================= */
-* {
-  box-sizing: border-box;
-}
+    body {
+      margin: 0;
+      font-family: Poppins, sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      color: #fff;
+      transition: .4s;
+    }
 
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  color: #fff;
-  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-  transition: background 0.5s, color 0.5s;
-}
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 40px;
+      background: rgba(0, 0, 0, .6);
+      backdrop-filter: blur(10px);
+    }
 
-body.light {
-  background: linear-gradient(135deg, #ffffff, #e9e9ff);
-  color: #111;
-}
+    header h1 {
+      color: #0ff;
+      font-size: 22px
+    }
 
-/* ================= HEADER ================= */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 40px;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(10px);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
+    nav a {
+      color: #fff;
+      margin: 0 12px;
+      text-decoration: none;
+    }
 
-body.light header {
-  background: rgba(255,255,255,0.8);
-}
+    nav a:hover {
+      color: #0ff
+    }
 
-header h1 {
-  color: #0ff;
-  font-size: 22px;
-}
+    .mode-toggle {
+      cursor: pointer;
+      font-size: 22px;
+      color: #0ff;
+    }
 
-nav a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 10px;
-}
+    /* LIGHT MODE */
+    body.light {
+      background: linear-gradient(135deg, #ffffff, #e9e9ff);
+      color: #111;
+    }
 
-body.light nav a {
-  color: #000;
-}
+    body.light header {
+      background: rgba(255, 255, 255, .85)
+    }
 
-nav a:hover {
-  color: #0ff;
-}
+    body.light nav a {
+      color: #000
+    }
 
-.mode-toggle {
-  cursor: pointer;
-  font-size: 22px;
-}
+    body.light section {
+      background: rgba(0, 0, 0, .05)
+    }
 
-/* ================= SECTIONS ================= */
-section {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
-  text-align: center;
-  background: rgba(255,255,255,0.05);
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,255,255,0.2);
-  opacity: 0;
-  transform: translateY(50px);
-  transition: 0.6s;
-}
+    body.light h2 {
+      color: #6a00ff;
+      text-shadow: 0 0 8px #6a00ff
+    }
 
-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+    /* SECTIONS */
+    section {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 35px;
+      background: rgba(255, 255, 255, .05);
+      border-radius: 18px;
+      box-shadow: 0 0 18px rgba(0, 255, 255, .25);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: .6s;
+    }
 
-h2 {
-  color: #0ff;
-  text-shadow: 0 0 10px #0ff;
-}
+    section.visible {
+      opacity: 1;
+      transform: none
+    }
 
-/* ================= ANIME ================= */
-.anime-box {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
+    h2 {
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff
+    }
 
-#animeChar {
-  width: 320px;
-  filter: drop-shadow(0 0 30px cyan);
-  transition: transform 0.1s linear;
-}
+    /* WELCOME */
+    .anime-box {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
 
-.energy-aura {
-  position: absolute;
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,255,255,0.6), transparent 70%);
-  filter: blur(15px);
-  animation: aura 2s infinite;
-  pointer-events: none;
-}
+    /* ABOUT */
+    .about-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
 
-@keyframes aura {
-  50% { transform: scale(1.15); }
-}
+    .about-text {
+      flex: 1;
+      font-size: 16px;
+      line-height: 1.7;
+      padding: 20px;
+      background: rgba(0, 0, 0, .25);
+      border-radius: 12px;
+    }
 
-.energy-blast {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #0ff, transparent 70%);
-  animation: blast 0.6s forwards;
-  pointer-events: none;
-}
+    /* SKILLS */
+    .progress {
+      width: 80%;
+      margin: 12px auto;
+      height: 20px;
+      background: rgba(255, 255, 255, .1);
+      border-radius: 20px;
+      overflow: hidden;
+    }
 
-@keyframes blast {
-  100% { transform: scale(6); opacity: 0; }
-}
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #0ff, #ff00ff);
+      transition: 1.5s;
+    }
 
-/* ================= SKILLS ================= */
-.progress {
-  width: 80%;
-  height: 20px;
-  margin: 10px auto;
-  background: rgba(255,255,255,0.1);
-  border-radius: 20px;
-  overflow: hidden;
-}
+    /* CREATIONS */
+    .creations-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
 
-.progress-bar {
-  height: 100%;
-  width: 0;
-  background: linear-gradient(90deg, #0ff, #ff00ff);
-  transition: width 1.5s ease;
-}
+    .creation-card {
+      width: 280px;
+      padding: 20px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .05);
+      box-shadow: 0 0 15px rgba(0, 255, 255, .25);
+    }
 
-/* ================= CREATIONS ================= */
-.creations-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
+    .creation-card h3 {
+      color: #0ff
+    }
 
-.creation-card {
-  width: 280px;
-  padding: 20px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.05);
-  box-shadow: 0 0 10px rgba(0,255,255,0.2);
-  transition: transform 0.4s, box-shadow 0.4s;
-}
+    .creation-card a {
+      display: inline-block;
+      padding: 8px 15px;
+      background: linear-gradient(90deg, #0ff, #ff00ff);
+      border-radius: 8px;
+      color: #fff;
+      text-decoration: none;
+    }
 
-.creation-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 25px rgba(0,255,255,0.6);
-}
+    /* CONTACT (SIMPLE LIKE BEFORE) */
+    input,
+    textarea,
+    button {
+      width: 90%;
+      margin: 10px 0;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+    }
 
-.creation-card a {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 8px 15px;
-  border-radius: 8px;
-  text-decoration: none;
-  color: #fff;
-  background: linear-gradient(90deg, #0ff, #ff00ff);
-}
+    button {
+      background: linear-gradient(90deg, #0ff, #ff00ff);
+      color: #fff;
+      cursor: pointer;
+    }
 
-/* ================= CONTACT ================= */
-input, textarea, button {
-  width: 80%;
-  margin: 8px 0;
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-}
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid rgba(255, 255, 255, .2);
+    }
 
-button {
-  background: linear-gradient(90deg, #0ff, #ff00ff);
-  color: #fff;
-  cursor: pointer;
-}
+    .social-icons a {
+      margin: 0 10px;
+      color: #fff;
+      font-size: 24px;
+    }
 
-/* ================= FOOTER ================= */
-footer {
-  text-align: center;
-  padding: 20px;
-}
+    .social-icons a:hover {
+      color: #0ff
+    }
 
-.social-icons a {
-  margin: 0 10px;
-  font-size: 24px;
-  color: #fff;
-}
+    /* MOBILE */
+    @media(max-width:700px) {
+      header {
+        flex-direction: column
+      }
 
-.social-icons a:hover {
-  color: #0ff;
-}
-
-/* ================= RESPONSIVE ================= */
-@media (max-width:600px) {
-  header {
-    flex-direction: column;
-  }
-  .creations-container {
-    flex-direction: column;
-  }
-}
-</style>
+      .about-container {
+        flex-direction: column
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <h1>Arun's Cyberpunk WEBSITE</h1>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#creations">Creations</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <div class="mode-toggle" id="modeToggle">
-    <i class="fas fa-moon"></i>
-  </div>
-</header>
-
-<section id="welcome">
-  <h2>⚡ Welcome to Arun's Cyberpunk WEBSITE ⚡</h2>
-  <div class="anime-box" id="animeArea">
-    <div class="energy-aura"></div>
-    <lottie-player
-      id="animeChar"
-      src="https://assets3.lottiefiles.com/packages/lf20_j1adxtyb.json"
-      background="transparent"
-      loop
-      autoplay>
-    </lottie-player>
-  </div>
-</section>
-
-<section id="about">
-  <h2>About Me</h2>
-  <p>I'm Arun, a passionate programmer blending futuristic design with real code.</p>
-</section>
-
-<section id="services">
-  <h2>Services</h2>
-  <p>Web Design • Frontend • UI/UX • Animations</p>
-</section>
-
-<section id="creations">
-  <h2>⚡ Creations ⚡</h2>
-  <div class="creations-container">
-    <div class="creation-card">
-      <h3>Weather App</h3>
-      <p>Real-time weather app</p>
-      <a href="https://w-eather-app.vercel.app/" target="_blank">Open</a>
+  <header>
+    <h1>Arun's Cyberpunk WEBSITE</h1>
+    <nav>
+      <a href="#welcome">Welcome</a>
+      <a href="#about">About</a>
+      <a href="#creations">Creations</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div id="modeToggle" class="mode-toggle">
+      <i class="fas fa-moon"></i>
     </div>
-    <div class="creation-card">
-      <h3>Fitness App</h3>
-      <p>Workout tracking</p>
-      <a href="https://fitnesss-app-six.vercel.app/" target="_blank">Open</a>
+  </header>
+
+  <!-- WELCOME -->
+  <section id="welcome">
+    <h2>⚡ Welcome to Arun's Cyberpunk WEBSITE ⚡</h2>
+    <div class="anime-box">
+      <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_j1adxtyb.json" background="transparent"
+        speed="1" loop autoplay style="width:280px;height:280px;">
+      </lottie-player>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="skills">
-  <h2>Skills</h2>
-  <p>HTML</p><div class="progress"><div class="progress-bar" data-skill="90"></div></div>
-  <p>CSS</p><div class="progress"><div class="progress-bar" data-skill="85"></div></div>
-  <p>JavaScript</p><div class="progress"><div class="progress-bar" data-skill="80"></div></div>
-  <p>Python</p><div class="progress"><div class="progress-bar" data-skill="70"></div></div>
-</section>
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="about-container">
+      <div class="about-text">
+        I'm Arun, a passionate programmer blending futuristic design with real code.
+        I love speed, performance and clean logic — just like a racing car 🏁
+      </div>
 
-<section id="contact">
-  <h2>Contact Me</h2>
-  <input type="text" placeholder="Your Name">
-  <input type="email" placeholder="Your Email">
-  <textarea placeholder="Your Message"></textarea>
-  <button>Send Message</button>
-</section>
+      <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_tfb3estd.json" background="transparent"
+        speed="1" loop autoplay style="width:260px;height:260px;">
+      </lottie-player>
+    </div>
+  </section>
 
-<footer>
-  <p>© 2025 Arun Deep</p>
-  <div class="social-icons">
-    <a href="https://github.com/Arundeepyt" target="_blank"><i class="fab fa-github"></i></a>
-  </div>
-</footer>
+  <!-- CREATIONS -->
+  <section id="creations">
+    <h2>⚡ Creations ⚡</h2>
+    <div class="creations-container">
+      <div class="creation-card">
+        <h3>Weather App</h3>
+        <a href="https://w-eather-app.vercel.app/" target="_blank">Open</a>
+      </div>
+      <div class="creation-card">
+        <h3>Fitness App</h3>
+        <a href="https://fitnesss-app-six.vercel.app/" target="_blank">Open</a>
+      </div>
+    </div>
+  </section>
 
-<script>
-/* DARK MODE */
-document.getElementById("modeToggle").addEventListener("click", function () {
-  document.body.classList.toggle("light");
-});
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <p>HTML</p>
+    <div class="progress">
+      <div class="progress-bar" data-skill="90"></div>
+    </div>
+    <p>CSS</p>
+    <div class="progress">
+      <div class="progress-bar" data-skill="85"></div>
+    </div>
+    <p>JavaScript</p>
+    <div class="progress">
+      <div class="progress-bar" data-skill="80"></div>
+    </div>
+    <p>Python</p>
+    <div class="progress">
+      <div class="progress-bar" data-skill="70"></div>
+    </div>
+  </section>
 
-/* SCROLL REVEAL + SKILLS */
-const sections = document.querySelectorAll("section");
-const bars = document.querySelectorAll(".progress-bar");
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <input placeholder="Your Name">
+    <input placeholder="Your Email">
+    <textarea placeholder="Your Message"></textarea>
+    <button>Send Message</button>
+  </section>
 
-window.addEventListener("scroll", function () {
-  sections.forEach(sec => {
-    if (sec.getBoundingClientRect().top < window.innerHeight - 100) {
-      sec.classList.add("visible");
-    }
-  });
+  <footer>
+    <p>© 2025 Arun Deep</p>
+    <div class="social-icons">
+      <a href="https://youtube.com/@arudeep1yt" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://github.com/Arundeepyt" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.snapchat.com/add/arun_deep202270" target="_blank"><i class="fab fa-snapchat"></i></a>
+    </div>
+  </footer>
 
-  bars.forEach(bar => {
-    if (bar.getBoundingClientRect().top < window.innerHeight - 100) {
-      bar.style.width = bar.dataset.skill + "%";
-    }
-  });
-});
+  <script>
+    /* DARK MODE */
+    document.getElementById("modeToggle").onclick = () => {
+      document.body.classList.toggle("light");
+    };
 
-/* MOUSE MOVE */
-const char = document.getElementById("animeChar");
-document.addEventListener("mousemove", e => {
-  const x = (e.clientX / window.innerWidth - 0.5) * 20;
-  const y = (e.clientY / window.innerHeight - 0.5) * 20;
-  char.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
-});
-
-/* ENERGY BLAST */
-document.getElementById("animeArea").addEventListener("click", e => {
-  const blast = document.createElement("div");
-  blast.className = "energy-blast";
-  blast.style.left = (e.offsetX - 20) + "px";
-  blast.style.top = (e.offsetY - 20) + "px";
-  e.currentTarget.appendChild(blast);
-  setTimeout(() => blast.remove(), 600);
-});
-</script>
+    /* SCROLL ANIMATION */
+    const sections = document.querySelectorAll("section");
+    const bars = document.querySelectorAll(".progress-bar");
+    window.addEventListener("scroll", () => {
+      sections.forEach(s => {
+        if (s.getBoundingClientRect().top < window.innerHeight - 100)
+          s.classList.add("visible");
+      });
+      bars.forEach(b => {
+        if (b.getBoundingClientRect().top < window.innerHeight - 100)
+          b.style.width = b.dataset.skill + "%";
+      });
+    });
+  </script>
 
 </body>
+
 </html>
