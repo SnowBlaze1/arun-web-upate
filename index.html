@@ -1,188 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arun's Cyberpunk Portfolio</title>
 
+<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- Lottie -->
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
 <style>
-/* ---------- Base Styles ---------- */
+/* ================= BASE ================= */
+* {
+  box-sizing: border-box;
+}
+
 body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #fff;
-    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-    transition: background 0.6s, color 0.6s;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 40px;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(10px);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-header h1 {
-    color: #0ff;
-    font-size: 22px;
-}
-
-nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 10px;
-    transition: color 0.3s;
-}
-
-nav a:hover {
-    color: #0ff;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  transition: background 0.5s, color 0.5s;
 }
 
 body.light {
-    background: linear-gradient(135deg, #ffffff, #e9e9ff);
-    color: #111;
+  background: linear-gradient(135deg, #ffffff, #e9e9ff);
+  color: #111;
+}
+
+/* ================= HEADER ================= */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 body.light header {
-    background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.8);
+}
+
+header h1 {
+  color: #0ff;
+  font-size: 22px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
 }
 
 body.light nav a {
-    color: #000;
+  color: #000;
 }
 
-body.light nav a:hover {
-    color: #6a00ff;
+nav a:hover {
+  color: #0ff;
 }
 
-/* Toggle button */
 .mode-toggle {
-    cursor: pointer;
-    font-size: 22px;
-    color: #fff;
-    transition: transform 0.3s;
-}
-.mode-toggle:hover {
-    transform: rotate(20deg);
+  cursor: pointer;
+  font-size: 22px;
 }
 
-/* ---------- Sections ---------- */
+/* ================= SECTIONS ================= */
 section {
-    text-align: center;
-    margin: 40px auto;
-    max-width: 900px;
-    padding: 20px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 0 10px rgba(0,255,255,0.2);
-    opacity: 0;
-    transform: translateY(50px);
-    transition: 0.6s;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,255,255,0.2);
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 0.6s;
 }
 
 section.visible {
-    opacity: 1;
-    transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 h2 {
-    color: #0ff;
-    text-shadow: 0 0 10px #0ff;
+  color: #0ff;
+  text-shadow: 0 0 10px #0ff;
 }
 
-/* ---------- Anime Character ---------- */
+/* ================= ANIME ================= */
 .anime-box {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 #animeChar {
-    width: 320px;
-    height: 320px;
-    filter: drop-shadow(0 0 30px cyan);
-    transition: transform 0.1s linear;
+  width: 320px;
+  filter: drop-shadow(0 0 30px cyan);
+  transition: transform 0.1s linear;
 }
 
-/* Energy Aura */
 .energy-aura {
-    position: absolute;
-    width: 280px;
-    height: 280px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,255,255,0.6), transparent 70%);
-    filter: blur(15px);
-    animation: auraPulse 2s infinite;
-    pointer-events: none;
-}
-@keyframes auraPulse {
-    0% { transform: scale(1); opacity: 0.6; }
-    50% { transform: scale(1.15); opacity: 1; }
-    100% { transform: scale(1); opacity: 0.6; }
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,255,255,0.6), transparent 70%);
+  filter: blur(15px);
+  animation: aura 2s infinite;
+  pointer-events: none;
 }
 
-/* Energy Blast */
+@keyframes aura {
+  50% { transform: scale(1.15); }
+}
+
 .energy-blast {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #0ff, transparent 70%);
-    animation: blast 0.6s ease-out forwards;
-    pointer-events: none;
-}
-@keyframes blast {
-    0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(6); opacity: 0; }
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #0ff, transparent 70%);
+  animation: blast 0.6s forwards;
+  pointer-events: none;
 }
 
-/* ---------- Skills ---------- */
+@keyframes blast {
+  100% { transform: scale(6); opacity: 0; }
+}
+
+/* ================= SKILLS ================= */
 .progress {
-    margin: 15px auto;
-    width: 80%;
-    background: rgba(255,255,255,0.1);
-    border-radius: 20px;
-    overflow: hidden;
-    height: 20px;
+  width: 80%;
+  height: 20px;
+  margin: 10px auto;
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .progress-bar {
-    height: 100%;
-    background: linear-gradient(90deg, #00ffff, #ff00ff);
-    width: 0;
-    transition: width 1.5s ease-in-out;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #0ff, #ff00ff);
+  transition: width 1.5s ease;
 }
 
-/* ---------- Footer ---------- */
+/* ================= CREATIONS ================= */
+.creations-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.creation-card {
+  width: 280px;
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 0 10px rgba(0,255,255,0.2);
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.creation-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(0,255,255,0.6);
+}
+
+.creation-card a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(90deg, #0ff, #ff00ff);
+}
+
+/* ================= CONTACT ================= */
+input, textarea, button {
+  width: 80%;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+}
+
+button {
+  background: linear-gradient(90deg, #0ff, #ff00ff);
+  color: #fff;
+  cursor: pointer;
+}
+
+/* ================= FOOTER ================= */
 footer {
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-    border-top: 1px solid rgba(255,255,255,0.2);
+  text-align: center;
+  padding: 20px;
 }
 
 .social-icons a {
-    margin: 0 10px;
-    color: #fff;
-    font-size: 24px;
-    transition: transform 0.3s, color 0.3s;
+  margin: 0 10px;
+  font-size: 24px;
+  color: #fff;
 }
 
 .social-icons a:hover {
-    color: #0ff;
-    transform: scale(1.2);
-    text-shadow: 0 0 10px #0ff;
+  color: #0ff;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:600px) {
+  header {
+    flex-direction: column;
+  }
+  .creations-container {
+    flex-direction: column;
+  }
 }
 </style>
 </head>
@@ -190,113 +233,122 @@ footer {
 <body>
 
 <header>
-    <h1>Arun's Cyberpunk WEBSITE</h1>
-    <nav>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    <div class="mode-toggle" id="modeToggle"><i class="fas fa-moon"></i></div>
+  <h1>Arun's Cyberpunk WEBSITE</h1>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#creations">Creations</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="mode-toggle" id="modeToggle">
+    <i class="fas fa-moon"></i>
+  </div>
 </header>
 
-<!-- WELCOME -->
 <section id="welcome">
-    <h2>⚡ Welcome to Arun's Cyberpunk WEBSITE ⚡</h2>
-    <div class="anime-box" id="animeArea">
-        <div class="energy-aura"></div>
-        <!-- Lottie Character Animation -->
-        <lottie-player
-            id="animeChar"
-            src="https://assets3.lottiefiles.com/packages/lf20_j1adxtyb.json"
-            background="transparent"
-            loop
-            autoplay>
-        </lottie-player>
-    </div>
+  <h2>⚡ Welcome to Arun's Cyberpunk WEBSITE ⚡</h2>
+  <div class="anime-box" id="animeArea">
+    <div class="energy-aura"></div>
+    <lottie-player
+      id="animeChar"
+      src="https://assets3.lottiefiles.com/packages/lf20_j1adxtyb.json"
+      background="transparent"
+      loop
+      autoplay>
+    </lottie-player>
+  </div>
 </section>
 
 <section id="about">
-    <h2>About Me</h2>
-    <p>I'm Arun, a passionate programmer and designer blending futuristic aesthetics with functional code.</p>
+  <h2>About Me</h2>
+  <p>I'm Arun, a passionate programmer blending futuristic design with real code.</p>
 </section>
 
 <section id="services">
-    <h2>Services</h2>
-    <p>Web Design | Frontend Development | Creative UI/UX | Responsive Layouts | Animations</p>
+  <h2>Services</h2>
+  <p>Web Design • Frontend • UI/UX • Animations</p>
+</section>
+
+<section id="creations">
+  <h2>⚡ Creations ⚡</h2>
+  <div class="creations-container">
+    <div class="creation-card">
+      <h3>Weather App</h3>
+      <p>Real-time weather app</p>
+      <a href="https://w-eather-app.vercel.app/" target="_blank">Open</a>
+    </div>
+    <div class="creation-card">
+      <h3>Fitness App</h3>
+      <p>Workout tracking</p>
+      <a href="https://fitnesss-app-six.vercel.app/" target="_blank">Open</a>
+    </div>
+  </div>
 </section>
 
 <section id="skills">
-    <h2>Skills</h2>
-
-    <div class="progress"><div class="progress-bar" data-skill="90"></div></div>
-    <p>HTML</p>
-
-    <div class="progress"><div class="progress-bar" data-skill="85"></div></div>
-    <p>CSS</p>
-
-    <div class="progress"><div class="progress-bar" data-skill="80"></div></div>
-    <p>JavaScript</p>
-
-    <div class="progress"><div class="progress-bar" data-skill="75"></div></div>
-    <p>Bootstrap</p>
-
-    <div class="progress"><div class="progress-bar" data-skill="70"></div></div>
-    <p>PYTHON 🐍</p>
+  <h2>Skills</h2>
+  <p>HTML</p><div class="progress"><div class="progress-bar" data-skill="90"></div></div>
+  <p>CSS</p><div class="progress"><div class="progress-bar" data-skill="85"></div></div>
+  <p>JavaScript</p><div class="progress"><div class="progress-bar" data-skill="80"></div></div>
+  <p>Python</p><div class="progress"><div class="progress-bar" data-skill="70"></div></div>
 </section>
 
 <section id="contact">
-    <h2>Contact Me</h2>
-    <input type="text" placeholder="Your Name"><br>
-    <input type="email" placeholder="Your Email"><br>
-    <textarea placeholder="Your Message"></textarea><br>
-    <button>Send Message</button>
+  <h2>Contact Me</h2>
+  <input type="text" placeholder="Your Name">
+  <input type="email" placeholder="Your Email">
+  <textarea placeholder="Your Message"></textarea>
+  <button>Send Message</button>
 </section>
 
 <footer>
-    <p>© 2025 Arun Deep | All Rights Reserved</p>
-    <div class="social-icons">
-        <a href="https://youtube.com/@arudeep1yt" target="_blank"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.snapchat.com/add/arun_deep202270" target="_blank"><i class="fab fa-snapchat"></i></a>
-        <a href="https://github.com/Arundeepyt" target="_blank"><i class="fab fa-github"></i></a>
-    </div>
+  <p>© 2025 Arun Deep</p>
+  <div class="social-icons">
+    <a href="https://github.com/Arundeepyt" target="_blank"><i class="fab fa-github"></i></a>
+  </div>
 </footer>
 
 <script>
-/* Dark Mode Toggle */
-document.getElementById('modeToggle').onclick = () =>
-    document.body.classList.toggle('light');
-
-/* Reveal sections + skills animation */
-const sections = document.querySelectorAll('section');
-const bars = document.querySelectorAll('.progress-bar');
-window.addEventListener('scroll', () => {
-    sections.forEach(sec => {
-        if (sec.getBoundingClientRect().top < window.innerHeight - 100)
-            sec.classList.add('visible');
-    });
-    bars.forEach(bar => {
-        if (bar.getBoundingClientRect().top < window.innerHeight - 100)
-            bar.style.width = bar.dataset.skill + '%';
-    });
+/* DARK MODE */
+document.getElementById("modeToggle").addEventListener("click", function () {
+  document.body.classList.toggle("light");
 });
 
-/* Mouse reactive character */
+/* SCROLL REVEAL + SKILLS */
+const sections = document.querySelectorAll("section");
+const bars = document.querySelectorAll(".progress-bar");
+
+window.addEventListener("scroll", function () {
+  sections.forEach(sec => {
+    if (sec.getBoundingClientRect().top < window.innerHeight - 100) {
+      sec.classList.add("visible");
+    }
+  });
+
+  bars.forEach(bar => {
+    if (bar.getBoundingClientRect().top < window.innerHeight - 100) {
+      bar.style.width = bar.dataset.skill + "%";
+    }
+  });
+});
+
+/* MOUSE MOVE */
 const char = document.getElementById("animeChar");
 document.addEventListener("mousemove", e => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 20;
-    const y = (e.clientY / window.innerHeight - 0.5) * 20;
-    char.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+  const x = (e.clientX / window.innerWidth - 0.5) * 20;
+  const y = (e.clientY / window.innerHeight - 0.5) * 20;
+  char.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
 });
 
-/* Energy blast on click */
+/* ENERGY BLAST */
 document.getElementById("animeArea").addEventListener("click", e => {
-    const blast = document.createElement("div");
-    blast.className = "energy-blast";
-    blast.style.left = (e.offsetX - 20) + "px";
-    blast.style.top = (e.offsetY - 20) + "px";
-    e.currentTarget.appendChild(blast);
-    setTimeout(() => blast.remove(), 600);
+  const blast = document.createElement("div");
+  blast.className = "energy-blast";
+  blast.style.left = (e.offsetX - 20) + "px";
+  blast.style.top = (e.offsetY - 20) + "px";
+  e.currentTarget.appendChild(blast);
+  setTimeout(() => blast.remove(), 600);
 });
 </script>
 
