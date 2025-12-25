@@ -2,340 +2,426 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arun's Cyberpunk WEBSITE</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arun Deep | Cyberpunk Portfolio</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-  <style>
-    * {
-      box-sizing: border-box
-    }
+    <style>
+        :root {
+            --neon: #00ffff;
+            --pink: #ff00ff;
+            --bg: #000;
+            --text: #fff;
+            --glass: rgba(255, 255, 255, .06);
+        }
 
-    body {
-      margin: 0;
-      font-family: Poppins, sans-serif;
-      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-      color: #fff;
-      transition: .4s;
-    }
+        body.light {
+            --neon: #0066ff;
+            --pink: #ff0088;
+            --bg: #f5f7fb;
+            --text: #000;
+            --glass: rgba(0, 0, 0, .05);
+        }
 
-    /* HEADER */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 40px;
-      background: rgba(0, 0, 0, .6);
-      backdrop-filter: blur(10px);
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
 
-    header h1 {
-      color: #0ff;
-      font-size: 22px
-    }
+        body {
+            font-family: Poppins, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            transition: .4s;
+        }
 
-    nav a {
-      color: #fff;
-      margin: 0 12px;
-      text-decoration: none;
-    }
+        /* PYTHON BG */
+        .python-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -3;
+            opacity: .12;
+            pointer-events: none;
+        }
 
-    nav a:hover {
-      color: #0ff
-    }
+        /* CURSOR */
+        .cursor {
+            position: fixed;
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--neon);
+            border-radius: 50%;
+            pointer-events: none;
+            box-shadow: 0 0 15px var(--neon);
+            z-index: 9999;
+        }
 
-    .mode-toggle {
-      cursor: pointer;
-      font-size: 22px;
-      color: #0ff;
-    }
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, .6);
+            backdrop-filter: blur(10px);
+            transition: .4s;
+        }
 
-    /* LIGHT MODE */
-    body.light {
-      background: linear-gradient(135deg, #ffffff, #e9e9ff);
-      color: #111;
-    }
+        body.light header {
+            background: rgba(255, 255, 255, .7);
+        }
 
-    body.light header {
-      background: rgba(255, 255, 255, .85)
-    }
+        header h1 {
+            color: var(--neon);
+            text-shadow: 0 0 12px var(--neon);
+        }
 
-    body.light nav a {
-      color: #000
-    }
+        nav a {
+            color: var(--text);
+            margin: 0 12px;
+            text-decoration: none;
+        }
 
-    body.light section {
-      background: rgba(0, 0, 0, .05)
-    }
+        nav a:hover {
+            color: var(--neon)
+        }
 
-    body.light h2 {
-      color: #6a00ff;
-      text-shadow: 0 0 8px #6a00ff
-    }
+        #themeToggle {
+            background: none;
+            border: 2px solid var(--neon);
+            color: var(--neon);
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 0 10px var(--neon);
+        }
 
-    /* SECTIONS */
-    section {
-      max-width: 900px;
-      margin: 50px auto;
-      padding: 35px;
-      background: rgba(255, 255, 255, .05);
-      border-radius: 18px;
-      box-shadow: 0 0 18px rgba(0, 255, 255, .25);
-      text-align: center;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: .6s;
-    }
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
 
-    section.visible {
-      opacity: 1;
-      transform: none
-    }
+        .hero h2 {
+            font-size: 40px;
+            color: var(--neon);
+            text-shadow: 0 0 20px var(--neon);
+        }
 
-    h2 {
-      color: #0ff;
-      text-shadow: 0 0 10px #0ff
-    }
+        .hero span {
+            color: var(--pink)
+        }
 
-    /* WELCOME */
-    .anime-box {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-    }
+        /* SECTIONS */
+        section {
+            max-width: 1000px;
+            margin: 90px auto;
+            padding: 40px;
+            border-radius: 20px;
+            background: var(--glass);
+            box-shadow: 0 0 25px rgba(0, 255, 255, .25);
+            opacity: 0;
+            transform: translateY(60px);
+            transition: .7s;
+        }
 
-    /* ABOUT */
-    .about-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
+        section.visible {
+            opacity: 1;
+            transform: none;
+        }
 
-    .about-text {
-      flex: 1;
-      font-size: 16px;
-      line-height: 1.7;
-      padding: 20px;
-      background: rgba(0, 0, 0, .25);
-      border-radius: 12px;
-    }
+        h2 {
+            color: var(--neon);
+            text-align: center;
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px var(--neon);
+        }
 
-    /* SKILLS */
-    .progress {
-      width: 80%;
-      margin: 12px auto;
-      height: 20px;
-      background: rgba(255, 255, 255, .1);
-      border-radius: 20px;
-      overflow: hidden;
-    }
+        /* PROJECTS */
+        .projects {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
-    .progress-bar {
-      height: 100%;
-      width: 0;
-      background: linear-gradient(90deg, #0ff, #ff00ff);
-      transition: 1.5s;
-    }
+        .card {
+            width: 280px;
+            padding: 20px;
+            border-radius: 15px;
+            background: var(--glass);
+            box-shadow: 0 0 20px rgba(0, 255, 255, .3);
+            transition: .4s;
+        }
 
-    /* CREATIONS */
-    .creations-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 25px;
-    }
+        .card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 0 35px var(--neon);
+        }
 
-    .creation-card {
-      width: 280px;
-      padding: 20px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, .05);
-      box-shadow: 0 0 15px rgba(0, 255, 255, .25);
-    }
+        /* SKILLS */
+        #skills {
+            position: relative;
+            overflow: hidden
+        }
 
-    .creation-card h3 {
-      color: #0ff
-    }
+        #skillCanvas {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
 
-    .creation-card a {
-      display: inline-block;
-      padding: 8px 15px;
-      background: linear-gradient(90deg, #0ff, #ff00ff);
-      border-radius: 8px;
-      color: #fff;
-      text-decoration: none;
-    }
+        .skills-content {
+            position: relative;
+            z-index: 2
+        }
 
-    /* CONTACT (SIMPLE LIKE BEFORE) */
-    input,
-    textarea,
-    button {
-      width: 90%;
-      margin: 10px 0;
-      padding: 10px;
-      border: none;
-      border-radius: 8px;
-    }
+        .skill {
+            margin: 22px 0
+        }
 
-    button {
-      background: linear-gradient(90deg, #0ff, #ff00ff);
-      color: #fff;
-      cursor: pointer;
-    }
+        .skill span {
+            float: right;
+            color: var(--neon);
+        }
 
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 20px;
-      border-top: 1px solid rgba(255, 255, 255, .2);
-    }
+        .bar {
+            margin-top: 8px;
+            height: 18px;
+            background: rgba(255, 255, 255, .15);
+            border-radius: 20px;
+            overflow: hidden;
+        }
 
-    .social-icons a {
-      margin: 0 10px;
-      color: #fff;
-      font-size: 24px;
-    }
+        .fill {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--neon), var(--pink));
+            transition: width 1.8s ease;
+        }
 
-    .social-icons a:hover {
-      color: #0ff
-    }
+        /* CONTACT */
+        input,
+        textarea,
+        button {
+            width: 90%;
+            margin: 10px auto;
+            display: block;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+        }
 
-    /* MOBILE */
-    @media(max-width:700px) {
-      header {
-        flex-direction: column
-      }
+        button {
+            background: linear-gradient(90deg, var(--neon), var(--pink));
+            color: #fff;
+            cursor: pointer;
+        }
 
-      .about-container {
-        flex-direction: column
-      }
-    }
-  </style>
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px
+        }
+
+        .social a {
+            color: var(--text);
+            font-size: 24px;
+            margin: 0 10px;
+        }
+
+        .social a:hover {
+            color: var(--neon)
+        }
+    </style>
 </head>
 
 <body>
 
-  <header>
-    <h1>Arun's Cyberpunk WEBSITE</h1>
-    <nav>
-      <a href="#welcome">Welcome</a>
-      <a href="#about">About</a>
-      <a href="#creations">Creations</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div id="modeToggle" class="mode-toggle">
-      <i class="fas fa-moon"></i>
-    </div>
-  </header>
+    <div class="cursor"></div>
 
-  <!-- WELCOME -->
-  <section id="welcome">
-    <h2>⚡ Welcome to Arun's Cyberpunk WEBSITE ⚡</h2>
-    <div class="anime-box">
-      <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_j1adxtyb.json" background="transparent"
-        speed="1" loop autoplay style="width:280px;height:280px;">
-      </lottie-player>
+    <div class="python-bg">
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_kkflmtur.json" background="transparent"
+            speed="0.4" loop autoplay></lottie-player>
     </div>
-  </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <h2>About Me</h2>
-    <div class="about-container">
-      <div class="about-text">
-        I'm Arun, a passionate programmer blending futuristic design with real code.
-        I love speed, performance and clean logic — just like a racing car 🏁
-      </div>
+    <header>
+        <h1>Arun Deep</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <button id="themeToggle">🌙</button>
+    </header>
 
-      <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_tfb3estd.json" background="transparent"
-        speed="1" loop autoplay style="width:260px;height:260px;">
-      </lottie-player>
+    <div class="hero">
+        <h2>I build <span>Cyberpunk Web Experiences</span></h2>
+        <p>Programmer • Python Lover 🐍 • Speed 🏁</p>
     </div>
-  </section>
 
-  <!-- CREATIONS -->
-  <section id="creations">
-    <h2>⚡ Creations ⚡</h2>
-    <div class="creations-container">
-      <div class="creation-card">
-        <h3>Weather App</h3>
-        <a href="https://w-eather-app.vercel.app/" target="_blank">Open</a>
-      </div>
-      <div class="creation-card">
-        <h3>Fitness App</h3>
-        <a href="https://fitnesss-app-six.vercel.app/" target="_blank">Open</a>
-      </div>
-    </div>
-  </section>
+    <section id="about">
+        <h2>About Me</h2>I'm Arun — a passionate programmer.
+    </section>
 
-  <!-- SKILLS -->
-  <section id="skills">
-    <h2>Skills</h2>
-    <p>HTML</p>
-    <div class="progress">
-      <div class="progress-bar" data-skill="90"></div>
-    </div>
-    <p>CSS</p>
-    <div class="progress">
-      <div class="progress-bar" data-skill="85"></div>
-    </div>
-    <p>JavaScript</p>
-    <div class="progress">
-      <div class="progress-bar" data-skill="80"></div>
-    </div>
-    <p>Python</p>
-    <div class="progress">
-      <div class="progress-bar" data-skill="70"></div>
-    </div>
-  </section>
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects">
+            <div class="card">
+                <h3>Weather App</h3><a href="https://w-eather-app.vercel.app/" target="_blank">Open</a>
+            </div>
+            <div class="card">
+                <h3>Fitness App</h3><a href="https://fitnesss-app-six.vercel.app/" target="_blank">Open</a>
+            </div>
+        </div>
+    </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <input placeholder="Your Name">
-    <input placeholder="Your Email">
-    <textarea placeholder="Your Message"></textarea>
-    <button>Send Message</button>
-  </section>
+    <section id="skills">
+        <canvas id="skillCanvas"></canvas>
+        <div class="skills-content">
+            <h2>Skills</h2>
 
-  <footer>
-    <p>© 2025 Arun Deep</p>
-    <div class="social-icons">
-      <a href="https://youtube.com/@arudeep1yt" target="_blank"><i class="fab fa-youtube"></i></a>
-      <a href="https://github.com/Arundeepyt" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://www.snapchat.com/add/arun_deep202270" target="_blank"><i class="fab fa-snapchat"></i></a>
-    </div>
-  </footer>
+            <div class="skill">HTML <span>90%</span>
+                <div class="bar">
+                    <div class="fill" data-value="90"></div>
+                </div>
+            </div>
 
-  <script>
-    /* DARK MODE */
-    document.getElementById("modeToggle").onclick = () => {
-      document.body.classList.toggle("light");
-    };
+            <div class="skill">CSS <span>85%</span>
+                <div class="bar">
+                    <div class="fill" data-value="85"></div>
+                </div>
+            </div>
 
-    /* SCROLL ANIMATION */
-    const sections = document.querySelectorAll("section");
-    const bars = document.querySelectorAll(".progress-bar");
-    window.addEventListener("scroll", () => {
-      sections.forEach(s => {
-        if (s.getBoundingClientRect().top < window.innerHeight - 100)
-          s.classList.add("visible");
-      });
-      bars.forEach(b => {
-        if (b.getBoundingClientRect().top < window.innerHeight - 100)
-          b.style.width = b.dataset.skill + "%";
-      });
-    });
-  </script>
+            <div class="skill">JavaScript <span>80%</span>
+                <div class="bar">
+                    <div class="fill" data-value="80"></div>
+                </div>
+            </div>
+
+            <div class="skill">Python <span>70%</span>
+                <div class="bar">
+                    <div class="fill" data-value="70"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <input placeholder="Your Name">
+        <input placeholder="Your Email">
+        <textarea placeholder="Your Message"></textarea>
+        <button>Send</button>
+    </section>
+
+    <footer>
+        © 2025 Arun Deep
+        <div class="social">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        /* SCROLL + SKILLS */
+        const sections = document.querySelectorAll("section");
+        const fills = document.querySelectorAll(".fill");
+
+        window.addEventListener("scroll", () => {
+            sections.forEach(s => {
+                if (s.getBoundingClientRect().top < window.innerHeight - 120)
+                    s.classList.add("visible");
+            });
+
+            fills.forEach(f => {
+                if (f.getBoundingClientRect().top < window.innerHeight - 120)
+                    f.style.width = f.dataset.value + "%";
+            });
+        });
+
+        /* CURSOR */
+        const cursor = document.querySelector(".cursor");
+        document.addEventListener("mousemove", e => {
+            cursor.style.left = e.clientX + "px";
+            cursor.style.top = e.clientY + "px";
+        });
+
+        /* THEME */
+        const toggle = document.getElementById("themeToggle");
+        toggle.onclick = () => {
+            document.body.classList.toggle("light");
+            toggle.textContent = document.body.classList.contains("light") ? "☀️" : "🌙";
+        };
+
+        /* CONSTELLATION */
+        const canvas = document.getElementById("skillCanvas");
+        const ctx = canvas.getContext("2d");
+
+        function resize() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        resize(); window.addEventListener("resize", resize);
+
+        let nodes = [];
+        for (let i = 0; i < 35; i++) {
+            nodes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - .5) * .4,
+                vy: (Math.random() - .5) * .4
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const neon = getComputedStyle(document.body).getPropertyValue("--neon");
+
+            nodes.forEach((n, i) => {
+                n.x += n.vx; n.y += n.vy;
+                if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+                if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+
+                ctx.fillStyle = neon;
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
+                ctx.fill();
+
+                for (let j = i + 1; j < nodes.length; j++) {
+                    let m = nodes[j], d = Math.hypot(n.x - m.x, n.y - m.y);
+                    if (d < 120) {
+                        ctx.strokeStyle = neon + "55";
+                        ctx.beginPath();
+                        ctx.moveTo(n.x, n.y);
+                        ctx.lineTo(m.x, m.y);
+                        ctx.stroke();
+                    }
+                }
+            });
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
 
 </body>
 
