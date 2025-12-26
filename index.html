@@ -1,3 +1,4 @@
+\
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +30,7 @@
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box
+            box-sizing: border-box;
         }
 
         body {
@@ -40,7 +41,7 @@
             transition: .4s;
         }
 
-        /* PYTHON BG */
+        /* BACKGROUND */
         .python-bg {
             position: fixed;
             inset: 0;
@@ -73,7 +74,6 @@
             align-items: center;
             background: rgba(0, 0, 0, .6);
             backdrop-filter: blur(10px);
-            transition: .4s;
         }
 
         body.light header {
@@ -92,7 +92,7 @@
         }
 
         nav a:hover {
-            color: var(--neon)
+            color: var(--neon);
         }
 
         #themeToggle {
@@ -123,7 +123,7 @@
         }
 
         .hero span {
-            color: var(--pink)
+            color: var(--pink);
         }
 
         /* SECTIONS */
@@ -176,7 +176,7 @@
         /* SKILLS */
         #skills {
             position: relative;
-            overflow: hidden
+            overflow: hidden;
         }
 
         #skillCanvas {
@@ -188,11 +188,11 @@
 
         .skills-content {
             position: relative;
-            z-index: 2
+            z-index: 2;
         }
 
         .skill {
-            margin: 22px 0
+            margin: 22px 0;
         }
 
         .skill span {
@@ -236,17 +236,19 @@
         /* FOOTER */
         footer {
             text-align: center;
-            padding: 30px
+            padding: 30px;
         }
 
         .social a {
             color: var(--text);
-            font-size: 24px;
-            margin: 0 10px;
+            font-size: 26px;
+            margin: 0 12px;
+            transition: .3s;
         }
 
         .social a:hover {
-            color: var(--neon)
+            color: var(--neon);
+            text-shadow: 0 0 12px var(--neon);
         }
     </style>
 </head>
@@ -256,8 +258,8 @@
     <div class="cursor"></div>
 
     <div class="python-bg">
-        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_kkflmtur.json" background="transparent"
-            speed="0.4" loop autoplay></lottie-player>
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_kkflmtur.json"
+            background="transparent" speed="0.4" loop autoplay></lottie-player>
     </div>
 
     <header>
@@ -277,32 +279,24 @@
     </div>
 
     <section id="about">
-        <h2>About Me</h2>I'm Arun — a passionate programmeram a passionate and disciplined programmer who focuses on building clean, interactive, and visually powerful web experiences. My skills are not just about writing code — they are about solving problems, creating smooth user experiences, and constantly evolving with technology.
-🌐 Frontend Development
-I have strong command over HTML and CSS, allowing me to build well-structured, responsive, and modern layouts. I pay deep attention to design precision, animations, transitions, and UI consistency. From cyberpunk-styled interfaces to minimal professional layouts, I can translate ideas into pixel-perfect web designs.
-With JavaScript, I bring websites to life. I create interactive components, dynamic effects, animations, logic-based features, and real-time UI behavior. I enjoy working with DOM manipulation, events, and performance-focused scripting to ensure smooth and engaging user interaction.
-🐍 Python Development
-Python is one of my favorite languages because of its clarity, power, and versatility. I use Python for logic building, automation, backend concepts, data handling, and problem-solving. My focus is on writing clean, readable, and efficient code, which helps me think logically and scale applications properly.
-🎯 Programming Mindset
-I believe that strong fundamentals beat shortcuts. I continuously sharpen my logic, debugging skills, and problem-solving ability. I enjoy breaking complex problems into simple steps and writing solutions that are easy to understand and maintain.
-⚡ Learning & Growth
-Technology evolves every day, and so do I. I actively learn new concepts, experiment with projects, and improve my skills through hands-on practice and real-world applications. I don’t just learn to finish tasks — I learn to master the craft.
-🧠 What Makes Me Different
-Clean and structured coding style
-Strong sense of UI/UX and visual flow
-Logical thinking with a problem-solver approach
-High discipline, consistency, and self-motivation
-Focus on quality, not shortcuts.
+        <h2>About Me</h2>
+        <p>
+            I'm Arun — a passionate and disciplined programmer focused on building clean,
+            interactive, and visually powerful web experiences. I believe strong logic,
+            clean UI, and consistency create great software.
+        </p>
     </section>
 
     <section id="projects">
         <h2>Projects</h2>
         <div class="projects">
             <div class="card">
-                <h3>Weather App</h3><a href="https://w-eather-app.vercel.app/" target="_blank">Open</a>
+                <h3>Weather App</h3>
+                <a href="https://w-eather-app.vercel.app/" target="_blank">Open</a>
             </div>
             <div class="card">
-                <h3>Fitness App</h3><a href="https://fitnesss-app-six.vercel.app/" target="_blank">Open</a>
+                <h3>Fitness App</h3>
+                <a href="https://fitnesss-app-six.vercel.app/" target="_blank">Open</a>
             </div>
         </div>
     </section>
@@ -313,29 +307,20 @@ Focus on quality, not shortcuts.
             <h2>Skills</h2>
 
             <div class="skill">HTML <span>90%</span>
-                <div class="bar">
-                    <div class="fill" data-value="90"></div>
-                </div>
+                <div class="bar"><div class="fill" data-value="90"></div></div>
             </div>
 
             <div class="skill">CSS <span>85%</span>
-                <div class="bar">
-                    <div class="fill" data-value="85"></div>
-                </div>
+                <div class="bar"><div class="fill" data-value="85"></div></div>
             </div>
 
             <div class="skill">JavaScript <span>80%</span>
-                <div class="bar">
-                    <div class="fill" data-value="80"></div>
-                </div>
+                <div class="bar"><div class="fill" data-value="80"></div></div>
             </div>
 
             <div class="skill">Python <span>70%</span>
-                <div class="bar">
-                    <div class="fill" data-value="70"></div>
-                </div>
+                <div class="bar"><div class="fill" data-value="70"></div></div>
             </div>
-
         </div>
     </section>
 
@@ -350,13 +335,16 @@ Focus on quality, not shortcuts.
     <footer>
         © 2025 Arun Deep
         <div class="social">
-            <a href="#"><i class="fab fa-github">https://github.com/Arundeepyt</i></a>
-            <a href="#"><i class="fab fa-youtube">https://youtube.com/@arudeep1yt?si=e1tfSDy-ayIOLg7v</i></a>
+            <a href="https://github.com/Arundeepyt" target="_blank" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://youtube.com/@arudeep1yt?si=e1tfSDy-ayIOLg7v" target="_blank" aria-label="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
         </div>
     </footer>
 
     <script>
-        /* SCROLL + SKILLS */
         const sections = document.querySelectorAll("section");
         const fills = document.querySelectorAll(".fill");
 
@@ -372,21 +360,18 @@ Focus on quality, not shortcuts.
             });
         });
 
-        /* CURSOR */
         const cursor = document.querySelector(".cursor");
         document.addEventListener("mousemove", e => {
             cursor.style.left = e.clientX + "px";
             cursor.style.top = e.clientY + "px";
         });
 
-        /* THEME */
         const toggle = document.getElementById("themeToggle");
         toggle.onclick = () => {
             document.body.classList.toggle("light");
             toggle.textContent = document.body.classList.contains("light") ? "☀️" : "🌙";
         };
 
-        /* CONSTELLATION */
         const canvas = document.getElementById("skillCanvas");
         const ctx = canvas.getContext("2d");
 
@@ -394,7 +379,8 @@ Focus on quality, not shortcuts.
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
         }
-        resize(); window.addEventListener("resize", resize);
+        resize();
+        window.addEventListener("resize", resize);
 
         let nodes = [];
         for (let i = 0; i < 35; i++) {
@@ -408,11 +394,12 @@ Focus on quality, not shortcuts.
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
             const neon = getComputedStyle(document.body).getPropertyValue("--neon");
 
             nodes.forEach((n, i) => {
-                n.x += n.vx; n.y += n.vy;
+                n.x += n.vx;
+                n.y += n.vy;
+
                 if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
                 if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
 
@@ -422,7 +409,8 @@ Focus on quality, not shortcuts.
                 ctx.fill();
 
                 for (let j = i + 1; j < nodes.length; j++) {
-                    let m = nodes[j], d = Math.hypot(n.x - m.x, n.y - m.y);
+                    let m = nodes[j];
+                    let d = Math.hypot(n.x - m.x, n.y - m.y);
                     if (d < 120) {
                         ctx.strokeStyle = neon + "55";
                         ctx.beginPath();
@@ -439,5 +427,4 @@ Focus on quality, not shortcuts.
     </script>
 
 </body>
-
 </html>
