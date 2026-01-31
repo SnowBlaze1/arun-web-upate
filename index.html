@@ -9,148 +9,107 @@
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
 <style>
-:root {
-    --neon:#00ffff;
-    --pink:#ff00ff;
-    --text:#fff;
-    --glass:rgba(255,255,255,.12);
+:root{
+  --neon:#00ffff;
+  --pink:#ff00ff;
+  --text:#fff;
+  --glass:rgba(255,255,255,.12);
 }
-
-body.light {
-    --neon:#0066ff;
-    --pink:#ff0088;
-    --text:#000;
-    --glass:rgba(255,255,255,.5);
+body.light{
+  --neon:#0066ff;
+  --pink:#ff0088;
+  --text:#000;
+  --glass:rgba(255,255,255,.5);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-    font-family:Poppins, sans-serif;
-    color:var(--text);
-    overflow-x:hidden;
-    transition:.4s;
-
-    /* 🌈 GLASS GRADIENT BACKGROUND (LIKE WEATHER APP) */
-    background:linear-gradient(135deg,#ff6ec4,#7873f5);
-    background-attachment:fixed;
+  font-family:Poppins, sans-serif;
+  color:var(--text);
+  overflow-x:hidden;
+  transition:.4s;
+  background:linear-gradient(135deg,#ff6ec4,#7873f5);
+  background-attachment:fixed;
 }
 
-/* BACKGROUND ANIMATION LAYER */
-.python-bg{
-    position:fixed;
-    inset:0;
-    z-index:-3;
-    opacity:.08;
-    pointer-events:none;
+/* FLOAT ANIMATION */
+@keyframes floatBox{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+  100%{transform:translateY(0)}
 }
 
-/* CURSOR */
-.cursor{
-    position:fixed;
-    width:18px;
-    height:18px;
-    border:2px solid var(--neon);
-    border-radius:50%;
-    pointer-events:none;
-    box-shadow:0 0 15px var(--neon);
-    z-index:9999;
+/* GLOW ANIMATION */
+@keyframes glowPulse{
+  0%{box-shadow:0 0 15px var(--neon)}
+  50%{box-shadow:0 0 35px var(--neon)}
+  100%{box-shadow:0 0 15px var(--neon)}
 }
 
 /* HEADER */
 header{
-    position:fixed;
-    top:0;
-    width:100%;
-    z-index:1000;
-    padding:15px 40px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    background:rgba(255,255,255,0.12);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(255,255,255,0.2);
+  position:fixed;
+  top:0;width:100%;
+  padding:15px 40px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.2);
+  z-index:1000;
 }
-
-header h1{
-    color:var(--neon);
-    text-shadow:0 0 12px var(--neon);
-}
-
+header h1{color:var(--neon);text-shadow:0 0 12px var(--neon)}
 nav a{color:var(--text);margin:0 12px;text-decoration:none}
 nav a:hover{color:var(--neon)}
 
 #themeToggle{
-    background:none;
-    border:2px solid var(--neon);
-    color:var(--neon);
-    padding:6px 12px;
-    border-radius:20px;
-    cursor:pointer;
-    box-shadow:0 0 10px var(--neon);
+  background:none;border:2px solid var(--neon);color:var(--neon);
+  padding:6px 12px;border-radius:20px;cursor:pointer;
+  box-shadow:0 0 10px var(--neon);
+  transition:transform .6s ease;
 }
+.rotate{transform:rotate(360deg) scale(1.1)}
 
 /* HERO */
 .hero{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding-top:80px;
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;padding-top:80px;
 }
-.hero h2{
-    font-size:40px;
-    color:var(--neon);
-    text-shadow:0 0 20px var(--neon);
-}
+.hero h2{font-size:40px;color:var(--neon);text-shadow:0 0 20px var(--neon)}
 .hero span{color:var(--pink)}
 
-/* SECTIONS (GLASS CARDS) */
+/* SECTIONS */
 section{
-    max-width:1000px;
-    margin:90px auto;
-    padding:40px;
-    border-radius:20px;
-
-    background:var(--glass);
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,0.2);
-    box-shadow:0 8px 32px rgba(0,0,0,.25);
-
-    opacity:0;
-    transform:translateY(60px);
-    transition:.7s;
+  max-width:1000px;margin:90px auto;padding:40px;border-radius:20px;
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.2);
+  box-shadow:0 8px 32px rgba(0,0,0,.25);
+  opacity:0;transform:translateY(60px);
+  transition:.7s;
 }
-section.visible{opacity:1;transform:none}
-
-h2{
-    color:var(--neon);
-    text-align:center;
-    margin-bottom:25px;
-    text-shadow:0 0 15px var(--neon);
+section.visible{
+  opacity:1;transform:none;
+  animation:floatBox 6s ease-in-out infinite;
 }
+
+h2{color:var(--neon);text-align:center;margin-bottom:25px;text-shadow:0 0 15px var(--neon)}
 
 /* PROJECTS */
 .projects{display:flex;gap:25px;flex-wrap:wrap;justify-content:center}
 .card{
-    width:280px;
-    padding:20px;
-    border-radius:15px;
-
-    background:rgba(255,255,255,.15);
-    backdrop-filter:blur(15px);
-    -webkit-backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,0.2);
-    box-shadow:0 4px 20px rgba(0,0,0,.2);
-
-    transition:.4s;
+  width:280px;padding:20px;border-radius:15px;
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(15px);
+  border:1px solid rgba(255,255,255,.2);
+  transition:.4s;
 }
-.card:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 0 35px var(--neon)}
+.card:hover{
+  transform:translateY(-10px) scale(1.05);
+  animation:glowPulse 1.5s infinite;
+}
 
 /* SKILLS */
 .skill{margin:22px 0}
@@ -160,24 +119,16 @@ h2{
 
 /* CONTACT */
 input,textarea,button{
-    width:90%;
-    margin:10px auto;
-    display:block;
-    padding:10px;
-    border:none;
-    border-radius:8px;
+  width:90%;margin:10px auto;display:block;padding:10px;border:none;border-radius:8px
 }
 button{background:linear-gradient(90deg,var(--neon),var(--pink));color:#fff;cursor:pointer}
 
 /* FOOTER */
 footer{
-    text-align:center;
-    padding:30px;
-    margin-top:60px;
-    background:rgba(255,255,255,.12);
-    backdrop-filter:blur(15px);
-    -webkit-backdrop-filter:blur(15px);
-    border-top:1px solid rgba(255,255,255,.2);
+  text-align:center;padding:30px;margin-top:60px;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(15px);
+  border-top:1px solid rgba(255,255,255,.2);
 }
 .social a{color:var(--text);font-size:26px;margin:0 12px;transition:.3s}
 .social a:hover{color:var(--neon);text-shadow:0 0 12px var(--neon)}
@@ -185,12 +136,6 @@ footer{
 </head>
 
 <body>
-
-<div class="cursor"></div>
-
-<div class="python-bg">
-<lottie-player src="https://assets2.lottiefiles.com/packages/lf20_kkflmtur.json" background="transparent" speed="0.4" loop autoplay></lottie-player>
-</div>
 
 <header>
 <h1>Arun Deep</h1>
@@ -210,7 +155,7 @@ footer{
 
 <section id="about">
 <h2>About Me</h2>
-<p>I'm Arun — a passionate and disciplined programmer focused on building clean, interactive, and visually powerful web experiences.</p>
+<p>I'm Arun — passionate about clean, interactive, visually powerful web experiences.</p>
 </section>
 
 <section id="projects">
@@ -260,16 +205,14 @@ f.style.width=f.dataset.value+"%";
 });
 });
 
-const cursor=document.querySelector(".cursor");
-document.addEventListener("mousemove",e=>{
-cursor.style.left=e.clientX+"px";
-cursor.style.top=e.clientY+"px";
-});
-
 const toggle=document.getElementById("themeToggle");
 toggle.onclick=()=>{
+toggle.classList.add("rotate");
+setTimeout(()=>{
 document.body.classList.toggle("light");
 toggle.textContent=document.body.classList.contains("light")?"☀️":"🌙";
+toggle.classList.remove("rotate");
+},300);
 };
 </script>
 
