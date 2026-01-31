@@ -9,6 +9,277 @@
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
 <style>
+:root {
+    --neon:#00ffff;
+    --pink:#ff00ff;
+    --text:#fff;
+    --glass:rgba(255,255,255,.12);
+}
+
+body.light {
+    --neon:#0066ff;
+    --pink:#ff0088;
+    --text:#000;
+    --glass:rgba(255,255,255,.5);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    font-family:Poppins, sans-serif;
+    color:var(--text);
+    overflow-x:hidden;
+    transition:.4s;
+
+    /* 🌈 GLASS GRADIENT BACKGROUND (LIKE WEATHER APP) */
+    background:linear-gradient(135deg,#ff6ec4,#7873f5);
+    background-attachment:fixed;
+}
+
+/* BACKGROUND ANIMATION LAYER */
+.python-bg{
+    position:fixed;
+    inset:0;
+    z-index:-3;
+    opacity:.08;
+    pointer-events:none;
+}
+
+/* CURSOR */
+.cursor{
+    position:fixed;
+    width:18px;
+    height:18px;
+    border:2px solid var(--neon);
+    border-radius:50%;
+    pointer-events:none;
+    box-shadow:0 0 15px var(--neon);
+    z-index:9999;
+}
+
+/* HEADER */
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:1000;
+    padding:15px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(255,255,255,0.2);
+}
+
+header h1{
+    color:var(--neon);
+    text-shadow:0 0 12px var(--neon);
+}
+
+nav a{color:var(--text);margin:0 12px;text-decoration:none}
+nav a:hover{color:var(--neon)}
+
+#themeToggle{
+    background:none;
+    border:2px solid var(--neon);
+    color:var(--neon);
+    padding:6px 12px;
+    border-radius:20px;
+    cursor:pointer;
+    box-shadow:0 0 10px var(--neon);
+}
+
+/* HERO */
+.hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding-top:80px;
+}
+.hero h2{
+    font-size:40px;
+    color:var(--neon);
+    text-shadow:0 0 20px var(--neon);
+}
+.hero span{color:var(--pink)}
+
+/* SECTIONS (GLASS CARDS) */
+section{
+    max-width:1000px;
+    margin:90px auto;
+    padding:40px;
+    border-radius:20px;
+
+    background:var(--glass);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.2);
+    box-shadow:0 8px 32px rgba(0,0,0,.25);
+
+    opacity:0;
+    transform:translateY(60px);
+    transition:.7s;
+}
+section.visible{opacity:1;transform:none}
+
+h2{
+    color:var(--neon);
+    text-align:center;
+    margin-bottom:25px;
+    text-shadow:0 0 15px var(--neon);
+}
+
+/* PROJECTS */
+.projects{display:flex;gap:25px;flex-wrap:wrap;justify-content:center}
+.card{
+    width:280px;
+    padding:20px;
+    border-radius:15px;
+
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.2);
+    box-shadow:0 4px 20px rgba(0,0,0,.2);
+
+    transition:.4s;
+}
+.card:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 0 35px var(--neon)}
+
+/* SKILLS */
+.skill{margin:22px 0}
+.skill span{float:right;color:var(--neon)}
+.bar{margin-top:8px;height:18px;background:rgba(255,255,255,.15);border-radius:20px;overflow:hidden}
+.fill{height:100%;width:0;background:linear-gradient(90deg,var(--neon),var(--pink));transition:width 1.8s ease}
+
+/* CONTACT */
+input,textarea,button{
+    width:90%;
+    margin:10px auto;
+    display:block;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+}
+button{background:linear-gradient(90deg,var(--neon),var(--pink));color:#fff;cursor:pointer}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:30px;
+    margin-top:60px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+    border-top:1px solid rgba(255,255,255,.2);
+}
+.social a{color:var(--text);font-size:26px;margin:0 12px;transition:.3s}
+.social a:hover{color:var(--neon);text-shadow:0 0 12px var(--neon)}
+</style>
+</head>
+
+<body>
+
+<div class="cursor"></div>
+
+<div class="python-bg">
+<lottie-player src="https://assets2.lottiefiles.com/packages/lf20_kkflmtur.json" background="transparent" speed="0.4" loop autoplay></lottie-player>
+</div>
+
+<header>
+<h1>Arun Deep</h1>
+<nav>
+<a href="#about">About</a>
+<a href="#projects">Projects</a>
+<a href="#skills">Skills</a>
+<a href="#contact">Contact</a>
+</nav>
+<button id="themeToggle">🌙</button>
+</header>
+
+<div class="hero">
+<h2>I build <span>Cyberpunk Web Experiences</span></h2>
+<p>Programmer • Python Lover 🐍 • Speed 🏁</p>
+</div>
+
+<section id="about">
+<h2>About Me</h2>
+<p>I'm Arun — a passionate and disciplined programmer focused on building clean, interactive, and visually powerful web experiences.</p>
+</section>
+
+<section id="projects">
+<h2>Projects</h2>
+<div class="projects">
+<div class="card"><h3>Weather App</h3><a href="https://w-eather-app.vercel.app/" target="_blank">Open</a></div>
+<div class="card"><h3>Fitness App</h3><a href="https://fitnesss-app-six.vercel.app/" target="_blank">Open</a></div>
+</div>
+</section>
+
+<section id="skills">
+<h2>Skills</h2>
+<div class="skill">HTML <span>90%</span><div class="bar"><div class="fill" data-value="90"></div></div></div>
+<div class="skill">CSS <span>85%</span><div class="bar"><div class="fill" data-value="85"></div></div></div>
+<div class="skill">JavaScript <span>80%</span><div class="bar"><div class="fill" data-value="80"></div></div></div>
+<div class="skill">Python <span>70%</span><div class="bar"><div class="fill" data-value="70"></div></div></div>
+</section>
+
+<section id="contact">
+<h2>Contact Me</h2>
+<input placeholder="Your Name">
+<input placeholder="Your Email">
+<textarea placeholder="Your Message"></textarea>
+<button>Send</button>
+</section>
+
+<footer>
+© 2025 Arun Deep
+<div class="social">
+<a href="https://github.com/Arundeepyt" target="_blank"><i class="fab fa-github"></i></a>
+<a href="https://youtube.com/@arudeep1yt" target="_blank"><i class="fab fa-youtube"></i></a>
+</div>
+</footer>
+
+<script>
+const sections=document.querySelectorAll("section");
+const fills=document.querySelectorAll(".fill");
+
+window.addEventListener("scroll",()=>{
+sections.forEach(s=>{
+if(s.getBoundingClientRect().top<window.innerHeight-120)
+s.classList.add("visible");
+});
+fills.forEach(f=>{
+if(f.getBoundingClientRect().top<window.innerHeight-120)
+f.style.width=f.dataset.value+"%";
+});
+});
+
+const cursor=document.querySelector(".cursor");
+document.addEventListener("mousemove",e=>{
+cursor.style.left=e.clientX+"px";
+cursor.style.top=e.clientY+"px";
+});
+
+const toggle=document.getElementById("themeToggle");
+toggle.onclick=()=>{
+document.body.classList.toggle("light");
+toggle.textContent=document.body.classList.contains("light")?"☀️":"🌙";
+};
+</script>
+
+</body>
+</html>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<style>
 :root{
   --neon:#00ffff;
   --pink:#ff00ff;
