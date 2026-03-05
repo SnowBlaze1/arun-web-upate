@@ -33,7 +33,6 @@ body{
     overflow-x:hidden;
 }
 
-/* fix anchor scroll under header */
 section{scroll-margin-top:110px}
 
 /* animated background */
@@ -45,7 +44,7 @@ section{scroll-margin-top:110px}
     pointer-events:none;
 }
 
-/* cursor only for desktop */
+/* cursor */
 .cursor{
     position:fixed;
     width:18px;height:18px;
@@ -122,17 +121,44 @@ h2{
 }
 
 /* projects */
-.projects{display:flex;gap:25px;flex-wrap:wrap;justify-content:center}
-.card{
-    width:280px;
-    padding:20px;
-    border-radius:15px;
-    background:rgba(255,255,255,.15);
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,0.2);
-    transition:.4s;
+.projects{
+display:flex;
+gap:25px;
+flex-wrap:wrap;
+justify-content:center;
 }
-.card:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 0 35px var(--neon)}
+
+.card{
+width:280px;
+padding:20px;
+border-radius:15px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,0.2);
+transition:.4s;
+text-align:center;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.05);
+box-shadow:0 0 35px var(--neon)
+}
+
+.card p{
+font-size:14px;
+margin:10px 0;
+opacity:.9;
+}
+
+.card a{
+display:inline-block;
+margin-top:8px;
+padding:6px 14px;
+border-radius:20px;
+background:linear-gradient(90deg,var(--neon),var(--pink));
+color:#fff;
+text-decoration:none;
+}
 
 /* skills */
 .skill{margin:22px 0}
@@ -142,18 +168,18 @@ h2{
 
 /* contact */
 form input,form textarea,form button{
-    width:90%;margin:10px auto;display:block;
-    padding:10px;border:none;border-radius:8px;
+width:90%;margin:10px auto;display:block;
+padding:10px;border:none;border-radius:8px;
 }
 button{background:linear-gradient(90deg,var(--neon),var(--pink));color:#fff;cursor:pointer}
 
 footer{
-    text-align:center;
-    padding:30px;
-    margin-top:60px;
-    background:rgba(255,255,255,.12);
-    backdrop-filter:blur(15px);
-    border-top:1px solid rgba(255,255,255,.2);
+text-align:center;
+padding:30px;
+margin-top:60px;
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(15px);
+border-top:1px solid rgba(255,255,255,.2);
 }
 .social a{color:var(--text);font-size:26px;margin:0 12px;transition:.3s}
 .social a:hover{color:var(--neon)}
@@ -191,13 +217,27 @@ footer{
 
 <section id="projects">
 <h2>Projects</h2>
+
 <div class="projects">
-<div class="card"><h3>Weather App</h3><a href="https://w-eather-app.vercel.app/" target="_blank" rel="noopener">Open</a></div>
-<div class="card"><h3>Fitness App</h3><a href="https://fitnesss-app-six.vercel.app/" target="_blank" rel="noopener">Open</a></div>
-class="card"><h3>Clash of Clans live web updates
-App</h3><a
-href="https://live-events-of-coc-web.vercel.app/#live" 
- target="_blank" rel="noopener">Open</a></div>
+
+<div class="card">
+<h3>Weather App</h3>
+<p>Real-time weather application using API.</p>
+<a href="https://w-eather-app.vercel.app/" target="_blank">Open Project</a>
+</div>
+
+<div class="card">
+<h3>Fitness App</h3>
+<p>Simple fitness tracker and workout web application.</p>
+<a href="https://fitnesss-app-six.vercel.app/" target="_blank">Open Project</a>
+</div>
+
+<div class="card">
+<h3>Clash of Clans Live Updates App</h3>
+<p>Live events and update tracker for Clash of Clans.</p>
+<a href="https://live-events-of-coc-web.vercel.app/#live" target="_blank">Open Project</a>
+</div>
+
 </div>
 </section>
 
@@ -222,13 +262,12 @@ href="https://live-events-of-coc-web.vercel.app/#live"
 <footer>
 © 2026⚡️💛 Arun Deep
 <div class="social">
-<a href="https://github.com/Arundeepyt" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-<a href="https://youtube.com/@arudeep1yt" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+<a href="https://github.com/Arundeepyt" target="_blank"><i class="fab fa-github"></i></a>
+<a href="https://youtube.com/@arudeep1yt" target="_blank"><i class="fab fa-youtube"></i></a>
 </div>
 </footer>
 
 <script>
-/* section reveal + skill bars */
 const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
 if(entry.isIntersecting){
@@ -242,14 +281,12 @@ f.style.width=f.dataset.value+"%";
 
 document.querySelectorAll("section").forEach(sec=>observer.observe(sec));
 
-/* cursor */
 const cursor=document.querySelector(".cursor");
 document.addEventListener("mousemove",e=>{
 cursor.style.left=e.clientX+"px";
 cursor.style.top=e.clientY+"px";
 });
 
-/* theme toggle */
 const toggle=document.getElementById("themeToggle");
 toggle.onclick=()=>{
 document.body.classList.toggle("light");
