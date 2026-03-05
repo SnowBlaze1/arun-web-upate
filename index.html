@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arun Deep | Cyberpunk Portfolio</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
 <style>
+
 :root{
     --neon:#00ffff;
     --pink:#ff00ff;
@@ -36,91 +37,122 @@ body{
 section{scroll-margin-top:110px}
 
 /* animated background */
+
 .python-bg{
-    position:fixed;
-    inset:0;
-    z-index:-3;
-    opacity:.08;
-    pointer-events:none;
+position:fixed;
+inset:0;
+z-index:-3;
+opacity:.08;
+pointer-events:none;
 }
 
 /* cursor */
+
 .cursor{
-    position:fixed;
-    width:18px;height:18px;
-    border:2px solid var(--neon);
-    border-radius:50%;
-    pointer-events:none;
-    box-shadow:0 0 15px var(--neon);
-    z-index:9999;
+position:fixed;
+width:18px;
+height:18px;
+border:2px solid var(--neon);
+border-radius:50%;
+pointer-events:none;
+box-shadow:0 0 15px var(--neon);
+z-index:9999;
 }
-@media(max-width:768px){.cursor{display:none}}
+
+@media(max-width:768px){
+.cursor{display:none}
+}
 
 header{
-    position:fixed;
-    top:0;width:100%;
-    z-index:1000;
-    padding:15px 40px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:rgba(255,255,255,.12);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(255,255,255,0.2);
+position:fixed;
+top:0;
+width:100%;
+z-index:1000;
+padding:15px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(18px);
+border-bottom:1px solid rgba(255,255,255,0.2);
 }
 
-header h1{color:var(--neon);text-shadow:0 0 12px var(--neon)}
-nav a{color:var(--text);margin:0 12px;text-decoration:none}
-nav a:hover{color:var(--neon)}
+header h1{
+color:var(--neon);
+text-shadow:0 0 12px var(--neon);
+}
+
+nav a{
+color:var(--text);
+margin:0 12px;
+text-decoration:none;
+}
+
+nav a:hover{
+color:var(--neon);
+}
 
 #themeToggle{
-    background:none;
-    border:2px solid var(--neon);
-    color:var(--neon);
-    padding:6px 12px;
-    border-radius:20px;
-    cursor:pointer;
+background:none;
+border:2px solid var(--neon);
+color:var(--neon);
+padding:6px 12px;
+border-radius:20px;
+cursor:pointer;
 }
+
+/* hero */
 
 .hero{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding-top:80px;
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding-top:80px;
 }
+
 .hero h2{
-    font-size:40px;
-    color:var(--neon);
-    text-shadow:0 0 20px var(--neon);
+font-size:40px;
+color:var(--neon);
+text-shadow:0 0 20px var(--neon);
 }
-.hero span{color:var(--pink)}
+
+.hero span{
+color:var(--pink);
+}
+
+/* sections */
 
 section{
-    max-width:1000px;
-    margin:90px auto;
-    padding:40px;
-    border-radius:20px;
-    background:var(--glass);
-    backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,0.2);
-    box-shadow:0 8px 32px rgba(0,0,0,.25);
-    opacity:0;
-    transform:translateY(60px);
-    transition:.7s;
+max-width:1000px;
+margin:90px auto;
+padding:40px;
+border-radius:20px;
+background:var(--glass);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.2);
+box-shadow:0 8px 32px rgba(0,0,0,.25);
+opacity:0;
+transform:translateY(60px);
+transition:.7s;
 }
-section.visible{opacity:1;transform:none}
+
+section.visible{
+opacity:1;
+transform:none;
+}
 
 h2{
-    color:var(--neon);
-    text-align:center;
-    margin-bottom:25px;
-    text-shadow:0 0 15px var(--neon);
+color:var(--neon);
+text-align:center;
+margin-bottom:25px;
+text-shadow:0 0 15px var(--neon);
 }
 
 /* projects */
+
 .projects{
 display:flex;
 gap:25px;
@@ -141,7 +173,15 @@ text-align:center;
 
 .card:hover{
 transform:translateY(-10px) scale(1.05);
-box-shadow:0 0 35px var(--neon)
+box-shadow:0 0 35px var(--neon);
+}
+
+.project-icon{
+font-size:28px;
+color:var(--neon);
+margin-bottom:10px;
+display:block;
+text-shadow:0 0 10px var(--neon);
 }
 
 .card p{
@@ -161,17 +201,49 @@ text-decoration:none;
 }
 
 /* skills */
-.skill{margin:22px 0}
-.skill span{float:right;color:var(--neon)}
-.bar{margin-top:8px;height:18px;background:rgba(255,255,255,.15);border-radius:20px;overflow:hidden}
-.fill{height:100%;width:0;background:linear-gradient(90deg,var(--neon),var(--pink));transition:width 1.6s ease}
+
+.skill{
+margin:22px 0;
+}
+
+.skill span{
+float:right;
+color:var(--neon);
+}
+
+.bar{
+margin-top:8px;
+height:18px;
+background:rgba(255,255,255,.15);
+border-radius:20px;
+overflow:hidden;
+}
+
+.fill{
+height:100%;
+width:0;
+background:linear-gradient(90deg,var(--neon),var(--pink));
+transition:width 1.6s ease;
+}
 
 /* contact */
+
 form input,form textarea,form button{
-width:90%;margin:10px auto;display:block;
-padding:10px;border:none;border-radius:8px;
+width:90%;
+margin:10px auto;
+display:block;
+padding:10px;
+border:none;
+border-radius:8px;
 }
-button{background:linear-gradient(90deg,var(--neon),var(--pink));color:#fff;cursor:pointer}
+
+button{
+background:linear-gradient(90deg,var(--neon),var(--pink));
+color:#fff;
+cursor:pointer;
+}
+
+/* footer */
 
 footer{
 text-align:center;
@@ -181,8 +253,18 @@ background:rgba(255,255,255,.12);
 backdrop-filter:blur(15px);
 border-top:1px solid rgba(255,255,255,.2);
 }
-.social a{color:var(--text);font-size:26px;margin:0 12px;transition:.3s}
-.social a:hover{color:var(--neon)}
+
+.social a{
+color:var(--text);
+font-size:26px;
+margin:0 12px;
+transition:.3s;
+}
+
+.social a:hover{
+color:var(--neon);
+}
+
 </style>
 </head>
 
@@ -191,90 +273,174 @@ border-top:1px solid rgba(255,255,255,.2);
 <div class="cursor"></div>
 
 <div class="python-bg">
-<lottie-player src="https://assets2.lottiefiles.com/packages/lf20_kkflmtur.json" background="transparent" speed="0.4" loop autoplay></lottie-player>
+<lottie-player
+src="https://assets2.lottiefiles.com/packages/lf20_kkflmtur.json"
+background="transparent"
+speed="0.4"
+loop
+autoplay>
+</lottie-player>
 </div>
 
 <header>
+
 <h1>Arun Deep</h1>
+
 <nav>
 <a href="#about">About</a>
 <a href="#projects">Projects</a>
 <a href="#skills">Skills</a>
 <a href="#contact">Contact</a>
 </nav>
+
 <button id="themeToggle">🌙</button>
+
 </header>
 
 <div class="hero">
+
 <h2>I build <span>Cyberpunk Web Experiences</span></h2>
-<p>Programmer • Python Lover 🐍 • Speed Enthusiast 🏁</p>
+
+<p>
+Programmer • Python Lover 🐍 • Speed Enthusiast 🏁
+</p>
+
 </div>
 
 <section id="about">
+
 <h2>About Me</h2>
-<p>I'm Arun — a disciplined programmer focused on clean, interactive and visually powerful web experiences.</p>
+
+<p>
+I'm Arun — a disciplined programmer focused on clean,
+interactive and visually powerful web experiences.
+</p>
+
 </section>
 
 <section id="projects">
+
 <h2>Projects</h2>
 
 <div class="projects">
 
 <div class="card">
+<i class="fa-solid fa-cloud-sun project-icon"></i>
 <h3>Weather App</h3>
 <p>Real-time weather application using API.</p>
 <a href="https://w-eather-app.vercel.app/" target="_blank">Open Project</a>
 </div>
 
 <div class="card">
+<i class="fa-solid fa-dumbbell project-icon"></i>
 <h3>Fitness App</h3>
 <p>Simple fitness tracker and workout web application.</p>
 <a href="https://fitnesss-app-six.vercel.app/" target="_blank">Open Project</a>
 </div>
 
 <div class="card">
-<h3>Clash of Clans Live Updates App</h3>
+<i class="fa-solid fa-gamepad project-icon"></i>
+<h3>Clash of Clans Live Updates</h3>
 <p>Live events and update tracker for Clash of Clans.</p>
 <a href="https://live-events-of-coc-web.vercel.app/#live" target="_blank">Open Project</a>
 </div>
 
+<div class="card">
+<i class="fa-solid fa-hospital project-icon"></i>
+<h3>Medical Symptom Checker</h3>
+<p>Interactive medical symptom checker with diagnosis interface.</p>
+<a href="https://medical-app-eight-beta.vercel.app/" target="_blank">Open Project</a>
 </div>
+
+</div>
+
 </section>
 
 <section id="skills">
+
 <h2>Skills</h2>
-<div class="skill">HTML <span>90%</span><div class="bar"><div class="fill" data-value="90"></div></div></div>
-<div class="skill">CSS <span>85%</span><div class="bar"><div class="fill" data-value="85"></div></div></div>
-<div class="skill">JavaScript <span>80%</span><div class="bar"><div class="fill" data-value="80"></div></div></div>
-<div class="skill">Python <span>70%</span><div class="bar"><div class="fill" data-value="70"></div></div></div>
+
+<div class="skill">
+HTML
+<span>90%</span>
+<div class="bar">
+<div class="fill" data-value="90"></div>
+</div>
+</div>
+
+<div class="skill">
+CSS
+<span>85%</span>
+<div class="bar">
+<div class="fill" data-value="85"></div>
+</div>
+</div>
+
+<div class="skill">
+JavaScript
+<span>80%</span>
+<div class="bar">
+<div class="fill" data-value="80"></div>
+</div>
+</div>
+
+<div class="skill">
+Python
+<span>70%</span>
+<div class="bar">
+<div class="fill" data-value="70"></div>
+</div>
+</div>
+
 </section>
 
 <section id="contact">
+
 <h2>Contact Me</h2>
+
 <form onsubmit="event.preventDefault(); alert('Message sent! (frontend demo)')">
+
 <input placeholder="Your Name" required>
+
 <input type="email" placeholder="Your Email" required>
+
 <textarea placeholder="Your Message" rows="4" required></textarea>
+
 <button type="submit">Send</button>
+
 </form>
+
 </section>
 
 <footer>
-© 2026⚡️💛 Arun Deep
+
+© 2026 ⚡️💛 Arun Deep
+
 <div class="social">
-<a href="https://github.com/Arundeepyt" target="_blank"><i class="fab fa-github"></i></a>
-<a href="https://youtube.com/@arudeep1yt" target="_blank"><i class="fab fa-youtube"></i></a>
+
+<a href="https://github.com/Arundeepyt" target="_blank">
+<i class="fab fa-github"></i>
+</a>
+
+<a href="https://youtube.com/@arudeep1yt" target="_blank">
+<i class="fab fa-youtube"></i>
+</a>
+
 </div>
+
 </footer>
 
 <script>
+
 const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
 if(entry.isIntersecting){
 entry.target.classList.add("visible");
+
 entry.target.querySelectorAll(".fill").forEach(f=>{
 f.style.width=f.dataset.value+"%";
 });
+
 }
 });
 },{threshold:.2});
@@ -282,16 +448,19 @@ f.style.width=f.dataset.value+"%";
 document.querySelectorAll("section").forEach(sec=>observer.observe(sec));
 
 const cursor=document.querySelector(".cursor");
+
 document.addEventListener("mousemove",e=>{
 cursor.style.left=e.clientX+"px";
 cursor.style.top=e.clientY+"px";
 });
 
 const toggle=document.getElementById("themeToggle");
+
 toggle.onclick=()=>{
 document.body.classList.toggle("light");
 toggle.textContent=document.body.classList.contains("light")?"☀️":"🌙";
 };
+
 </script>
 
 </body>
