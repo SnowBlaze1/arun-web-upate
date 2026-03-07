@@ -36,8 +36,6 @@ body{
 
 section{scroll-margin-top:110px}
 
-/* animated background */
-
 .python-bg{
 position:fixed;
 inset:0;
@@ -45,8 +43,6 @@ z-index:-3;
 opacity:.08;
 pointer-events:none;
 }
-
-/* cursor */
 
 .cursor{
 position:fixed;
@@ -101,8 +97,6 @@ border-radius:20px;
 cursor:pointer;
 }
 
-/* hero */
-
 .hero{
 min-height:100vh;
 display:flex;
@@ -122,8 +116,6 @@ text-shadow:0 0 20px var(--neon);
 .hero span{
 color:var(--pink);
 }
-
-/* sections */
 
 section{
 max-width:1000px;
@@ -150,8 +142,6 @@ text-align:center;
 margin-bottom:25px;
 text-shadow:0 0 15px var(--neon);
 }
-
-/* projects */
 
 .projects{
 display:flex;
@@ -200,8 +190,6 @@ color:#fff;
 text-decoration:none;
 }
 
-/* skills */
-
 .skill{
 margin:22px 0;
 }
@@ -226,8 +214,6 @@ background:linear-gradient(90deg,var(--neon),var(--pink));
 transition:width 1.6s ease;
 }
 
-/* contact */
-
 form input,form textarea,form button{
 width:90%;
 margin:10px auto;
@@ -242,8 +228,6 @@ background:linear-gradient(90deg,var(--neon),var(--pink));
 color:#fff;
 cursor:pointer;
 }
-
-/* footer */
 
 footer{
 text-align:center;
@@ -308,14 +292,11 @@ Programmer • Python Lover 🐍 • Speed Enthusiast 🏁
 </div>
 
 <section id="about">
-
 <h2>About Me</h2>
-
 <p>
 I'm Arun — a disciplined programmer focused on clean,
 interactive and visually powerful web experiences.
 </p>
-
 </section>
 
 <section id="projects">
@@ -353,7 +334,6 @@ interactive and visually powerful web experiences.
 </div>
 
 </div>
-
 </section>
 
 <section id="skills">
@@ -398,13 +378,13 @@ Python
 
 <h2>Contact Me</h2>
 
-<form onsubmit="event.preventDefault(); alert('Message sent! (frontend demo)')">
+<form id="contactForm">
 
-<input placeholder="Your Name" required>
+<input type="text" name="name" placeholder="Your Name" required>
 
-<input type="email" placeholder="Your Email" required>
+<input type="email" name="email" placeholder="Your Email" required>
 
-<textarea placeholder="Your Message" rows="4" required></textarea>
+<textarea name="message" placeholder="Your Message" rows="4" required></textarea>
 
 <button type="submit">Send</button>
 
@@ -430,17 +410,19 @@ Python
 
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
 <script>
+
+emailjs.init("KjQrdAF9n_V7x_gOL");
 
 const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
 if(entry.isIntersecting){
 entry.target.classList.add("visible");
-
 entry.target.querySelectorAll(".fill").forEach(f=>{
 f.style.width=f.dataset.value+"%";
 });
-
 }
 });
 },{threshold:.2});
@@ -460,6 +442,22 @@ toggle.onclick=()=>{
 document.body.classList.toggle("light");
 toggle.textContent=document.body.classList.contains("light")?"☀️":"🌙";
 };
+
+document.getElementById("contactForm").addEventListener("submit",function(e){
+e.preventDefault();
+
+emailjs.sendForm(
+"service_hfc9fox",
+"template_ntts1aj",
+this
+).then(()=>{
+alert("Message sent successfully!");
+this.reset();
+},()=>{
+alert("Failed to send message.");
+});
+
+});
 
 </script>
 
