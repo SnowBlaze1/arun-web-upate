@@ -143,6 +143,89 @@ margin-bottom:25px;
 text-shadow:0 0 15px var(--neon);
 }
 
+/* --- MUSIC PLAYER STYLES --- */
+.music-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.player-box {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    border-radius: 25px;
+    width: 320px;
+    border: 1px solid var(--neon);
+    text-align: center;
+}
+.app-logo-neon {
+    font-weight: 900;
+    letter-spacing: 3px;
+    background: linear-gradient(-45deg, var(--neon), var(--pink), var(--neon));
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: logoGradient 4s ease infinite;
+    margin-bottom: 15px;
+}
+@keyframes logoGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+#cover {
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 2px solid var(--glass);
+}
+.playing-img {
+    box-shadow: 0 0 20px var(--neon);
+    transform: scale(1.03);
+}
+.music-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+.music-btn {
+    background: var(--glass);
+    border: 1px solid var(--neon);
+    color: var(--text);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.music-btn:hover {
+    background: var(--neon);
+    color: #000;
+}
+.main-play {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+}
+.progress-container {
+    width: 100%;
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    margin: 15px 0;
+    cursor: pointer;
+}
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--neon);
+    box-shadow: 0 0 10px var(--neon);
+    border-radius: 10px;
+}
+
 .projects{
 display:flex;
 gap:25px;
@@ -273,7 +356,7 @@ autoplay>
 <nav>
 <a href="#about">About</a>
 <a href="#projects">Projects</a>
-<a href="#skills">Skills</a>
+<a href="#music">Music</a> <a href="#skills">Skills</a>
 <a href="#contact">Contact</a>
 </nav>
 
@@ -335,6 +418,30 @@ My mission is simple: turn creative ideas into elegant, functional digital produ
 </div>
 
 </div>
+</section>
+
+<section id="music">
+    <h2>Music Player</h2>
+    <div class="music-container">
+        <div class="player-box" id="player-div">
+            <h3 class="app-logo-neon">ARUNDEEP MUSIC</h3>
+            <img src="levels.jpeg" id="cover" alt="Album Cover">
+            <h4 id="music-title">LEVELS</h4>
+            
+            <div class="progress-container" id="progress-wrap">
+                <div class="progress-bar" id="progress-fill"></div>
+            </div>
+            
+            <audio id="main-audio" src="music/Levels.mp3"></audio>
+
+            <div class="music-controls">
+                <button class="music-btn" onclick="prevSong()"><i class="fa-solid fa-backward"></i></button>
+                <button class="music-btn main-play" id="play-btn" onclick="togglePlay()"><i class="fa-solid fa-play"></i></button>
+                <button class="music-btn" onclick="nextSong()"><i class="fa-solid fa-forward"></i></button>
+                <button class="music-btn" onclick="downloadCurrent()"><i class="fa-solid fa-download"></i></button>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section id="skills">
@@ -417,6 +524,7 @@ Python
 
 emailjs.init("KjQrdAF9n_V7x_gOL");
 
+// --- INTERSECTION OBSERVER ---
 const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
 if(entry.isIntersecting){
@@ -430,34 +538,106 @@ f.style.width=f.dataset.value+"%";
 
 document.querySelectorAll("section").forEach(sec=>observer.observe(sec));
 
+// --- CURSOR ---
 const cursor=document.querySelector(".cursor");
-
 document.addEventListener("mousemove",e=>{
 cursor.style.left=e.clientX+"px";
 cursor.style.top=e.clientY+"px";
 });
 
+// --- THEME TOGGLE ---
 const toggle=document.getElementById("themeToggle");
-
 toggle.onclick=()=>{
 document.body.classList.toggle("light");
 toggle.textContent=document.body.classList.contains("light")?"☀️":"🌙";
 };
 
+// --- MUSIC PLAYER LOGIC ---
+const audio = document.getElementById("main-audio");
+const musicTitle = document.getElementById("music-title");
+const coverImg = document.getElementById("cover");
+const progressFill = document.getElementById("progress-fill");
+const progressWrap = document.getElementById("progress-wrap");
+const playBtn = document.getElementById("play-btn");
+
+const songs = [
+    { name: "LEVELS", path: "music/Levels.mp3", img: "levels.jpeg" },
+    { name: "INVINCIBLE", path: "music/Invincible_1.mp3", img: "invincible.jpeg" }
+];
+
+let songIndex = 0;
+let isPlaying = false;
+
+function togglePlay() {
+    if (isPlaying) pauseSong();
+    else playSong();
+}
+
+function playSong() {
+    isPlaying = true;
+    audio.play();
+    playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    coverImg.classList.add("playing-img");
+}
+
+function pauseSong() {
+    isPlaying = false;
+    audio.pause();
+    playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+    coverImg.classList.remove("playing-img");
+}
+
+function loadSong(song) {
+    musicTitle.innerText = song.name;
+    audio.src = song.path;
+    coverImg.src = song.img;
+}
+
+function nextSong() {
+    songIndex = (songIndex + 1) % songs.length;
+    loadSong(songs[songIndex]);
+    playSong();
+}
+
+function prevSong() {
+    songIndex = (songIndex - 1 + songs.length) % songs.length;
+    loadSong(songs[songIndex]);
+    playSong();
+}
+
+function downloadCurrent() {
+    const link = document.createElement('a');
+    link.href = audio.src;
+    link.download = songs[songIndex].name + ".mp3";
+    link.click();
+}
+
+audio.ontimeupdate = (e) => {
+    const { duration, currentTime } = e.srcElement;
+    if (duration) {
+        progressFill.style.width = `${(currentTime / duration) * 100}%`;
+    }
+};
+
+progressWrap.onclick = (e) => {
+    const width = progressWrap.clientWidth;
+    const clickX = e.offsetX;
+    const duration = audio.duration;
+    audio.currentTime = (clickX / width) * duration;
+};
+
+audio.onended = nextSong;
+
+// --- CONTACT FORM ---
 document.getElementById("contactForm").addEventListener("submit",function(e){
 e.preventDefault();
-
-emailjs.sendForm(
-"service_hfc9fox",
-"template_ntts1aj",
-this
-).then(()=>{
+emailjs.sendForm("service_hfc9fox","template_ntts1aj",this)
+.then(()=>{
 alert("Message sent successfully!");
 this.reset();
 },()=>{
 alert("Failed to send message.");
 });
-
 });
 
 </script>
