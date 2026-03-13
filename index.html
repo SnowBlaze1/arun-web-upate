@@ -33,10 +33,6 @@ body{
     overflow-x:hidden;
 }
 
-section{scroll-margin-top:110px}
-
-.python-bg{position:fixed;inset:0;z-index:-3;opacity:.08;pointer-events:none;}
-
 header{
     position:fixed;top:0;width:100%;z-index:1000;padding:15px 40px;
     display:flex;justify-content:space-between;align-items:center;
@@ -65,7 +61,7 @@ section.visible{ opacity:1; transform:none; }
 
 h2.section-title{ color:var(--neon); text-align:center; margin-bottom:30px; text-transform: uppercase; letter-spacing: 2px;}
 
-/* --- APP GALLERY GRID --- */
+/* --- APP GRID --- */
 .app-grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
@@ -79,6 +75,9 @@ h2.section-title{ color:var(--neon); text-align:center; margin-bottom:30px; text
     border: 1px solid rgba(255,255,255,0.1); 
     text-align: center; 
     transition: 0.4s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card:hover { 
@@ -94,7 +93,7 @@ h2.section-title{ color:var(--neon); text-align:center; margin-bottom:30px; text
     padding: 8px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; cursor: pointer; border: none;
 }
 
-/* --- MINI PLAYER --- */
+/* --- MUSIC PLAYER --- */
 .mini-player { margin-top: 15px; display: none; }
 .mini-player.active { display: block; }
 .music-info { font-size: 12px; margin: 10px 0; color: var(--neon); font-weight: bold; }
@@ -125,10 +124,6 @@ footer { text-align:center; padding:30px; margin-top:60px; background:rgba(255,2
 
 <body>
 
-<div class="python-bg">
-    <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_kkflmtur.json" background="transparent" speed="0.4" loop autoplay></lottie-player>
-</div>
-
 <header>
     <h1>Arun Deep</h1>
     <nav>
@@ -140,22 +135,25 @@ footer { text-align:center; padding:30px; margin-top:60px; background:rgba(255,2
 </header>
 
 <div class="hero">
-    <h2>I build <span>Cyberpunk Web Experiences</span></h2>
-    <p>Programmer • Python Lover 🐍 • Speed Enthusiast 🏁</p>
+    <h2>MY <span>CYBER WORLD</span></h2>
+    <p>Innovator • Developer • Creator</p>
 </div>
 
 <section id="about">
     <h2 class="section-title">About Me</h2>
-    <p>Hi, I'm Arun 👨‍💻 — a passionate and disciplined programmer. I specialize in crafting clean, responsive, and interactive web experiences that are both powerful and visually engaging. My mission is simple: turn creative ideas into elegant, functional digital products.</p>
+    <p>Hi, I'm Arun 👨‍💻 — a programmer turning creative ideas into powerful digital experiences. Explore my latest applications below.</p>
 </section>
 
-<section id="apps">
-    <h2 class="section-title">My App Gallery</h2>
+<section id="apps" class="visible">
+    <h2 class="section-title">Application Gallery</h2>
     <div class="app-grid">
+
         <div class="card">
-            <i class="fa-solid fa-music icon"></i>
-            <h3>Music App</h3>
-            <p>Listen to custom neon tracks.</p>
+            <div>
+                <i class="fa-solid fa-music icon"></i>
+                <h3>Music App</h3>
+                <p>Interactive player streaming remote tracks.</p>
+            </div>
             <button class="btn-launch" id="open-player-btn" onclick="toggleMiniPlayer()">Open Player</button>
             <div class="mini-player" id="mini-player">
                 <div class="music-info" id="song-name">LEVELS</div>
@@ -170,24 +168,43 @@ footer { text-align:center; padding:30px; margin-top:60px; background:rgba(255,2
                 <audio id="audio-element" src=""></audio>
             </div>
         </div>
+
         <div class="card">
-            <i class="fa-solid fa-cloud-sun icon"></i>
-            <h3>Weather App</h3>
-            <p>Real-time global weather tracker.</p>
-            <a href="https://w-eather-app.vercel.app/" target="_blank" class="btn-launch">Launch</a>
+            <div>
+                <i class="fa-solid fa-user-doctor icon"></i>
+                <h3>Medical App</h3>
+                <p>Interactive symptom checker and diagnosis guide.</p>
+            </div>
+            <a href="https://medical-app-eight-beta.vercel.app/" target="_blank" class="btn-launch">Launch App</a>
         </div>
+
         <div class="card">
-            <i class="fa-solid fa-dumbbell icon"></i>
-            <h3>Fitness App</h3>
-            <p>Simple workout & health tracker.</p>
-            <a href="https://fitnesss-app-six.vercel.app/" target="_blank" class="btn-launch">Launch</a>
+            <div>
+                <i class="fa-solid fa-cloud-sun icon"></i>
+                <h3>Weather App</h3>
+                <p>Real-time global weather tracker with API.</p>
+            </div>
+            <a href="https://w-eather-app.vercel.app/" target="_blank" class="btn-launch">Launch App</a>
         </div>
+
         <div class="card">
-            <i class="fa-solid fa-gamepad icon"></i>
-            <h3>COC Tracker</h3>
-            <p>Live events for Clash of Clans.</p>
-            <a href="https://live-events-of-coc-web.vercel.app/#live" target="_blank" class="btn-launch">Launch</a>
+            <div>
+                <i class="fa-solid fa-dumbbell icon"></i>
+                <h3>Fitness App</h3>
+                <p>Workout and health tracking interface.</p>
+            </div>
+            <a href="https://fitnesss-app-six.vercel.app/" target="_blank" class="btn-launch">Launch App</a>
         </div>
+
+        <div class="card">
+            <div>
+                <i class="fa-solid fa-gamepad icon"></i>
+                <h3>COC Tracker</h3>
+                <p>Live events for Clash of Clans.</p>
+            </div>
+            <a href="https://live-events-of-coc-web.vercel.app/#live" target="_blank" class="btn-launch">Launch App</a>
+        </div>
+
     </div>
 </section>
 
@@ -202,10 +219,10 @@ footer { text-align:center; padding:30px; margin-top:60px; background:rgba(255,2
 <section id="contact">
     <h2 class="section-title">Contact Me</h2>
     <form id="contactForm">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
-        <button type="submit">Send</button>
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="message" placeholder="Message" rows="4" required></textarea>
+        <button type="submit">Send Message</button>
     </form>
 </section>
 
@@ -221,7 +238,7 @@ footer { text-align:center; padding:30px; margin-top:60px; background:rgba(255,2
 <script>
 emailjs.init("KjQrdAF9n_V7x_gOL");
 
-// --- MUSIC LOGIC (REMOTE LINKS) ---
+// --- MUSIC LOGIC ---
 const audio = document.getElementById("audio-element");
 const sTitle = document.getElementById("song-name");
 const pFill = document.getElementById("progress-fill");
@@ -229,14 +246,11 @@ const pWrap = document.getElementById("progress-wrap");
 const pTrig = document.getElementById("play-trigger");
 const miniPlayer = document.getElementById("mini-player");
 
-// Pointing to your live Music App Vercel project
 const playlist = [
     { n: "LEVELS", p: "https://music-app-arun.vercel.app/music/Levels.mp3" },
     { n: "INVINCIBLE", p: "https://music-app-arun.vercel.app/music/Invincible_1.mp3" }
 ];
 let sIdx = 0; let playing = false;
-
-// Initialize first song
 audio.src = playlist[0].p;
 
 function toggleMiniPlayer() {
@@ -244,7 +258,7 @@ function toggleMiniPlayer() {
     document.getElementById("open-player-btn").innerText = miniPlayer.classList.contains('active') ? "Close Player" : "Open Player";
 }
 function handlePlay() { if(playing) pause(); else play(); }
-function play() { playing = true; audio.play().catch(e => console.log("CORS or Path Error")); pTrig.innerHTML = '<i class="fa-solid fa-pause"></i>'; }
+function play() { playing = true; audio.play(); pTrig.innerHTML = '<i class="fa-solid fa-pause"></i>'; }
 function pause() { playing = false; audio.pause(); pTrig.innerHTML = '<i class="fa-solid fa-play"></i>'; }
 function load(s) { sTitle.innerText = s.n; audio.src = s.p; }
 function next() { sIdx = (sIdx + 1) % playlist.length; load(playlist[sIdx]); play(); }
@@ -270,14 +284,7 @@ const observer = new IntersectionObserver(entries => {
     });
 }, {threshold: 0.1});
 document.querySelectorAll("section").forEach(s => observer.observe(s));
-
-// --- CONTACT FORM ---
-document.getElementById("contactForm").addEventListener("submit",function(e){
-    e.preventDefault();
-    emailjs.sendForm("service_hfc9fox","template_ntts1aj",this).then(() => {
-        alert("Message sent!"); this.reset();
-    });
-});
 </script>
+
 </body>
 </html>
