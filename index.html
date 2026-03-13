@@ -167,7 +167,7 @@ footer { text-align:center; padding:30px; margin-top:60px; background:rgba(255,2
                     <button class="m-btn" id="play-trigger" onclick="handlePlay()"><i class="fa-solid fa-play"></i></button>
                     <button class="m-btn" onclick="next()"><i class="fa-solid fa-forward"></i></button>
                 </div>
-                <audio id="audio-element" src="music/Levels.mp3"></audio>
+                <audio id="audio-element" src=""></audio>
             </div>
         </div>
         <div class="card">
@@ -221,7 +221,7 @@ footer { text-align:center; padding:30px; margin-top:60px; background:rgba(255,2
 <script>
 emailjs.init("KjQrdAF9n_V7x_gOL");
 
-// --- MUSIC LOGIC ---
+// --- MUSIC LOGIC (REMOTE LINKS) ---
 const audio = document.getElementById("audio-element");
 const sTitle = document.getElementById("song-name");
 const pFill = document.getElementById("progress-fill");
@@ -229,18 +229,22 @@ const pWrap = document.getElementById("progress-wrap");
 const pTrig = document.getElementById("play-trigger");
 const miniPlayer = document.getElementById("mini-player");
 
+// Pointing to your live Music App Vercel project
 const playlist = [
-    { n: "LEVELS", p: "music/Levels.mp3" },
-    { n: "INVINCIBLE", p: "music/Invincible_1.mp3" }
+    { n: "LEVELS", p: "https://music-app-arun.vercel.app/music/Levels.mp3" },
+    { n: "INVINCIBLE", p: "https://music-app-arun.vercel.app/music/Invincible_1.mp3" }
 ];
 let sIdx = 0; let playing = false;
+
+// Initialize first song
+audio.src = playlist[0].p;
 
 function toggleMiniPlayer() {
     miniPlayer.classList.toggle('active');
     document.getElementById("open-player-btn").innerText = miniPlayer.classList.contains('active') ? "Close Player" : "Open Player";
 }
 function handlePlay() { if(playing) pause(); else play(); }
-function play() { playing = true; audio.play(); pTrig.innerHTML = '<i class="fa-solid fa-pause"></i>'; }
+function play() { playing = true; audio.play().catch(e => console.log("CORS or Path Error")); pTrig.innerHTML = '<i class="fa-solid fa-pause"></i>'; }
 function pause() { playing = false; audio.pause(); pTrig.innerHTML = '<i class="fa-solid fa-play"></i>'; }
 function load(s) { sTitle.innerText = s.n; audio.src = s.p; }
 function next() { sIdx = (sIdx + 1) % playlist.length; load(playlist[sIdx]); play(); }
@@ -250,7 +254,6 @@ audio.ontimeupdate = (e) => {
     const { duration, currentTime } = e.srcElement;
     if(duration) pFill.style.width = (currentTime / duration * 100) + "%";
 };
-
 pWrap.onclick = (e) => {
     const w = pWrap.clientWidth; const x = e.offsetX; const d = audio.duration;
     audio.currentTime = (x / w) * d;
@@ -272,10 +275,9 @@ document.querySelectorAll("section").forEach(s => observer.observe(s));
 document.getElementById("contactForm").addEventListener("submit",function(e){
     e.preventDefault();
     emailjs.sendForm("service_hfc9fox","template_ntts1aj",this).then(() => {
-        alert("Message sent successfully!"); this.reset();
-    }, () => alert("Failed to send."));
+        alert("Message sent!"); this.reset();
+    });
 });
 </script>
-
 </body>
 </html>
