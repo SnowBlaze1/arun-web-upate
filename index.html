@@ -52,7 +52,7 @@ nav a{ color:var(--text); margin:0 10px; text-decoration:none; font-size: 14px;}
     justify-content:center;align-items:center;text-align:center;padding-top:80px;
 }
 
-.hero h2{ font-size:32px; color:var(--neon); text-shadow:0 0 20px var(--neon); }
+.hero h2{ font-size:40px; color:var(--neon); text-shadow:0 0 20px var(--neon); }
 .hero span{ color:var(--pink); }
 
 section{
@@ -91,18 +91,15 @@ h2.section-title{ color:var(--neon); text-align:center; margin-bottom:30px; text
 
 .btn-launch { 
     display: inline-block; margin-top: 15px; color: #000; background: var(--neon);
-    padding: 8px 25px; border-radius: 10px; text-decoration: none; font-weight: bold;
+    padding: 8px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; cursor: pointer; border: none;
 }
 
-/* --- MINI PLAYER INSIDE CARD --- */
+/* --- MINI PLAYER --- */
 .mini-player { margin-top: 15px; display: none; }
 .mini-player.active { display: block; }
-
 .music-info { font-size: 12px; margin: 10px 0; color: var(--neon); font-weight: bold; }
-
 .p-bar-bg { width: 100%; height: 5px; background: rgba(255,255,255,0.1); border-radius: 5px; margin-bottom: 10px; cursor: pointer;}
 .p-bar-fill { height: 100%; width: 0%; background: var(--neon); border-radius: 5px; box-shadow: 0 0 10px var(--neon); }
-
 .m-controls { display: flex; justify-content: center; gap: 10px; }
 .m-btn { 
     background: none; border: 1px solid var(--neon); color: var(--neon); 
@@ -110,10 +107,27 @@ h2.section-title{ color:var(--neon); text-align:center; margin-bottom:30px; text
 }
 .m-btn:hover { background: var(--neon); color: #000; }
 
+/* --- SKILLS & CONTACT --- */
+.skill { margin: 22px 0; }
+.skill span { float:right; color:var(--neon); }
+.bar { margin-top:8px; height:18px; background:rgba(255,255,255,.15); border-radius:20px; overflow:hidden; }
+.fill { height:100%; width:0; background:linear-gradient(90deg,var(--neon),var(--pink)); transition:width 1.6s ease; }
+form input,form textarea,form button { width:100%; margin:10px 0; display:block; padding:12px; border:none; border-radius:8px; font-family: inherit;}
+button[type="submit"] { background:linear-gradient(90deg,var(--neon),var(--pink)); color:#fff; cursor:pointer; font-weight: bold; }
+
+/* --- FOOTER --- */
+footer { text-align:center; padding:30px; margin-top:60px; background:rgba(255,255,255,.12); backdrop-filter:blur(15px); border-top:1px solid rgba(255,255,255,.2); }
+.social a { color:var(--text); font-size:26px; margin:0 12px; transition:.3s; }
+.social a:hover { color:var(--neon); }
+
 </style>
 </head>
 
 <body>
+
+<div class="python-bg">
+    <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_kkflmtur.json" background="transparent" speed="0.4" loop autoplay></lottie-player>
+</div>
 
 <header>
     <h1>Arun Deep</h1>
@@ -121,24 +135,28 @@ h2.section-title{ color:var(--neon); text-align:center; margin-bottom:30px; text
         <a href="#about">About</a>
         <a href="#apps">Apps</a>
         <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
     </nav>
 </header>
 
 <div class="hero">
-    <h2>MY <span>APP GALLERY</span></h2>
-    <p>Music • Weather • Fitness • Gaming</p>
+    <h2>I build <span>Cyberpunk Web Experiences</span></h2>
+    <p>Programmer • Python Lover 🐍 • Speed Enthusiast 🏁</p>
 </div>
 
-<section id="apps" class="visible">
-    <h2 class="section-title">All Applications</h2>
-    <div class="app-grid">
+<section id="about">
+    <h2 class="section-title">About Me</h2>
+    <p>Hi, I'm Arun 👨‍💻 — a passionate and disciplined programmer. I specialize in crafting clean, responsive, and interactive web experiences that are both powerful and visually engaging. My mission is simple: turn creative ideas into elegant, functional digital products.</p>
+</section>
 
+<section id="apps">
+    <h2 class="section-title">My App Gallery</h2>
+    <div class="app-grid">
         <div class="card">
             <i class="fa-solid fa-music icon"></i>
             <h3>Music App</h3>
-            <p>Listen to Arundeep's curated tracks.</p>
+            <p>Listen to custom neon tracks.</p>
             <button class="btn-launch" id="open-player-btn" onclick="toggleMiniPlayer()">Open Player</button>
-
             <div class="mini-player" id="mini-player">
                 <div class="music-info" id="song-name">LEVELS</div>
                 <div class="p-bar-bg" id="progress-wrap">
@@ -152,39 +170,57 @@ h2.section-title{ color:var(--neon); text-align:center; margin-bottom:30px; text
                 <audio id="audio-element" src="music/Levels.mp3"></audio>
             </div>
         </div>
-
         <div class="card">
             <i class="fa-solid fa-cloud-sun icon"></i>
             <h3>Weather App</h3>
-            <p>Real-time weather tracking.</p>
+            <p>Real-time global weather tracker.</p>
             <a href="https://w-eather-app.vercel.app/" target="_blank" class="btn-launch">Launch</a>
         </div>
-
         <div class="card">
             <i class="fa-solid fa-dumbbell icon"></i>
             <h3>Fitness App</h3>
-            <p>Workout and health tracker.</p>
+            <p>Simple workout & health tracker.</p>
             <a href="https://fitnesss-app-six.vercel.app/" target="_blank" class="btn-launch">Launch</a>
         </div>
-
         <div class="card">
             <i class="fa-solid fa-gamepad icon"></i>
             <h3>COC Tracker</h3>
-            <p>Live updates for Clash of Clans.</p>
+            <p>Live events for Clash of Clans.</p>
             <a href="https://live-events-of-coc-web.vercel.app/#live" target="_blank" class="btn-launch">Launch</a>
         </div>
-
-        <div class="card">
-            <i class="fa-solid fa-hospital icon"></i>
-            <h3>Medical App</h3>
-            <p>Symptom checker and health info.</p>
-            <a href="https://medical-app-eight-beta.vercel.app/" target="_blank" class="btn-launch">Launch</a>
-        </div>
-
     </div>
 </section>
 
+<section id="skills">
+    <h2 class="section-title">Skills</h2>
+    <div class="skill">HTML <span>90%</span><div class="bar"><div class="fill" data-value="90"></div></div></div>
+    <div class="skill">CSS <span>85%</span><div class="bar"><div class="fill" data-value="85"></div></div></div>
+    <div class="skill">JavaScript <span>80%</span><div class="bar"><div class="fill" data-value="80"></div></div></div>
+    <div class="skill">Python <span>70%</span><div class="bar"><div class="fill" data-value="70"></div></div></div>
+</section>
+
+<section id="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <form id="contactForm">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit">Send</button>
+    </form>
+</section>
+
+<footer>
+    © 2026 ⚡️💛 Arun Deep
+    <div class="social">
+        <a href="https://github.com/Arundeepyt" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://youtube.com/@arudeep1yt" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
+emailjs.init("KjQrdAF9n_V7x_gOL");
+
 // --- MUSIC LOGIC ---
 const audio = document.getElementById("audio-element");
 const sTitle = document.getElementById("song-name");
@@ -197,16 +233,12 @@ const playlist = [
     { n: "LEVELS", p: "music/Levels.mp3" },
     { n: "INVINCIBLE", p: "music/Invincible_1.mp3" }
 ];
-
-let sIdx = 0; 
-let playing = false;
+let sIdx = 0; let playing = false;
 
 function toggleMiniPlayer() {
     miniPlayer.classList.toggle('active');
-    const btn = document.getElementById("open-player-btn");
-    btn.innerText = miniPlayer.classList.contains('active') ? "Close Player" : "Open Player";
+    document.getElementById("open-player-btn").innerText = miniPlayer.classList.contains('active') ? "Close Player" : "Open Player";
 }
-
 function handlePlay() { if(playing) pause(); else play(); }
 function play() { playing = true; audio.play(); pTrig.innerHTML = '<i class="fa-solid fa-pause"></i>'; }
 function pause() { playing = false; audio.pause(); pTrig.innerHTML = '<i class="fa-solid fa-play"></i>'; }
@@ -223,17 +255,26 @@ pWrap.onclick = (e) => {
     const w = pWrap.clientWidth; const x = e.offsetX; const d = audio.duration;
     audio.currentTime = (x / w) * d;
 };
-
 audio.onended = next;
 
-// Scroll Observer
+// --- OBSERVER ---
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-        if(entry.isIntersecting) entry.target.classList.add("visible");
+        if(entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            entry.target.querySelectorAll(".fill").forEach(f => f.style.width = f.dataset.value + "%");
+        }
     });
 }, {threshold: 0.1});
 document.querySelectorAll("section").forEach(s => observer.observe(s));
 
+// --- CONTACT FORM ---
+document.getElementById("contactForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    emailjs.sendForm("service_hfc9fox","template_ntts1aj",this).then(() => {
+        alert("Message sent successfully!"); this.reset();
+    }, () => alert("Failed to send."));
+});
 </script>
 
 </body>
