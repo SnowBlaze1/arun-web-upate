@@ -9,116 +9,113 @@
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
 <style>
-:root{
-    --neon:#00ffff;
-    --pink:#ff00ff;
-    --text:#fff;
-    --glass:rgba(255,255,255,.12);
+:root {
+    --neon: #00ffff;
+    --pink: #ff00ff;
+    --text: #ffffff;
+    --glass: rgba(255, 255, 255, 0.12);
+    --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    --card-bg: rgba(255, 255, 255, 0.1);
 }
 
-body.light{
-    --neon:#0066ff;
-    --pink:#ff0088;
-    --text:#000;
-    --glass:rgba(255,255,255,.5);
+/* --- LIGHT MODE VARIABLES --- */
+body.light {
+    --neon: #0066ff;
+    --pink: #ff0088;
+    --text: #222;
+    --glass: rgba(255, 255, 255, 0.6);
+    --bg-gradient: linear-gradient(135deg, #e0eafc, #cfdef3);
+    --card-bg: rgba(255, 255, 255, 0.4);
 }
 
-*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+* { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
 
-body{
-    font-family:Poppins,sans-serif;
-    color:var(--text);
-    background:linear-gradient(135deg,#ff6ec4,#7873f5);
-    background-attachment:fixed;
-    overflow-x:hidden;
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text);
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    overflow-x: hidden;
+    transition: background 0.5s ease, color 0.3s ease;
 }
 
-header{
-    position:fixed;top:0;width:100%;z-index:1000;padding:15px 40px;
-    display:flex;justify-content:space-between;align-items:center;
-    background:rgba(255,255,255,.12);backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(255,255,255,0.2);
+header {
+    position: fixed; top: 0; width: 100%; z-index: 1000; padding: 15px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--glass); backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-header h1{ color:var(--neon); text-shadow:0 0 12px var(--neon); font-size: 24px;}
-nav a{ color:var(--text); margin:0 10px; text-decoration:none; font-size: 14px;}
+header h1 { color: var(--neon); text-shadow: 0 0 12px var(--neon); font-size: 24px; }
+nav { display: flex; align-items: center; }
+nav a { color: var(--text); margin: 0 10px; text-decoration: none; font-size: 14px; font-weight: 500; }
 
-.hero{
-    min-height:60vh;display:flex;flex-direction:column;
-    justify-content:center;align-items:center;text-align:center;padding-top:80px;
+/* Theme Toggle Button */
+#theme-toggle {
+    background: none; border: 2px solid var(--neon); color: var(--neon);
+    padding: 5px 10px; border-radius: 20px; cursor: pointer; margin-left: 15px;
+    transition: 0.3s; font-size: 14px;
+}
+#theme-toggle:hover { background: var(--neon); color: #000; }
+
+.hero {
+    min-height: 60vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; text-align: center; padding-top: 80px;
 }
 
-.hero h2{ font-size:40px; color:var(--neon); text-shadow:0 0 20px var(--neon); }
-.hero span{ color:var(--pink); }
+.hero h2 { font-size: 45px; color: var(--neon); text-shadow: 0 0 20px var(--neon); text-transform: uppercase; }
+.hero span { color: var(--pink); }
 
-section{
-    max-width:1000px;margin:40px auto;padding:30px;border-radius:25px;
-    background:var(--glass);backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,0.2); opacity:0;transform:translateY(40px);transition:.7s;
+section {
+    max-width: 1000px; margin: 40px auto; padding: 30px; border-radius: 25px;
+    background: var(--glass); backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2); opacity: 0; transform: translateY(40px); transition: .7s;
 }
 
-section.visible{ opacity:1; transform:none; }
+section.visible { opacity: 1; transform: none; }
 
-h2.section-title{ color:var(--neon); text-align:center; margin-bottom:30px; text-transform: uppercase; letter-spacing: 2px;}
+h2.section-title { color: var(--neon); text-align: center; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px; }
 
 /* --- APP GRID --- */
-.app-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 20px; 
-}
+.app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
 
 .card {
-    background: rgba(255,255,255,0.1); 
-    padding: 25px; 
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.1); 
-    text-align: center; 
-    transition: 0.4s;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    background: var(--card-bg); padding: 25px; border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; 
+    transition: 0.4s; display: flex; flex-direction: column; justify-content: space-between;
 }
 
-.card:hover { 
-    border-color: var(--neon); 
-    transform: translateY(-10px); 
-    box-shadow: 0 10px 30px rgba(0,255,255,0.2);
-}
-
-.card i.icon { font-size: 45px; color: var(--neon); margin-bottom: 15px; display: block;}
+.card:hover { border-color: var(--neon); transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2); }
+.card i.icon { font-size: 45px; color: var(--neon); margin-bottom: 15px; display: block; }
 
 .btn-launch { 
-    display: inline-block; margin-top: 15px; color: #000; background: var(--neon);
-    padding: 8px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; cursor: pointer; border: none;
+    display: inline-block; margin-top: 15px; color: #fff; background: linear-gradient(90deg, var(--neon), var(--pink));
+    padding: 10px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; cursor: pointer; border: none;
 }
 
 /* --- MUSIC PLAYER --- */
 .mini-player { margin-top: 15px; display: none; }
 .mini-player.active { display: block; }
 .music-info { font-size: 12px; margin: 10px 0; color: var(--neon); font-weight: bold; }
-.p-bar-bg { width: 100%; height: 5px; background: rgba(255,255,255,0.1); border-radius: 5px; margin-bottom: 10px; cursor: pointer;}
+.p-bar-bg { width: 100%; height: 5px; background: rgba(255,255,255,0.2); border-radius: 5px; margin-bottom: 10px; cursor: pointer; }
 .p-bar-fill { height: 100%; width: 0%; background: var(--neon); border-radius: 5px; box-shadow: 0 0 10px var(--neon); }
 .m-controls { display: flex; justify-content: center; gap: 10px; }
-.m-btn { 
-    background: none; border: 1px solid var(--neon); color: var(--neon); 
-    width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-size: 12px;
-}
-.m-btn:hover { background: var(--neon); color: #000; }
+.m-btn { background: none; border: 1px solid var(--neon); color: var(--neon); width: 35px; height: 35px; border-radius: 50%; cursor: pointer; }
 
-/* --- SKILLS & CONTACT --- */
-.skill { margin: 22px 0; }
-.skill span { float:right; color:var(--neon); }
-.bar { margin-top:8px; height:18px; background:rgba(255,255,255,.15); border-radius:20px; overflow:hidden; }
-.fill { height:100%; width:0; background:linear-gradient(90deg,var(--neon),var(--pink)); transition:width 1.6s ease; }
-form input,form textarea,form button { width:100%; margin:10px 0; display:block; padding:12px; border:none; border-radius:8px; font-family: inherit;}
-button[type="submit"] { background:linear-gradient(90deg,var(--neon),var(--pink)); color:#fff; cursor:pointer; font-weight: bold; }
+/* --- SKILLS --- */
+.skill { margin: 22px 0; font-weight: 600; }
+.skill span { float: right; color: var(--neon); }
+.bar { margin-top: 8px; height: 12px; background: rgba(0,0,0,0.1); border-radius: 20px; overflow: hidden; }
+.fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--neon), var(--pink)); transition: width 1.6s ease; }
 
-/* --- FOOTER --- */
-footer { text-align:center; padding:30px; margin-top:60px; background:rgba(255,255,255,.12); backdrop-filter:blur(15px); border-top:1px solid rgba(255,255,255,.2); }
-.social a { color:var(--text); font-size:26px; margin:0 12px; transition:.3s; }
-.social a:hover { color:var(--neon); }
+/* --- CONTACT --- */
+form input, form textarea { width: 100%; margin: 10px 0; padding: 12px; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; background: rgba(255,255,255,0.05); color: var(--text); }
+form button { width: 100%; padding: 12px; border: none; border-radius: 8px; background: var(--neon); color: #000; font-weight: bold; cursor: pointer; transition: 0.3s; }
+form button:hover { opacity: 0.8; }
 
+footer { text-align: center; padding: 30px; margin-top: 60px; background: var(--glass); backdrop-filter: blur(15px); border-top: 1px solid rgba(255,255,255,0.2); }
+.social a { color: var(--text); font-size: 26px; margin: 0 12px; transition: .3s; }
+.social a:hover { color: var(--neon); }
 </style>
 </head>
 
@@ -131,6 +128,9 @@ footer { text-align:center; padding:30px; margin-top:60px; background:rgba(255,2
         <a href="#apps">Apps</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
+        <button id="theme-toggle" title="Toggle Light/Dark Mode">
+            <i class="fa-solid fa-moon" id="theme-icon"></i>
+        </button>
     </nav>
 </header>
 
@@ -144,10 +144,9 @@ footer { text-align:center; padding:30px; margin-top:60px; background:rgba(255,2
     <p>Hi, I'm Arun 👨‍💻 — a programmer turning creative ideas into powerful digital experiences. Explore my latest applications below.</p>
 </section>
 
-<section id="apps" class="visible">
+<section id="apps">
     <h2 class="section-title">Application Gallery</h2>
     <div class="app-grid">
-
         <div class="card">
             <div>
                 <i class="fa-solid fa-music icon"></i>
@@ -170,41 +169,14 @@ footer { text-align:center; padding:30px; margin-top:60px; background:rgba(255,2
         </div>
 
         <div class="card">
-            <div>
-                <i class="fa-solid fa-user-doctor icon"></i>
-                <h3>Medical App</h3>
-                <p>Interactive symptom checker and diagnosis guide.</p>
-            </div>
+            <div><i class="fa-solid fa-user-doctor icon"></i><h3>Medical App</h3><p>Interactive symptom checker.</p></div>
             <a href="https://medical-app-eight-beta.vercel.app/" target="_blank" class="btn-launch">Launch App</a>
         </div>
 
         <div class="card">
-            <div>
-                <i class="fa-solid fa-cloud-sun icon"></i>
-                <h3>Weather App</h3>
-                <p>Real-time global weather tracker with API.</p>
-            </div>
+            <div><i class="fa-solid fa-cloud-sun icon"></i><h3>Weather App</h3><p>Real-time global weather tracker.</p></div>
             <a href="https://w-eather-app.vercel.app/" target="_blank" class="btn-launch">Launch App</a>
         </div>
-
-        <div class="card">
-            <div>
-                <i class="fa-solid fa-dumbbell icon"></i>
-                <h3>Fitness App</h3>
-                <p>Workout and health tracking interface.</p>
-            </div>
-            <a href="https://fitnesss-app-six.vercel.app/" target="_blank" class="btn-launch">Launch App</a>
-        </div>
-
-        <div class="card">
-            <div>
-                <i class="fa-solid fa-gamepad icon"></i>
-                <h3>COC Tracker</h3>
-                <p>Live events for Clash of Clans.</p>
-            </div>
-            <a href="https://live-events-of-coc-web.vercel.app/#live" target="_blank" class="btn-launch">Launch App</a>
-        </div>
-
     </div>
 </section>
 
@@ -227,16 +199,37 @@ footer { text-align:center; padding:30px; margin-top:60px; background:rgba(255,2
 </section>
 
 <footer>
-    © 2026 ⚡️💛 Arun Deep
+    © 2026 ⚡️ Arun Deep
     <div class="social">
         <a href="https://github.com/Arundeepyt" target="_blank"><i class="fab fa-github"></i></a>
         <a href="https://youtube.com/@arudeep1yt" target="_blank"><i class="fab fa-youtube"></i></a>
     </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
-emailjs.init("KjQrdAF9n_V7x_gOL");
+// --- THEME SWITCH LOGIC ---
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
+const body = document.body;
+
+// Check Local Storage
+if (localStorage.getItem('theme') === 'light') {
+    body.classList.add('light');
+    themeIcon.classList.replace('fa-moon', 'fa-sun');
+}
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('light');
+    const isLight = body.classList.contains('light');
+    
+    if (isLight) {
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+        localStorage.setItem('theme', 'light');
+    } else {
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+        localStorage.setItem('theme', 'dark');
+    }
+});
 
 // --- MUSIC LOGIC ---
 const audio = document.getElementById("audio-element");
@@ -261,8 +254,8 @@ function handlePlay() { if(playing) pause(); else play(); }
 function play() { playing = true; audio.play(); pTrig.innerHTML = '<i class="fa-solid fa-pause"></i>'; }
 function pause() { playing = false; audio.pause(); pTrig.innerHTML = '<i class="fa-solid fa-play"></i>'; }
 function load(s) { sTitle.innerText = s.n; audio.src = s.p; }
-function next() { sIdx = (sIdx + 1) % playlist.length; load(playlist[sIdx]); play(); }
-function prev() { sIdx = (sIdx - 1 + playlist.length) % playlist.length; load(playlist[sIdx]); play(); }
+function next() { sIdx = (sIdx + 1) % playlist.length; load(playlist[sIdx]); if(playing) play(); }
+function prev() { sIdx = (sIdx - 1 + playlist.length) % playlist.length; load(playlist[sIdx]); if(playing) play(); }
 
 audio.ontimeupdate = (e) => {
     const { duration, currentTime } = e.srcElement;
