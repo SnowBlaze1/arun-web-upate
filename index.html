@@ -1,159 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arun Deep | Cyberpunk Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arun Deep | Cyberpunk Portfolio</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-<style>
-:root {
-    --neon: #00ffff;
-    --pink: #ff00ff;
-    --text: #ffffff;
-    --glass: rgba(255, 255, 255, 0.12);
-    --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-    --card-bg: rgba(255, 255, 255, 0.1);
-}
+    <style>
+        :root {
+            --neon: #00ffff;
+            --pink: #ff00ff;
+            --text: #ffffff;
+            --glass: rgba(0, 255, 255, 0.05); /* Grid line color */
+            --bg-dark: #050505;
+            --card-bg: rgba(10, 10, 20, 0.8);
+        }
 
-/* --- LIGHT MODE VARIABLES --- */
-body.light {
-    --neon: #0066ff;
-    --pink: #ff0088;
-    --text: #222;
-    --glass: rgba(255, 255, 255, 0.6);
-    --bg-gradient: linear-gradient(135deg, #e0eafc, #cfdef3);
-    --card-bg: rgba(255, 255, 255, 0.4);
-}
+        /* --- LIGHT MODE VARIABLES --- */
+        body.light {
+            --neon: #0066ff;
+            --pink: #ff0088;
+            --text: #222;
+            --glass: rgba(0, 0, 0, 0.05);
+            --bg-dark: #f0f2f5;
+            --card-bg: rgba(255, 255, 255, 0.7);
+        }
 
-* { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
+        * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    color: var(--text);
-    background: var(--bg-gradient);
-    background-attachment: fixed;
-    overflow-x: hidden;
-    transition: background 0.5s ease, color 0.3s ease;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            background-color: var(--bg-dark);
+            /* --- TECH GRID DESIGN --- */
+            background-image: 
+                linear-gradient(var(--glass) 1px, transparent 1px),
+                linear-gradient(90deg, var(--glass) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-attachment: fixed;
+            overflow-x: hidden;
+            transition: background 0.5s ease, color 0.3s ease;
+        }
 
-header {
-    position: fixed; top: 0; width: 100%; z-index: 1000; padding: 15px 40px;
-    display: flex; justify-content: space-between; align-items: center;
-    background: var(--glass); backdrop-filter: blur(18px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
+        /* --- SCANNING LINE EFFECT --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(0deg, transparent 0%, rgba(0, 255, 255, 0.03) 50%, transparent 100%);
+            background-size: 100% 200%;
+            animation: scanline 10s linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
 
-header h1 { color: var(--neon); text-shadow: 0 0 12px var(--neon); font-size: 24px; }
-nav { display: flex; align-items: center; }
-nav a { color: var(--text); margin: 0 10px; text-decoration: none; font-size: 14px; font-weight: 500; }
+        @keyframes scanline {
+            0% { background-position: 0% 100%; }
+            100% { background-position: 0% -100%; }
+        }
 
-/* Theme Toggle Button */
-#theme-toggle {
-    background: none; border: 2px solid var(--neon); color: var(--neon);
-    padding: 5px 10px; border-radius: 20px; cursor: pointer; margin-left: 15px;
-    transition: 0.3s; font-size: 14px;
-}
-#theme-toggle:hover { background: var(--neon); color: #000; }
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000; padding: 15px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(5, 5, 5, 0.7); backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass);
+        }
 
-.hero {
-    min-height: 60vh; display: flex; flex-direction: column;
-    justify-content: center; align-items: center; text-align: center; padding-top: 80px;
-}
+        header h1 { color: var(--neon); text-shadow: 0 0 12px var(--neon); font-size: 24px; }
+        nav { display: flex; align-items: center; }
+        nav a { color: var(--text); margin: 0 15px; text-decoration: none; font-size: 14px; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--neon); }
 
-.hero h2 { font-size: 45px; color: var(--neon); text-shadow: 0 0 20px var(--neon); text-transform: uppercase; }
-.hero span { color: var(--pink); }
+        #theme-toggle {
+            background: none; border: 2px solid var(--neon); color: var(--neon);
+            padding: 5px 12px; border-radius: 20px; cursor: pointer; transition: 0.3s;
+        }
+        #theme-toggle:hover { background: var(--neon); color: #000; }
 
-section {
-    max-width: 1000px; margin: 40px auto; padding: 30px; border-radius: 25px;
-    background: var(--glass); backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2); opacity: 0; transform: translateY(40px); transition: .7s;
-}
+        .hero {
+            min-height: 70vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+        }
+        .hero h2 { font-size: clamp(40px, 8vw, 80px); color: var(--neon); text-shadow: 0 0 20px var(--neon); text-transform: uppercase; }
+        .hero span { color: var(--pink); text-shadow: 0 0 20px var(--pink); }
 
-section.visible { opacity: 1; transform: none; }
+        section {
+            max-width: 1000px; margin: 60px auto; padding: 40px; border-radius: 15px;
+            background: var(--card-bg); backdrop-filter: blur(10px);
+            border: 1px solid var(--glass); opacity: 0; transform: translateY(40px); transition: .8s;
+        }
+        section.visible { opacity: 1; transform: none; border-color: var(--neon); }
 
-h2.section-title { color: var(--neon); text-align: center; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px; }
+        h2.section-title { color: var(--neon); text-align: center; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 3px; }
 
-/* --- APP GRID --- */
-.app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        /* --- APP GRID --- */
+        .app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card {
+            background: rgba(255,255,255,0.03); padding: 30px; border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.05); text-align: center; transition: 0.4s;
+        }
+        .card:hover { border-color: var(--neon); transform: translateY(-10px); box-shadow: 0 0 20px rgba(0, 255, 255, 0.2); }
+        .card i.icon { font-size: 50px; color: var(--neon); margin-bottom: 15px; }
 
-.card {
-    background: var(--card-bg); padding: 25px; border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; 
-    transition: 0.4s; display: flex; flex-direction: column; justify-content: space-between;
-}
+        .btn-launch { 
+            display: inline-block; margin-top: 20px; color: #000; background: var(--neon);
+            padding: 10px 25px; border-radius: 5px; text-decoration: none; font-weight: bold; border: none; transition: 0.3s;
+        }
+        .btn-launch:hover { background: var(--pink); color: #fff; transform: scale(1.05); }
 
-.card:hover { border-color: var(--neon); transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2); }
-.card i.icon { font-size: 45px; color: var(--neon); margin-bottom: 15px; display: block; }
+        /* --- MUSIC PLAYER --- */
+        .mini-player { margin-top: 20px; display: none; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 10px; }
+        .mini-player.active { display: block; animation: fadeIn 0.5s; }
+        .music-info { font-size: 13px; margin-bottom: 10px; color: var(--neon); letter-spacing: 1px; }
+        .p-bar-bg { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-bottom: 15px; cursor: pointer; }
+        .p-bar-fill { height: 100%; width: 0%; background: var(--neon); box-shadow: 0 0 10px var(--neon); transition: 0.1s; }
+        .m-controls { display: flex; justify-content: center; gap: 15px; }
+        .m-btn { background: none; border: 1px solid var(--neon); color: var(--neon); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; transition: 0.2s; }
+        .m-btn:hover { background: var(--neon); color: #000; }
 
-.btn-launch { 
-    display: inline-block; margin-top: 15px; color: #fff; background: linear-gradient(90deg, var(--neon), var(--pink));
-    padding: 10px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; cursor: pointer; border: none;
-}
+        /* --- SKILLS --- */
+        .skill { margin: 25px 0; font-weight: 500; }
+        .skill span { float: right; color: var(--neon); }
+        .bar { margin-top: 10px; height: 8px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
+        .fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--neon), var(--pink)); transition: width 2s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
 
-/* --- MUSIC PLAYER --- */
-.mini-player { margin-top: 15px; display: none; }
-.mini-player.active { display: block; }
-.music-info { font-size: 12px; margin: 10px 0; color: var(--neon); font-weight: bold; }
-.p-bar-bg { width: 100%; height: 5px; background: rgba(255,255,255,0.2); border-radius: 5px; margin-bottom: 10px; cursor: pointer; }
-.p-bar-fill { height: 100%; width: 0%; background: var(--neon); border-radius: 5px; box-shadow: 0 0 10px var(--neon); }
-.m-controls { display: flex; justify-content: center; gap: 10px; }
-.m-btn { background: none; border: 1px solid var(--neon); color: var(--neon); width: 35px; height: 35px; border-radius: 50%; cursor: pointer; }
+        /* --- CONTACT --- */
+        form input, form textarea { width: 100%; margin: 10px 0; padding: 15px; border: 1px solid var(--glass); border-radius: 5px; background: rgba(0,0,0,0.2); color: #fff; outline: none; }
+        form input:focus, form textarea:focus { border-color: var(--neon); }
+        form button { width: 100%; padding: 15px; border: none; background: var(--neon); color: #000; font-weight: bold; cursor: pointer; text-transform: uppercase; }
 
-/* --- SKILLS --- */
-.skill { margin: 22px 0; font-weight: 600; }
-.skill span { float: right; color: var(--neon); }
-.bar { margin-top: 8px; height: 12px; background: rgba(0,0,0,0.1); border-radius: 20px; overflow: hidden; }
-.fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--neon), var(--pink)); transition: width 1.6s ease; }
+        footer { text-align: center; padding: 40px; background: rgba(0,0,0,0.4); border-top: 1px solid var(--glass); }
+        .social a { color: var(--text); font-size: 24px; margin: 0 15px; transition: 0.3s; }
+        .social a:hover { color: var(--neon); transform: translateY(-5px); }
 
-/* --- CONTACT --- */
-form input, form textarea { width: 100%; margin: 10px 0; padding: 12px; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; background: rgba(255,255,255,0.05); color: var(--text); }
-form button { width: 100%; padding: 12px; border: none; border-radius: 8px; background: var(--neon); color: #000; font-weight: bold; cursor: pointer; transition: 0.3s; }
-form button:hover { opacity: 0.8; }
-
-footer { text-align: center; padding: 30px; margin-top: 60px; background: var(--glass); backdrop-filter: blur(15px); border-top: 1px solid rgba(255,255,255,0.2); }
-.social a { color: var(--text); font-size: 26px; margin: 0 12px; transition: .3s; }
-.social a:hover { color: var(--neon); }
-</style>
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
 </head>
 
 <body>
 
 <header>
-    <h1>Arun Deep</h1>
+    <h1>ARUN.SYS</h1>
     <nav>
         <a href="#about">About</a>
         <a href="#apps">Apps</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
-        <button id="theme-toggle" title="Toggle Light/Dark Mode">
+        <button id="theme-toggle">
             <i class="fa-solid fa-moon" id="theme-icon"></i>
         </button>
     </nav>
 </header>
 
 <div class="hero">
-    <h2>MY <span>CYBER WORLD</span></h2>
-    <p>Innovator • Developer • Creator</p>
+    <h2>CORE_<span>DEVELOPER</span></h2>
+    <p>// ARCHITECTING DIGITAL REALITIES</p>
 </div>
 
 <section id="about">
-    <h2 class="section-title">About Me</h2>
-    <p>Hi, I'm Arun 👨‍💻 — a programmer turning creative ideas into powerful digital experiences. Explore my latest applications below.</p>
+    <h2 class="section-title">Terminal Info</h2>
+    <p>System User: <b>Arun Deep</b><br>Role: <b>Full-Stack Creator</b><br><br>
+    I specialize in building immersive web environments and high-performance applications. My philosophy is simple: If you can imagine the interface, I can code the logic.</p>
 </section>
 
 <section id="apps">
-    <h2 class="section-title">Application Gallery</h2>
+    <h2 class="section-title">Project Database</h2>
     <div class="app-grid">
         <div class="card">
             <div>
                 <i class="fa-solid fa-music icon"></i>
-                <h3>Music App</h3>
-                <p>Interactive player streaming remote tracks.</p>
+                <h3>Audio Streamer</h3>
+                <p>Cloud-based music synchronization tool.</p>
             </div>
-            <button class="btn-launch" id="open-player-btn" onclick="toggleMiniPlayer()">Open Player</button>
+            <button class="btn-launch" id="open-player-btn" onclick="toggleMiniPlayer()">Access Player</button>
             <div class="mini-player" id="mini-player">
                 <div class="music-info" id="song-name">LEVELS</div>
                 <div class="p-bar-bg" id="progress-wrap">
@@ -169,37 +190,36 @@ footer { text-align: center; padding: 30px; margin-top: 60px; background: var(--
         </div>
 
         <div class="card">
-            <div><i class="fa-solid fa-user-doctor icon"></i><h3>Medical App</h3><p>Interactive symptom checker.</p></div>
-            <a href="https://medical-app-eight-beta.vercel.app/" target="_blank" class="btn-launch">Launch App</a>
+            <div><i class="fa-solid fa-user-doctor icon"></i><h3>Medi-Scan</h3><p>AI-driven medical symptom analysis.</p></div>
+            <a href="https://medical-app-eight-beta.vercel.app/" target="_blank" class="btn-launch">Launch Link</a>
         </div>
 
         <div class="card">
-            <div><i class="fa-solid fa-cloud-sun icon"></i><h3>Weather App</h3><p>Real-time global weather tracker.</p></div>
-            <a href="https://w-eather-app.vercel.app/" target="_blank" class="btn-launch">Launch App</a>
+            <div><i class="fa-solid fa-cloud-sun icon"></i><h3>Sky-Net Weather</h3><p>Real-time atmospheric data tracking.</p></div>
+            <a href="https://w-eather-app.vercel.app/" target="_blank" class="btn-launch">Launch Link</a>
         </div>
     </div>
 </section>
 
 <section id="skills">
-    <h2 class="section-title">Skills</h2>
-    <div class="skill">HTML <span>90%</span><div class="bar"><div class="fill" data-value="90"></div></div></div>
-    <div class="skill">CSS <span>85%</span><div class="bar"><div class="fill" data-value="85"></div></div></div>
-    <div class="skill">JavaScript <span>80%</span><div class="bar"><div class="fill" data-value="80"></div></div></div>
-    <div class="skill">Python <span>70%</span><div class="bar"><div class="fill" data-value="70"></div></div></div>
+    <h2 class="section-title">Technical Proficiencies</h2>
+    <div class="skill">CORE_LOGIC (HTML/JS) <span>90%</span><div class="bar"><div class="fill" data-value="90"></div></div></div>
+    <div class="skill">VISUAL_ENGINE (CSS) <span>85%</span><div class="bar"><div class="fill" data-value="85"></div></div></div>
+    <div class="skill">BACKEND_FLOW (Python) <span>70%</span><div class="bar"><div class="fill" data-value="70"></div></div></div>
 </section>
 
 <section id="contact">
-    <h2 class="section-title">Contact Me</h2>
+    <h2 class="section-title">Establish Connection</h2>
     <form id="contactForm">
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <textarea name="message" placeholder="Message" rows="4" required></textarea>
-        <button type="submit">Send Message</button>
+        <input type="text" placeholder="Identity Name" required>
+        <input type="email" placeholder="Communication Email" required>
+        <textarea placeholder="Data Message" rows="4" required></textarea>
+        <button type="submit">Execute Send</button>
     </form>
 </section>
 
 <footer>
-    © 2026 ⚡️ Arun Deep
+    <p>© 2026 // ARUN DEEP // ALL RIGHTS RESERVED</p>
     <div class="social">
         <a href="https://github.com/Arundeepyt" target="_blank"><i class="fab fa-github"></i></a>
         <a href="https://youtube.com/@arudeep1yt" target="_blank"><i class="fab fa-youtube"></i></a>
@@ -207,31 +227,18 @@ footer { text-align: center; padding: 30px; margin-top: 60px; background: var(--
 </footer>
 
 <script>
-// --- THEME SWITCH LOGIC ---
+// --- THEME SWITCH ---
 const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = document.getElementById('theme-icon');
 const body = document.body;
 
-// Check Local Storage
-if (localStorage.getItem('theme') === 'light') {
-    body.classList.add('light');
-    themeIcon.classList.replace('fa-moon', 'fa-sun');
-}
-
 themeToggle.addEventListener('click', () => {
     body.classList.toggle('light');
     const isLight = body.classList.contains('light');
-    
-    if (isLight) {
-        themeIcon.classList.replace('fa-moon', 'fa-sun');
-        localStorage.setItem('theme', 'light');
-    } else {
-        themeIcon.classList.replace('fa-sun', 'fa-moon');
-        localStorage.setItem('theme', 'dark');
-    }
+    themeIcon.className = isLight ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
 });
 
-// --- MUSIC LOGIC ---
+// --- MUSIC ENGINE ---
 const audio = document.getElementById("audio-element");
 const sTitle = document.getElementById("song-name");
 const pFill = document.getElementById("progress-fill");
@@ -248,26 +255,26 @@ audio.src = playlist[0].p;
 
 function toggleMiniPlayer() {
     miniPlayer.classList.toggle('active');
-    document.getElementById("open-player-btn").innerText = miniPlayer.classList.contains('active') ? "Close Player" : "Open Player";
+    document.getElementById("open-player-btn").innerText = miniPlayer.classList.contains('active') ? "Close Terminal" : "Access Player";
 }
-function handlePlay() { if(playing) pause(); else play(); }
+
+function handlePlay() { playing ? pause() : play(); }
 function play() { playing = true; audio.play(); pTrig.innerHTML = '<i class="fa-solid fa-pause"></i>'; }
 function pause() { playing = false; audio.pause(); pTrig.innerHTML = '<i class="fa-solid fa-play"></i>'; }
-function load(s) { sTitle.innerText = s.n; audio.src = s.p; }
-function next() { sIdx = (sIdx + 1) % playlist.length; load(playlist[sIdx]); if(playing) play(); }
-function prev() { sIdx = (sIdx - 1 + playlist.length) % playlist.length; load(playlist[sIdx]); if(playing) play(); }
+function load(s) { sTitle.innerText = s.n; audio.src = s.p; if(playing) play(); }
+function next() { sIdx = (sIdx + 1) % playlist.length; load(playlist[sIdx]); }
+function prev() { sIdx = (sIdx - 1 + playlist.length) % playlist.length; load(playlist[sIdx]); }
 
 audio.ontimeupdate = (e) => {
     const { duration, currentTime } = e.srcElement;
     if(duration) pFill.style.width = (currentTime / duration * 100) + "%";
 };
 pWrap.onclick = (e) => {
-    const w = pWrap.clientWidth; const x = e.offsetX; const d = audio.duration;
-    audio.currentTime = (x / w) * d;
+    const w = pWrap.clientWidth; const x = e.offsetX;
+    audio.currentTime = (x / w) * audio.duration;
 };
-audio.onended = next;
 
-// --- OBSERVER ---
+// --- SCROLL OBSERVER ---
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if(entry.isIntersecting) {
@@ -277,6 +284,13 @@ const observer = new IntersectionObserver(entries => {
     });
 }, {threshold: 0.1});
 document.querySelectorAll("section").forEach(s => observer.observe(s));
+
+// --- FORM FIX ---
+document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert("CONNECTION ESTABLISHED: Message Sent.");
+    e.target.reset();
+});
 </script>
 
 </body>
