@@ -135,20 +135,45 @@
             transition: 0.3s;
         }
         .card:hover { background: rgba(0, 255, 255, 0.05); border-color: var(--neon); transform: scale(1.02); }
-        
-        /* --- IMAGE GALLERY SPECIFIC --- */
-        .art-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .art-card { position: relative; overflow: hidden; border: 1px solid var(--glass); aspect-ratio: 16/9; background: #000; }
-        .art-card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(40%); transition: 0.5s; }
-        .art-info { 
-            position: absolute; bottom: -100%; left: 0; width: 100%; 
-            background: linear-gradient(transparent, var(--neon)); padding: 15px; transition: 0.4s; 
-        }
-        .art-card:hover img { filter: grayscale(0%) brightness(1.1); transform: scale(1.05); }
-        .art-card:hover .art-info { bottom: 0; }
-        .art-info h4 { color: #000; font-size: 14px; }
-        .art-info p { color: #000; font-size: 11px; font-weight: bold; }
 
+        /* --- NEW ART GALLERY STYLES --- */
+        .art-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .art-card {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--glass);
+            background: #000;
+            aspect-ratio: 16 / 9;
+            cursor: crosshair;
+        }
+        .art-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(40%);
+            transition: 0.5s ease;
+        }
+        .art-info {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, var(--neon));
+            padding: 15px;
+            transition: 0.4s ease;
+        }
+        .art-card:hover img {
+            filter: grayscale(0%) brightness(1.1);
+            transform: scale(1.05);
+        }
+        .art-card:hover .art-info { bottom: 0; }
+        .art-info h4 { color: #000; font-size: 14px; letter-spacing: 1px; }
+        .art-info p { color: #000; font-size: 11px; font-weight: bold; }
+        
         .btn-launch { 
             display: inline-block; margin-top: 20px; padding: 10px 20px;
             background: var(--neon); color: #000; text-decoration: none; font-weight: bold;
@@ -241,24 +266,24 @@
     <h2 style="color: var(--neon); margin-bottom: 30px;">> VISUAL_ARCHIVE.DB</h2>
     <div class="art-grid">
         <div class="art-card">
-            <img src="your-image-1.jpg" alt="Gallery Image 1">
+            <img src="your-art-link-1.jpg" alt="Art 1">
             <div class="art-info">
-                <h4>DATA_FILE: TIME_AND_WEAR</h4>
-                <p>SUB_THEME: FOREST_FIND</p>
+                <h4>DATA_FILE: TIME_AND_WEAR_01</h4>
+                <p>SUB_THEME: FOREST_JOURNAL</p>
             </div>
         </div>
         <div class="art-card">
-            <img src="your-image-2.jpg" alt="Gallery Image 2">
+            <img src="your-art-link-2.jpg" alt="Art 2">
             <div class="art-info">
-                <h4>DATA_FILE: THE_TRAVELER</h4>
+                <h4>DATA_FILE: PROTO_TRAVELER</h4>
                 <p>SUB_THEME: CHARACTER_DESIGN</p>
             </div>
         </div>
         <div class="art-card">
-            <img src="your-image-3.jpg" alt="Gallery Image 3">
+            <img src="your-art-link-3.jpg" alt="Art 3">
             <div class="art-info">
-                <h4>DATA_FILE: NEURAL_ARCHIVE</h4>
-                <p>SUB_THEME: FIELD_NOTES</p>
+                <h4>DATA_FILE: NEURAL_CORE</h4>
+                <p>SUB_THEME: COSMIC_ILLUSTRATION</p>
             </div>
         </div>
     </div>
