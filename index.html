@@ -41,7 +41,6 @@
             transition: 0.5s;
         }
 
-        /* --- BACKGROUND SCANLINE --- */
         body::before {
             content: "";
             position: fixed;
@@ -75,7 +74,6 @@
             padding: 5px 12px; border-radius: 4px; cursor: pointer; margin-left: 15px;
         }
 
-        /* --- HERO & GLITCH --- */
         .hero {
             min-height: 80vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
@@ -104,7 +102,6 @@
             100% { text-shadow: -0.025em 0 0 var(--pink), -0.025em -0.025em 0 #00ff00, -0.025em -0.05em 0 #0000ff; }
         }
 
-        /* --- TYPEWRITER --- */
         .typewriter {
             font-family: 'Courier New', monospace;
             font-size: 18px;
@@ -120,7 +117,6 @@
         @keyframes typing { from { width: 0 } to { width: 100% } }
         @keyframes blink { 50% { border-color: transparent } }
 
-        /* --- SECTIONS --- */
         section {
             max-width: 1100px; margin: 80px auto; padding: 40px; border-radius: 4px;
             background: var(--card-bg); border-left: 4px solid var(--neon);
@@ -130,63 +126,26 @@
         section.visible { opacity: 1; transform: translateX(0); }
 
         .app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .card {
-            background: rgba(255,255,255,0.03); padding: 30px; border: 1px solid var(--glass);
-            transition: 0.3s;
-        }
+        .card { background: rgba(255,255,255,0.03); padding: 30px; border: 1px solid var(--glass); transition: 0.3s; }
         .card:hover { background: rgba(0, 255, 255, 0.05); border-color: var(--neon); transform: scale(1.02); }
 
-        /* --- NEW ART GALLERY STYLES --- */
-        .art-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .art-card {
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--glass);
-            background: #000;
-            aspect-ratio: 16 / 9;
-            cursor: crosshair;
-        }
-        .art-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(40%);
-            transition: 0.5s ease;
-        }
-        .art-info {
-            position: absolute;
-            bottom: -100%;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(transparent, var(--neon));
-            padding: 15px;
-            transition: 0.4s ease;
-        }
-        .art-card:hover img {
-            filter: grayscale(0%) brightness(1.1);
-            transform: scale(1.05);
-        }
+        /* --- VISUAL ARCHIVE GRID --- */
+        .art-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .art-card { position: relative; overflow: hidden; border: 1px solid var(--glass); aspect-ratio: 16/9; background: #000; }
+        .art-card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(40%); transition: 0.5s; }
+        .art-info { position: absolute; bottom: -100%; left: 0; width: 100%; background: linear-gradient(transparent, var(--neon)); padding: 15px; transition: 0.4s; }
+        .art-card:hover img { filter: grayscale(0%) brightness(1.1); transform: scale(1.05); }
         .art-card:hover .art-info { bottom: 0; }
-        .art-info h4 { color: #000; font-size: 14px; letter-spacing: 1px; }
+        .art-info h4 { color: #000; font-size: 14px; }
         .art-info p { color: #000; font-size: 11px; font-weight: bold; }
-        
-        .btn-launch { 
-            display: inline-block; margin-top: 20px; padding: 10px 20px;
-            background: var(--neon); color: #000; text-decoration: none; font-weight: bold;
-            text-transform: uppercase; font-size: 12px; transition: 0.3s;
-        }
+
+        .btn-launch { display: inline-block; margin-top: 20px; padding: 10px 20px; background: var(--neon); color: #000; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 12px; transition: 0.3s; }
         .btn-launch:hover { background: var(--pink); color: #fff; box-shadow: 0 0 15px var(--pink); }
 
-        /* --- SKILLS --- */
         .skill { margin: 20px 0; }
         .bar { height: 4px; background: rgba(255,255,255,0.1); margin-top: 8px; position: relative; }
         .fill { height: 100%; width: 0; background: var(--neon); box-shadow: 0 0 10px var(--neon); transition: 2s; }
 
-        /* --- MUSIC PLAYER --- */
         .mini-player { margin-top: 20px; display: none; border: 1px solid var(--pink); padding: 15px; }
         .mini-player.active { display: block; }
         .p-bar-bg { width: 100%; height: 4px; background: #222; margin: 15px 0; cursor: pointer; }
@@ -221,8 +180,7 @@
 
 <section id="about">
     <h2 style="color: var(--neon); margin-bottom: 20px;">> WHO_AM_I?</h2>
-    <p>Loading profile... <br><br>
-    I am a developer focused on <b>high-fidelity web experiences</b>. I blend aesthetic cyberpunk design with clean, functional code. My systems are built for speed, responsiveness, and visual impact.</p>
+    <p>I am a developer focused on <b>high-fidelity web experiences</b>. I blend aesthetic cyberpunk design with clean, functional code.</p>
 </section>
 
 <section id="apps">
@@ -233,7 +191,6 @@
             <h3>Neural Audio</h3>
             <p>Remote streaming synchronized to your heartbeat.</p>
             <button class="btn-launch" onclick="toggleMiniPlayer()">Toggle Interface</button>
-            
             <div class="mini-player" id="mini-player">
                 <div id="song-name" style="font-size: 12px; color: var(--neon);">TRACK: LEVELS</div>
                 <div class="p-bar-bg" id="progress-wrap"><div class="p-bar-fill" id="progress-fill"></div></div>
@@ -245,14 +202,12 @@
                 <audio id="audio-element"></audio>
             </div>
         </div>
-
         <div class="card">
             <i class="fa-solid fa-user-doctor" style="font-size: 30px; color: var(--neon);"></i>
             <h3>Medi-Net</h3>
-            <p>Biometric symptom analysis and diagnostic tool.</p>
+            <p>Biometric symptom analysis tool.</p>
             <a href="https://medical-app-eight-beta.vercel.app/" target="_blank" class="btn-launch">Execute Launch</a>
         </div>
-
         <div class="card">
             <i class="fa-solid fa-cloud-sun" style="font-size: 30px; color: var(--neon);"></i>
             <h3>Atmosphere-OS</h3>
@@ -265,27 +220,16 @@
 <section id="visual-archive">
     <h2 style="color: var(--neon); margin-bottom: 30px;">> VISUAL_ARCHIVE.DB</h2>
     <div class="art-grid">
-        <div class="art-card">
-            <img src="your-art-link-1.jpg" alt="Art 1">
-            <div class="art-info">
-                <h4>DATA_FILE: TIME_AND_WEAR_01</h4>
-                <p>SUB_THEME: FOREST_JOURNAL</p>
-            </div>
-        </div>
-        <div class="art-card">
-            <img src="your-art-link-2.jpg" alt="Art 2">
-            <div class="art-info">
-                <h4>DATA_FILE: PROTO_TRAVELER</h4>
-                <p>SUB_THEME: CHARACTER_DESIGN</p>
-            </div>
-        </div>
-        <div class="art-card">
-            <img src="your-art-link-3.jpg" alt="Art 3">
-            <div class="art-info">
-                <h4>DATA_FILE: NEURAL_CORE</h4>
-                <p>SUB_THEME: COSMIC_ILLUSTRATION</p>
-            </div>
-        </div>
+        <div class="art-card"><img src="images/anime forest.jpg"><div class="art-info"><h4>ANIME_FOREST</h4><p>THEME: WORLD_GEN</p></div></div>
+        <div class="art-card"><img src="images/1.jpg"><div class="art-info"><h4>DATA_FILE_01</h4><p>STATUS: ARCHIVED</p></div></div>
+        <div class="art-card"><img src="images/2.jpg"><div class="art-info"><h4>DATA_FILE_02</h4><p>STATUS: ARCHIVED</p></div></div>
+        <div class="art-card"><img src="images/3.jpg"><div class="art-info"><h4>DATA_FILE_03</h4><p>STATUS: ARCHIVED</p></div></div>
+        <div class="art-card"><img src="images/4.jpg"><div class="art-info"><h4>DATA_FILE_04</h4><p>STATUS: ARCHIVED</p></div></div>
+        <div class="art-card"><img src="images/5.jpg"><div class="art-info"><h4>DATA_FILE_05</h4><p>STATUS: ARCHIVED</p></div></div>
+        <div class="art-card"><img src="images/6.jpg"><div class="art-info"><h4>DATA_FILE_06</h4><p>STATUS: ARCHIVED</p></div></div>
+        <div class="art-card"><img src="images/7.jpg"><div class="art-info"><h4>DATA_FILE_07</h4><p>STATUS: ARCHIVED</p></div></div>
+        <div class="art-card"><img src="images/time_and_wear.jpg"><div class="art-info"><h4>TIME_AND_WEAR</h4><p>THEME: FOREST_JOURNAL</p></div></div>
+        <div class="art-card"><img src="images/cosmic_girl.jpg"><div class="art-info"><h4>CELESTIAL_CORE</h4><p>THEME: EMISSIVE_GLOW</p></div></div>
     </div>
 </section>
 
@@ -293,7 +237,6 @@
     <h2 style="color: var(--neon); margin-bottom: 20px;">> TECH_STACK</h2>
     <div class="skill">FRONTEND_ENGINEering <span>90%</span><div class="bar"><div class="fill" data-value="90"></div></div></div>
     <div class="skill">UI_UX_ARCHITECTURE <span>85%</span><div class="bar"><div class="fill" data-value="85"></div></div></div>
-    <div class="skill">DATA_STRUCTURES (Python) <span>70%</span><div class="bar"><div class="fill" data-value="70"></div></div></div>
 </section>
 
 <section id="contact">
@@ -306,39 +249,28 @@
 </section>
 
 <footer>
-    <div class="social">
-        <a href="https://github.com/Arundeepyt"><i class="fab fa-github"></i></a>
-        <a href="https://youtube.com/@arudeep1yt"><i class="fab fa-youtube"></i></a>
-    </div>
+    <div class="social"><a href="https://github.com/Arundeepyt"><i class="fab fa-github"></i></a><a href="https://youtube.com/@arudeep1yt"><i class="fab fa-youtube"></i></a></div>
     <p style="margin-top:20px; font-size: 12px; opacity: 0.5;">© 2026 ARUN_DEEP // SYSTEM_ACTIVE</p>
 </footer>
 
 <script>
-// --- CORE LOGIC ---
 const audio = document.getElementById("audio-element");
 const pFill = document.getElementById("progress-fill");
 const pTrig = document.getElementById("play-trigger");
-const playlist = [
-    { n: "LEVELS", p: "https://music-app-arun.vercel.app/music/Levels.mp3" },
-    { n: "INVINCIBLE", p: "https://music-app-arun.vercel.app/music/Invincible_1.mp3" }
-];
-let sIdx = 0; let playing = false;
-audio.src = playlist[0].p;
+const playlist = [{ n: "LEVELS", p: "https://music-app-arun.vercel.app/music/Levels.mp3" }, { n: "INVINCIBLE", p: "https://music-app-arun.vercel.app/music/Invincible_1.mp3" }];
+let sIdx = 0; let playing = false; audio.src = playlist[0].p;
 
 function toggleMiniPlayer() { document.getElementById("mini-player").classList.toggle('active'); }
 function handlePlay() { playing ? (audio.pause(), pTrig.innerHTML='<i class="fa-solid fa-play"></i>') : (audio.play(), pTrig.innerHTML='<i class="fa-solid fa-pause"></i>'); playing = !playing; }
 function next() { sIdx = (sIdx + 1) % playlist.length; audio.src = playlist[sIdx].p; document.getElementById("song-name").innerText = "TRACK: " + playlist[sIdx].n; if(playing) audio.play(); }
 function prev() { sIdx = (sIdx - 1 + playlist.length) % playlist.length; audio.src = playlist[sIdx].p; document.getElementById("song-name").innerText = "TRACK: " + playlist[sIdx].n; if(playing) audio.play(); }
-
 audio.ontimeupdate = () => pFill.style.width = (audio.currentTime / audio.duration * 100) + "%";
 
-// --- THEME ---
 document.getElementById('theme-toggle').addEventListener('click', () => {
     document.body.classList.toggle('light');
     document.getElementById('theme-icon').className = document.body.classList.contains('light') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
 });
 
-// --- OBSERVER ---
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if(entry.isIntersecting) {
@@ -349,6 +281,5 @@ const observer = new IntersectionObserver(entries => {
 }, {threshold: 0.2});
 document.querySelectorAll("section").forEach(s => observer.observe(s));
 </script>
-
 </body>
 </html>
