@@ -3,65 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arun Deep | Dual Spectrum UI</title>
+    <title>Arun Deep | Nebula System UI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; display: grid; grid-template-columns: 1fr 1fr; height: 100vh; overflow: hidden; }
-
-        /* Dark Side (Nebula) */
-        .dark-side { 
-            background: radial-gradient(circle at center, #1b0f33, #000); 
-            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-            color: #00f3ff; padding: 40px; display: flex; flex-direction: column; gap: 20px;
+        :root {
+            --neon: #00f3ff;
+            --pink: #ff00ff;
+            --text: #ffffff;
+            --glass: rgba(255, 255, 255, 0.08);
+            --card-bg: rgba(255, 255, 255, 0.05);
         }
 
-        /* Light Side (Holo-Glass) */
-        .light-side { 
-            background: linear-gradient(135deg, #e0e7ff, #fbcfe8); 
-            padding: 40px; display: flex; flex-direction: column; gap: 20px;
+        /* Nebula Background */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            background: radial-gradient(circle at 50% 50%, #0f0c29, #302b63, #24243e);
+            background-attachment: fixed;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
-        .panel { 
-            background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2); padding: 20px; border-radius: 15px;
+        /* Glassmorphism Header */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000; padding: 20px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .light-side .panel { background: rgba(255,255,255,0.6); border: 1px solid #fff; }
+        /* Glassmorphism Sections */
+        section {
+            max-width: 1100px; margin: 80px auto; padding: 40px;
+            background: var(--card-bg); backdrop-filter: blur(20px);
+            border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            opacity: 0; transform: translateY(30px); transition: 0.8s ease-out;
+        }
+        section.visible { opacity: 1; transform: translateY(0); }
 
-        h2 { margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
-        
-        .progress-bar { height: 8px; background: rgba(0,0,0,0.1); border-radius: 4px; margin: 10px 0; }
-        .fill { height: 100%; background: linear-gradient(90deg, #00f3ff, #ff00ff); border-radius: 4px; }
+        /* Card Styles */
+        .card { 
+            background: rgba(255,255,255,0.05); padding: 30px; 
+            border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Gradient Progress Bars */
+        .fill { 
+            height: 100%; width: 0; transition: 2s;
+            background: linear-gradient(90deg, var(--neon), var(--pink));
+        }
+
+        /* Launch Buttons */
+        .btn-launch { 
+            padding: 12px 24px; border-radius: 50px; border: none; cursor: pointer;
+            background: linear-gradient(90deg, var(--neon), var(--pink));
+            color: white; font-weight: bold; text-transform: uppercase;
+        }
+
+        /* Archive Cards */
+        .art-card { border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; }
     </style>
 </head>
+
 <body>
+    <header>
+        <h1>ARUN_DEEP.SYS</h1>
+        <nav>
+            <a href="#about" style="color:white; text-decoration:none; margin-left:20px;">ABOUT</a>
+            <a href="#apps" style="color:white; text-decoration:none; margin-left:20px;">PROJECTS</a>
+        </nav>
+    </header>
 
-<div class="dark-side">
-    <h1>CORE_&lt;DEVELOPER&gt;</h1>
-    <div class="panel">
-        <h2>WHO_AM_I?</h2>
-        <p>Architecting digital realities with precision.</p>
+    <div style="height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <h1 style="font-size: 80px; text-transform: uppercase;">CORE_DEVELOPER</h1>
     </div>
-    <div class="panel">
-        <h2>ACTIVE_PROJECTS</h2>
-        <div class="progress-bar"><div class="fill" style="width: 70%;"></div></div>
-    </div>
-</div>
 
-<div class="light-side">
-    <h1 style="color: #333;">ARUN_DEEP.SYS</h1>
-    <div class="panel">
-        <h2>VISUAL ARCHIVE</h2>
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-            <div style="height: 80px; background: #ccc; border-radius: 8px;"></div>
-            <div style="height: 80px; background: #ccc; border-radius: 8px;"></div>
+    <section id="apps">
+        <h2>> ACTIVE_PROJECTS</h2>
+        <div class="app-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <div class="card">
+                <h3>Neural Audio</h3>
+                <button class="btn-launch" onclick="toggleMiniPlayer()">Interface</button>
+                <div id="mini-player" style="display:none; margin-top:20px;">
+                    <div style="height:8px; background:rgba(0,0,0,0.3); border-radius:10px;"><div class="fill" id="progress-fill" style="width:50%;"></div></div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="panel">
-        <h2>TECH_STACK</h2>
-        <div class="progress-bar"><div class="fill" style="width: 90%;"></div></div>
-    </div>
-</div>
+    </section>
 
+    <script>
+        // Original logic preserved
+        function toggleMiniPlayer() { document.getElementById("mini-player").style.display = 'block'; }
+    </script>
 </body>
 </html>
