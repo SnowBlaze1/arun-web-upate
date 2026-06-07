@@ -3,151 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arun Deep | Nebula Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+    <title>Arun Deep | Dual Spectrum UI</title>
     <style>
-        :root {
-            --neon: #00f3ff;
-            --pink: #ff00ff;
-            --bg: #0a0a0c;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; display: grid; grid-template-columns: 1fr 1fr; height: 100vh; overflow: hidden; }
+
+        /* Dark Side (Nebula) */
+        .dark-side { 
+            background: radial-gradient(circle at center, #1b0f33, #000); 
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+            color: #00f3ff; padding: 40px; display: flex; flex-direction: column; gap: 20px;
         }
 
-        * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: #fff;
-            overflow-x: hidden;
-            transition: 0.5s;
+        /* Light Side (Holo-Glass) */
+        .light-side { 
+            background: linear-gradient(135deg, #e0e7ff, #fbcfe8); 
+            padding: 40px; display: flex; flex-direction: column; gap: 20px;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .panel { 
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2); padding: 20px; border-radius: 15px;
         }
 
-        header {
-            position: fixed; top: 0; width: 100%; z-index: 1000; padding: 20px 40px;
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
+        .light-side .panel { background: rgba(255,255,255,0.6); border: 1px solid #fff; }
 
-        header h1 { color: var(--neon); font-size: 20px; letter-spacing: 2px; }
-        nav a { color: #fff; margin-left: 20px; text-decoration: none; font-size: 14px; }
+        h2 { margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
         
-        .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .glitch { font-size: clamp(40px, 8vw, 80px); font-weight: 900; color: var(--neon); }
-
-        section {
-            max-width: 1000px; margin: 80px auto; padding: 40px;
-            background: rgba(255, 255, 255, 0.05); border-radius: 20px;
-            backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1);
-            opacity: 0; transform: translateY(30px); transition: 0.8s;
-        }
-        section.visible { opacity: 1; transform: translateY(0); }
-
-        .app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .card { background: rgba(0,0,0,0.3); padding: 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
-        .card:hover { transform: translateY(-10px); border-color: var(--neon); box-shadow: 0 10px 30px rgba(0,243,255,0.2); }
-
-        .btn-launch { 
-            display: inline-block; margin-top: 20px; padding: 12px 25px;
-            background: linear-gradient(90deg, var(--neon), var(--pink));
-            border: none; border-radius: 50px; color: #fff; text-decoration: none;
-            font-weight: bold; cursor: pointer; transition: 0.3s;
-        }
-
-        .art-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .art-card { border-radius: 15px; overflow: hidden; position: relative; }
-        .art-card img { width: 100%; height: 200px; object-fit: cover; transition: 0.5s; }
-        .art-card:hover img { transform: scale(1.1); }
-
-        .bar { height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-top: 10px; }
-        .fill { height: 100%; background: var(--neon); border-radius: 10px; width: 0; transition: 2s; }
-        
-        .mini-player { margin-top: 20px; display: none; background: rgba(0,0,0,0.5); padding: 15px; border-radius: 10px; }
-        .mini-player.active { display: block; }
+        .progress-bar { height: 8px; background: rgba(0,0,0,0.1); border-radius: 4px; margin: 10px 0; }
+        .fill { height: 100%; background: linear-gradient(90deg, #00f3ff, #ff00ff); border-radius: 4px; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>ARUN_DEEP.SYS</h1>
-    <nav>
-        <a href="#about">ABOUT</a>
-        <a href="#apps">PROJECTS</a>
-        <a href="#visual-archive">GALLERY</a>
-        <a href="#skills">SKILLS</a>
-        <a href="#contact">CONTACT</a>
-    </nav>
-</header>
-
-<div class="hero">
-    <h2 class="glitch">CORE_DEVELOPER</h2>
+<div class="dark-side">
+    <h1>CORE_&lt;DEVELOPER&gt;</h1>
+    <div class="panel">
+        <h2>WHO_AM_I?</h2>
+        <p>Architecting digital realities with precision.</p>
+    </div>
+    <div class="panel">
+        <h2>ACTIVE_PROJECTS</h2>
+        <div class="progress-bar"><div class="fill" style="width: 70%;"></div></div>
+    </div>
 </div>
 
-<section id="about">
-    <h2>> WHO_AM_I?</h2>
-    <p>I am a developer focused on high-fidelity web experiences.</p>
-</section>
-
-<section id="apps">
-    <h2>> ACTIVE_PROJECTS</h2>
-    <div class="app-grid">
-        <div class="card">
-            <h3>Neural Audio</h3>
-            <button class="btn-launch" onclick="toggleMiniPlayer()">Toggle Interface</button>
-            <div class="mini-player" id="mini-player">
-                <div id="song-name">TRACK: LEVELS</div>
-                <div class="bar"><div class="fill" id="progress-fill"></div></div>
-                <button class="btn-launch" id="play-trigger" onclick="handlePlay()">PLAY</button>
-            </div>
-            <audio id="audio-element"></audio>
+<div class="light-side">
+    <h1 style="color: #333;">ARUN_DEEP.SYS</h1>
+    <div class="panel">
+        <h2>VISUAL ARCHIVE</h2>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div style="height: 80px; background: #ccc; border-radius: 8px;"></div>
+            <div style="height: 80px; background: #ccc; border-radius: 8px;"></div>
         </div>
     </div>
-</section>
-
-<section id="visual-archive">
-    <h2>> VISUAL_ARCHIVE.DB</h2>
-    <div class="art-grid">
-        <div class="art-card"><img src="1.web.jpeg"></div>
-        <div class="art-card"><img src="2.web.jpeg"></div>
+    <div class="panel">
+        <h2>TECH_STACK</h2>
+        <div class="progress-bar"><div class="fill" style="width: 90%;"></div></div>
     </div>
-</section>
-
-<section id="skills">
-    <h2>> TECH_STACK</h2>
-    <div class="skill">FRONTEND 90%<div class="bar"><div class="fill" data-value="90"></div></div></div>
-</section>
-
-<script>
-    // Logic Preserved
-    const audio = document.getElementById("audio-element");
-    const pFill = document.getElementById("progress-fill");
-    const pTrig = document.getElementById("play-trigger");
-    const playlist = [{ n: "LEVELS", p: "https://music-app-arun.vercel.app/music/Levels.mp3" }];
-    let sIdx = 0; let playing = false; audio.src = playlist[0].p;
-
-    function toggleMiniPlayer() { document.getElementById("mini-player").classList.toggle('active'); }
-    function handlePlay() { playing ? audio.pause() : audio.play(); playing = !playing; pTrig.innerText = playing ? 'PAUSE' : 'PLAY'; }
-    audio.ontimeupdate = () => pFill.style.width = (audio.currentTime / audio.duration * 100) + "%";
-
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                entry.target.querySelectorAll(".fill").forEach(f => f.style.width = f.dataset.value + "%");
-            }
-        });
-    }, {threshold: 0.2});
-    document.querySelectorAll("section").forEach(s => observer.observe(s));
-</script>
+</div>
 
 </body>
 </html>
