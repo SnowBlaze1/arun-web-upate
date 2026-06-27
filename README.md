@@ -1,7 +1,7 @@
-# arun-web-upate
+# SnowBlaze-web-upate
 
 
-Copyright (c) 2025 Snow Blae
+Copyright (c) 2025 Snow Blaze
 
 All Rights Reserved.
 
