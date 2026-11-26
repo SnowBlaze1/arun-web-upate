@@ -1,22 +1,19 @@
-html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arun Official.Com | Cyberpunk Portfolio</title>
 
-    <title>Arun Offical.Com | Cyberpunk Portfolio ArunOffical</title>
-.com
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-
         /* =========================================================
-           ORIGINAL THEME
+           ORIGINAL CYBERPUNK THEME
         ========================================================= */
-
         :root {
             --neon: #efef15;
             --pink: rgb(83, 239, 26);
@@ -26,14 +23,10 @@ html
             --card-bg: rgba(46, 46, 223, 0.9);
         }
 
-
         /* =========================================================
            ANIME DARK MODE
-           Still dark — anime neon atmosphere
         ========================================================= */
-
         body.anime-dark {
-
             --neon: #ff4fd8;
             --pink: #8b5cf6;
             --text: #f8eaff;
@@ -42,42 +35,16 @@ html
             --card-bg: rgba(25, 13, 45, 0.94);
 
             background-image:
-
-                radial-gradient(
-                    circle at 15% 20%,
-                    rgba(255, 79, 216, 0.13),
-                    transparent 25%
-                ),
-
-                radial-gradient(
-                    circle at 85% 75%,
-                    rgba(99, 102, 241, 0.15),
-                    transparent 30%
-                ),
-
-                linear-gradient(
-                    var(--glass) 1px,
-                    transparent 1px
-                ),
-
-                linear-gradient(
-                    90deg,
-                    var(--glass) 1px,
-                    transparent 1px
-                );
-
-            background-size:
-                auto,
-                auto,
-                40px 40px,
-                40px 40px;
+                radial-gradient(circle at 15% 20%, rgba(255, 79, 216, 0.13), transparent 25%),
+                radial-gradient(circle at 85% 75%, rgba(99, 102, 241, 0.15), transparent 30%),
+                linear-gradient(var(--glass) 1px, transparent 1px),
+                linear-gradient(90deg, var(--glass) 1px, transparent 1px);
+            background-size: auto, auto, 40px 40px, 40px 40px;
         }
 
-
         /* =========================================================
-           GLOBAL
+           GLOBAL RESET & BASE
         ========================================================= */
-
         * {
             margin: 0;
             padding: 0;
@@ -85,2077 +52,1020 @@ html
             scroll-behavior: smooth;
         }
 
-
         body {
-
             font-family: 'Poppins', sans-serif;
-
             color: var(--text);
-
             background-color: var(--bg-dark);
-
             background-image:
-
-                linear-gradient(
-                    var(--glass) 1px,
-                    transparent 1px
-                ),
-
-                linear-gradient(
-                    90deg,
-                    var(--glass) 1px,
-                    transparent 1px
-                );
-
+                linear-gradient(var(--glass) 1px, transparent 1px),
+                linear-gradient(90deg, var(--glass) 1px, transparent 1px);
             background-size: 40px 40px;
-
             background-attachment: fixed;
-
             overflow-x: hidden;
-
-            transition:
-                background-color 0.6s ease,
-                color 0.6s ease;
+            transition: background-color 0.6s ease, color 0.6s ease;
         }
-
 
         /* =========================================================
            VERIFICATION BADGE
         ========================================================= */
-
         .verified-badge {
-
             color: var(--neon);
-
             margin-left: 10px;
-
             display: inline-block;
-
             opacity: 0;
-
             transform: scale(0);
-
-            animation:
-                popIn
-                0.8s
-                cubic-bezier(
-                    0.175,
-                    0.885,
-                    0.32,
-                    1.275
-                )
-                forwards;
-
-            animation-delay: 1s;
+            animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            animation-delay: 0.6s;
         }
-
 
         @keyframes popIn {
-
-            0% {
-                opacity: 0;
-                transform: scale(0);
-            }
-
-            80% {
-                transform: scale(1.2);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-
+            0% { opacity: 0; transform: scale(0); }
+            80% { transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
         }
-
 
         /* =========================================================
-           HEADER
+           HEADER & NAVIGATION
         ========================================================= */
-
         header {
-
             position: fixed;
-
             top: 0;
-
             width: 100%;
-
             z-index: 1000;
-
             padding: 15px 40px;
-
             display: flex;
-
             justify-content: space-between;
-
             align-items: center;
-
-            background:
-                rgba(67, 212, 202, 0.98);
-
-            backdrop-filter:
-                blur(15px);
-
-            border-bottom:
-                1px solid var(--glass);
-
-            transition:
-                0.6s;
+            background: rgba(15, 25, 35, 0.88);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass);
+            transition: 0.6s;
         }
-
 
         body.anime-dark header {
-
-            background:
-                rgba(10, 5, 22, 0.94);
-
-            border-bottom:
-                1px solid rgba(255, 79, 216, 0.35);
-
-            box-shadow:
-                0 0 25px
-                rgba(255, 79, 216, 0.08);
+            background: rgba(10, 5, 22, 0.94);
+            border-bottom: 1px solid rgba(255, 79, 216, 0.35);
+            box-shadow: 0 0 25px rgba(255, 79, 216, 0.08);
         }
 
-
         header h1 {
-
             color: var(--neon);
-
-            text-shadow:
-                0 0 10px var(--neon);
-
-            font-size: 22px;
-
+            text-shadow: 0 0 10px var(--neon);
+            font-size: 20px;
             letter-spacing: 2px;
-
             display: flex;
-
             align-items: center;
-
             transition: 0.5s;
         }
 
-
         body.anime-dark header h1 {
-
-            text-shadow:
-                0 0 5px #ff4fd8,
-                0 0 15px #ff4fd8,
-                0 0 30px #8b5cf6;
+            text-shadow: 0 0 5px #ff4fd8, 0 0 15px #ff4fd8, 0 0 30px #8b5cf6;
         }
 
+        nav {
+            display: flex;
+            align-items: center;
+        }
 
         nav a {
-
             color: var(--text);
-
             margin-left: 20px;
-
             text-decoration: none;
-
             font-size: 14px;
-
+            font-weight: 600;
+            letter-spacing: 1px;
             transition: 0.3s;
         }
 
-
         nav a:hover {
-
             color: var(--neon);
-
-            text-shadow:
-                0 0 8px var(--neon);
+            text-shadow: 0 0 8px var(--neon);
         }
-
 
         /* =========================================================
-           THEME BUTTON
+           THEME TOGGLE BUTTON
         ========================================================= */
-
         #theme-toggle {
-
             background: none;
-
-            border:
-                1px solid var(--neon);
-
+            border: 1px solid var(--neon);
             color: var(--neon);
-
-            padding: 5px 12px;
-
+            padding: 6px 12px;
             border-radius: 4px;
-
             cursor: pointer;
-
-            margin-left: 15px;
-
-            transition:
-                0.4s ease;
+            margin-left: 20px;
+            transition: 0.4s ease;
         }
-
 
         #theme-toggle:hover {
-
-            background:
-                var(--neon);
-
+            background: var(--neon);
             color: #000;
-
-            box-shadow:
-                0 0 15px var(--neon);
+            box-shadow: 0 0 15px var(--neon);
         }
-
 
         body.anime-dark #theme-toggle {
-
-            border-color:
-                #ff4fd8;
-
-            color:
-                #ff4fd8;
-
-            box-shadow:
-                0 0 10px
-                rgba(255, 79, 216, 0.3);
+            border-color: #ff4fd8;
+            color: #ff4fd8;
+            box-shadow: 0 0 10px rgba(255, 79, 216, 0.3);
         }
-
 
         body.anime-dark #theme-toggle:hover {
-
-            background:
-                #ff4fd8;
-
-            color:
-                #080512;
-
-            box-shadow:
-                0 0 20px #ff4fd8,
-                0 0 40px
-                rgba(139, 92, 246, 0.5);
+            background: #ff4fd8;
+            color: #080512;
+            box-shadow: 0 0 20px #ff4fd8, 0 0 40px rgba(139, 92, 246, 0.5);
         }
 
-
         /* =========================================================
-           HERO
+           HERO SECTION
         ========================================================= */
-
         .hero {
-
-            min-height: 80vh;
-
+            min-height: 90vh;
+            padding-top: 80px;
             display: flex;
-
             flex-direction: column;
-
             justify-content: center;
-
             align-items: center;
-
             text-align: center;
-
             z-index: 2;
         }
 
-
         .glitch {
-
-            font-size:
-                clamp(
-                    40px,
-                    10vw,
-                    90px
-                );
-
+            font-size: clamp(36px, 8vw, 85px);
             font-weight: 900;
-
             text-transform: uppercase;
-
             color: var(--neon);
-
             text-shadow:
                 0.05em 0 0 var(--pink),
                 -0.025em -0.05em 0 #00ff00,
                 0.025em 0.05em 0 #0000ff;
-
-            animation:
-                glitch 500ms infinite;
-
-            transition:
-                0.5s;
+            animation: glitch 700ms infinite;
+            transition: 0.5s;
         }
 
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
 
         body.anime-dark .glitch {
-
             color: #ff4fd8;
-
             text-shadow:
-
                 0 0 5px #ff4fd8,
-
                 0 0 15px #ff4fd8,
-
                 0 0 30px #8b5cf6,
-
                 0.05em 0 0 #8b5cf6,
-
                 -0.025em -0.05em 0 #38bdf8;
         }
 
+        .typewriter-wrap {
+            display: inline-block;
+            margin-top: 15px;
+        }
 
         .typewriter {
-
-            font-family:
-                'Courier New',
-                monospace;
-
+            font-family: 'Courier New', monospace;
             font-size: 18px;
-
             color: var(--pink);
-
-            border-right:
-                3px solid var(--neon);
-
+            border-right: 3px solid var(--neon);
             white-space: nowrap;
-
             overflow: hidden;
-
             width: 0;
-
-            animation:
-                typing 3s steps(30, end) forwards,
-                blink 0.8s infinite;
-
-            margin-top: 10px;
+            animation: typing 3s steps(36, end) forwards, blink 0.8s infinite;
         }
-
 
         @keyframes typing {
-
-            from {
-                width: 0;
-            }
-
-            to {
-                width: 100%;
-            }
-
+            from { width: 0; }
+            to { width: 100%; }
         }
-
 
         @keyframes blink {
-
-            50% {
-                border-color: transparent;
-            }
-
+            50% { border-color: transparent; }
         }
-
 
         /* =========================================================
            SECTIONS
         ========================================================= */
-
         section {
-
             max-width: 1100px;
-
             margin: 80px auto;
-
             padding: 40px;
-
-            border-radius: 4px;
-
-            background:
-                var(--card-bg);
-
-            border-left:
-                4px solid var(--neon);
-
+            border-radius: 6px;
+            background: var(--card-bg);
+            border-left: 4px solid var(--neon);
             opacity: 0;
-
-            transform:
-                translateX(-50px);
-
-            transition:
-                0.8s ease-out,
-                background 0.6s ease;
+            transform: translateX(-40px);
+            transition: 0.8s ease-out, background 0.6s ease;
         }
-
 
         section.visible {
-
             opacity: 1;
-
-            transform:
-                translateX(0);
+            transform: translateX(0);
         }
-
 
         body.anime-dark section {
-
-            box-shadow:
-                0 0 30px
-                rgba(139, 92, 246, 0.06);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.08);
         }
 
+        section h2 {
+            color: var(--neon);
+            margin-bottom: 25px;
+            letter-spacing: 1.5px;
+        }
 
         /* =========================================================
            PROJECT CARDS
         ========================================================= */
-
         .app-grid {
-
             display: grid;
-
-            grid-template-columns:
-                repeat(
-                    auto-fit,
-                    minmax(300px, 1fr)
-                );
-
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
             gap: 25px;
         }
 
-
         .card {
-
-            background:
-                rgba(255,255,255,0.03);
-
+            background: rgba(0, 0, 0, 0.25);
             padding: 30px;
-
-            border:
-                1px solid var(--glass);
-
-            transition:
-                0.3s;
+            border: 1px solid var(--glass);
+            border-radius: 4px;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
+        .card h3 {
+            margin: 15px 0 10px;
+        }
 
         .card:hover {
-
-            background:
-                rgba(0,255,255,0.05);
-
-            border-color:
-                var(--neon);
-
-            transform:
-                scale(1.02);
+            background: rgba(0, 255, 255, 0.06);
+            border-color: var(--neon);
+            transform: translateY(-4px);
         }
-
 
         body.anime-dark .card {
-
-            background:
-                rgba(255,255,255,0.035);
-
-            border-color:
-                rgba(255,79,216,0.18);
+            background: rgba(255, 255, 255, 0.035);
+            border-color: rgba(255, 79, 216, 0.18);
         }
-
 
         body.anime-dark .card:hover {
-
-            border-color:
-                #ff4fd8;
-
-            box-shadow:
-                0 0 15px
-                rgba(255,79,216,0.25),
-
-                inset 0 0 15px
-                rgba(139,92,246,0.05);
+            border-color: #ff4fd8;
+            box-shadow: 0 0 15px rgba(255, 79, 216, 0.25), inset 0 0 15px rgba(139, 92, 246, 0.05);
         }
-
 
         /* =========================================================
            GALLERY
         ========================================================= */
-
         .art-grid {
-
             display: grid;
-
-            grid-template-columns:
-                repeat(
-                    auto-fit,
-                    minmax(280px, 1fr)
-                );
-
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
 
-
         .art-card {
-
             position: relative;
-
             overflow: hidden;
-
-            border:
-                1px solid var(--glass);
-
-            aspect-ratio: 16/9;
-
-            background: #000;
+            border: 1px solid var(--glass);
+            border-radius: 4px;
+            aspect-ratio: 16 / 9;
+            background: #0a0a0a;
         }
-
 
         .art-card img {
-
             width: 100%;
-
             height: 100%;
-
             object-fit: cover;
-
-            filter:
-                grayscale(40%);
-
-            transition:
-                0.5s;
+            filter: grayscale(35%);
+            transition: 0.5s;
         }
-
 
         .art-info {
-
             position: absolute;
-
             bottom: -100%;
-
             left: 0;
-
             width: 100%;
-
-            background:
-                linear-gradient(
-                    transparent,
-                    var(--neon)
-                );
-
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.92));
+            border-top: 2px solid var(--neon);
             padding: 15px;
-
-            transition:
-                0.4s;
+            transition: 0.4s;
         }
 
+        .art-info h4 {
+            color: var(--neon);
+            font-size: 15px;
+        }
+
+        .art-info p {
+            font-size: 12px;
+            color: #ddd;
+        }
 
         .art-card:hover img {
-
-            filter:
-                grayscale(0%)
-                brightness(1.1);
-
-            transform:
-                scale(1.05);
+            filter: grayscale(0%) brightness(1.1);
+            transform: scale(1.05);
         }
 
-
         .art-card:hover .art-info {
-
             bottom: 0;
         }
 
-
         /* =========================================================
-           BUTTON
+           BUTTONS
         ========================================================= */
-
         .btn-launch {
-
             display: inline-block;
-
             margin-top: 20px;
-
             padding: 10px 20px;
-
-            background:
-                var(--neon);
-
+            background: var(--neon);
             color: #000;
-
             text-decoration: none;
-
             font-weight: bold;
-
             text-transform: uppercase;
-
             font-size: 12px;
-
-            transition:
-                0.3s;
+            letter-spacing: 1px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            text-align: center;
+            transition: 0.3s;
         }
-
 
         .btn-launch:hover {
-
-            background:
-                var(--pink);
-
+            background: var(--pink);
             color: #fff;
-
-            box-shadow:
-                0 0 15px var(--pink);
+            box-shadow: 0 0 15px var(--pink);
         }
-
 
         /* =========================================================
            NINJA SKILL SYSTEM
         ========================================================= */
-
         .skill {
-
-            margin: 25px 0;
-
+            margin: 28px 0;
             position: relative;
         }
-
 
         .skill-label {
-
             display: flex;
-
             justify-content: space-between;
-
             align-items: center;
-
             font-weight: bold;
-
             letter-spacing: 1px;
+            font-size: 14px;
         }
 
-
         .bar {
-
             height: 8px;
-
-            background:
-                rgba(255,255,255,0.08);
-
+            background: rgba(255, 255, 255, 0.1);
             margin-top: 12px;
-
             position: relative;
-
-            border:
-                1px solid var(--glass);
-
+            border: 1px solid var(--glass);
             border-radius: 10px;
-
             overflow: visible;
         }
 
-
-        /* Progress energy */
-
         .fill {
-
             height: 100%;
-
             width: 0;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    var(--neon),
-                    var(--pink)
-                );
-
-            box-shadow:
-
-                0 0 8px
-                var(--neon),
-
-                0 0 18px
-                var(--pink);
-
-            transition:
-                width 2s ease;
-
+            background: linear-gradient(90deg, var(--neon), var(--pink));
+            box-shadow: 0 0 8px var(--neon), 0 0 18px var(--pink);
+            transition: width 1.8s cubic-bezier(0.22, 1, 0.36, 1);
             position: relative;
-
             border-radius: 10px;
         }
 
-
-        /* =========================================================
-           NINJA STAR
-        ========================================================= */
-
+        /* Spinning Shuriken Tip */
         .fill::after {
-
             content: "✦";
-
             position: absolute;
-
-            right: -11px;
-
+            right: -12px;
             top: 50%;
-
-            transform:
-                translateY(-50%)
-                rotate(0deg);
-
+            transform: translateY(-50%) rotate(0deg);
             width: 24px;
-
             height: 24px;
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
-
-            color:
-                var(--neon);
-
+            color: var(--neon);
             font-size: 24px;
-
             font-weight: 900;
-
-            text-shadow:
-
-                0 0 5px
-                var(--neon),
-
-                0 0 12px
-                var(--neon),
-
-                0 0 20px
-                var(--pink);
-
-            animation:
-                ninjaSpin
-                1.5s
-                linear
-                infinite;
+            text-shadow: 0 0 5px var(--neon), 0 0 12px var(--neon), 0 0 20px var(--pink);
+            animation: ninjaSpin 1.5s linear infinite;
         }
-
-
-        /* Shuriken outer blade */
 
         .fill::before {
-
             content: "";
-
             position: absolute;
-
-            right: -5px;
-
+            right: -8px;
             top: 50%;
-
             width: 18px;
-
             height: 18px;
-
-            transform:
-                translateY(-50%)
-                rotate(45deg);
-
-            border:
-                1px solid var(--neon);
-
-            box-shadow:
-                0 0 8px
-                var(--neon);
-
+            transform: translateY(-50%) rotate(45deg);
+            border: 1px solid var(--neon);
+            box-shadow: 0 0 8px var(--neon);
             opacity: 0.7;
-
-            animation:
-                ninjaPulse
-                1s
-                ease-in-out
-                infinite;
+            animation: ninjaPulse 1s ease-in-out infinite;
         }
-
 
         @keyframes ninjaSpin {
-
-            0% {
-
-                transform:
-                    translateY(-50%)
-                    rotate(0deg);
-            }
-
-            100% {
-
-                transform:
-                    translateY(-50%)
-                    rotate(360deg);
-            }
-
+            0% { transform: translateY(-50%) rotate(0deg); }
+            100% { transform: translateY(-50%) rotate(360deg); }
         }
-
 
         @keyframes ninjaPulse {
-
-            0%,
-            100% {
-
-                opacity: 0.3;
-
-                scale: 0.8;
-            }
-
-            50% {
-
-                opacity: 1;
-
-                scale: 1.2;
-            }
-
+            0%, 100% { opacity: 0.3; transform: translateY(-50%) rotate(45deg) scale(0.85); }
+            50% { opacity: 1; transform: translateY(-50%) rotate(45deg) scale(1.15); }
         }
-
-
-        /* Anime ninja star */
 
         body.anime-dark .fill::after {
-
-            content: "✦";
-
-            color:
-                #ff4fd8;
-
-            text-shadow:
-
-                0 0 5px #ff4fd8,
-
-                0 0 12px #ff4fd8,
-
-                0 0 25px #8b5cf6;
+            color: #ff4fd8;
+            text-shadow: 0 0 5px #ff4fd8, 0 0 12px #ff4fd8, 0 0 25px #8b5cf6;
         }
-
 
         body.anime-dark .fill::before {
-
-            border-color:
-                #8b5cf6;
-
-            box-shadow:
-                0 0 10px
-                #8b5cf6;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 10px #8b5cf6;
         }
-
 
         /* =========================================================
-           MUSIC PLAYER
+           MINI MUSIC PLAYER
         ========================================================= */
-
         .mini-player {
-
             margin-top: 20px;
-
             display: none;
-
-            border:
-                1px solid var(--pink);
-
+            border: 1px solid var(--pink);
+            background: rgba(0, 0, 0, 0.4);
             padding: 15px;
+            border-radius: 4px;
         }
-
 
         .mini-player.active {
-
             display: block;
+            animation: fadeIn 0.3s ease;
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         .p-bar-bg {
-
             width: 100%;
-
-            height: 4px;
-
+            height: 6px;
             background: #222;
-
-            margin: 15px 0;
-
+            margin: 12px 0;
             cursor: pointer;
+            border-radius: 3px;
+            overflow: hidden;
         }
-
 
         .p-bar-fill {
-
             height: 100%;
-
-            width: 0;
-
-            background:
-                var(--pink);
+            width: 0%;
+            background: var(--pink);
+            transition: width 0.1s linear;
         }
 
+        .m-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
         .m-btn {
-
             background: none;
-
-            border:
-                1px solid var(--text);
-
-            color:
-                var(--text);
-
-            padding: 8px 12px;
-
+            border: 1px solid var(--text);
+            color: var(--text);
+            padding: 6px 12px;
+            border-radius: 3px;
             cursor: pointer;
-
-            margin-right: 5px;
+            transition: 0.2s;
         }
-
 
         .m-btn:hover {
-
-            border-color:
-                var(--neon);
-
-            color:
-                var(--neon);
+            border-color: var(--neon);
+            color: var(--neon);
         }
 
-
         /* =========================================================
-           CONTACT
+           CONTACT FORM
         ========================================================= */
+        #contactForm {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
         #contactForm input,
         #contactForm textarea {
-
-            transition:
-                border-color 0.3s,
-                box-shadow 0.3s;
+            width: 100%;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid var(--glass);
+            color: var(--text);
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            border-radius: 4px;
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
-
 
         #contactForm input:focus,
         #contactForm textarea:focus {
-
             outline: none;
-
-            border-color:
-                var(--neon) !important;
-
-            box-shadow:
-                0 0 10px
-                rgba(255,79,216,0.15);
+            border-color: var(--neon);
+            box-shadow: 0 0 12px rgba(239, 239, 21, 0.2);
         }
 
+        body.anime-dark #contactForm input:focus,
+        body.anime-dark #contactForm textarea:focus {
+            box-shadow: 0 0 12px rgba(255, 79, 216, 0.25);
+        }
+
+        #form-status {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: var(--neon);
+            display: none;
+            margin-top: 5px;
+        }
 
         /* =========================================================
            FOOTER
         ========================================================= */
-
         footer {
-
             text-align: center;
-
-            padding: 50px;
-
-            border-top:
-                1px solid var(--glass);
-
-            margin-top: 100px;
+            padding: 40px 20px;
+            border-top: 1px solid var(--glass);
+            margin-top: 80px;
+            background: rgba(0, 0, 0, 0.4);
         }
 
+        .social {
+            margin-bottom: 15px;
+        }
 
         .social a {
-
-            color:
-                var(--text);
-
-            font-size: 25px;
-
+            color: var(--text);
+            font-size: 22px;
             margin: 0 15px;
-
-            transition:
-                0.3s;
+            transition: 0.3s;
         }
-
 
         .social a:hover {
-
-            color:
-                var(--neon);
-
-            text-shadow:
-                0 0 10px
-                var(--neon);
+            color: var(--neon);
+            text-shadow: 0 0 10px var(--neon);
         }
 
+        footer p {
+            font-size: 12px;
+            opacity: 0.7;
+            letter-spacing: 1px;
+        }
 
         /* =========================================================
-           MOBILE
+           RESPONSIVE / MOBILE
         ========================================================= */
-
         @media (max-width: 768px) {
-
             header {
-
-                padding:
-                    12px 15px;
+                padding: 12px 15px;
+                flex-wrap: wrap;
+                gap: 10px;
             }
-
 
             header h1 {
-
-                font-size:
-                    16px;
+                font-size: 15px;
             }
-
 
             nav a {
-
-                margin-left:
-                    8px;
-
-                font-size:
-                    11px;
+                margin-left: 10px;
+                font-size: 11px;
             }
-
 
             #theme-toggle {
-
-                margin-left:
-                    8px;
-
-                padding:
-                    5px 8px;
+                margin-left: 10px;
+                padding: 4px 8px;
             }
-
 
             section {
-
-                margin:
-                    50px 15px;
-
-                padding:
-                    25px;
+                margin: 50px 15px;
+                padding: 25px;
             }
-
 
             .hero {
-
-                padding:
-                    0 15px;
+                padding: 80px 15px 0;
             }
-
 
             .typewriter {
-
-                font-size:
-                    13px;
+                font-size: 13px;
             }
-
         }
-
     </style>
 </head>
 
-
 <body>
-
 
     <!-- =========================================================
          HEADER
     ========================================================= -->
-
     <header>
-
         <h1>
-
-           ARUN OFFICAL.COM SYSTEM
-
-            <span class="verified-badge">
-
+            ARUN OFFICIAL.COM SYSTEM
+            <span class="verified-badge" title="Verified System">
                 <i class="fa-solid fa-circle-check"></i>
-
             </span>
-
         </h1>
 
-
         <nav>
+            <a href="#about">ABOUT</a>
+            <a href="#apps">PROJECTS</a>
+            <a href="#visual-archive">GALLERY</a>
+            <a href="#skills">SKILLS</a>
+            <a href="#contact">CONTACT</a>
 
-            <a href="#about">
-                ABOUT
-            </a>
-
-            <a href="#apps">
-                PROJECTS
-            </a>
-
-            <a href="#visual-archive">
-                GALLERY
-            </a>
-
-            <a href="#skills">
-                SKILLS
-            </a>
-
-            <a href="#contact">
-                CONTACT
-            </a>
-
-
-            <button
-                id="theme-toggle"
-                title="Toggle Anime Dark Mode">
-
-                <i
-                    class="fa-solid fa-moon"
-                    id="theme-icon">
-                </i>
-
+            <button id="theme-toggle" title="Toggle Anime Dark Mode">
+                <i class="fa-solid fa-moon" id="theme-icon"></i>
             </button>
-
         </nav>
-
     </header>
-
-
 
     <!-- =========================================================
          HERO
     ========================================================= -->
-
     <div class="hero">
-
-        <h2 class="glitch">
-
-            CORE_<span>DEVELOPER</span>
-
-        </h2>
-
-
-        <div class="typewriter">
-
-            // ARCHITECTING DIGITAL REALITIES...
-
+        <h2 class="glitch">CORE_<span>DEVELOPER</span></h2>
+        <div class="typewriter-wrap">
+            <div class="typewriter">// ARCHITECTING DIGITAL REALITIES...</div>
         </div>
-
     </div>
 
-
-
+    <!-- =========================================================
          ABOUT
-   
-
+    ========================================================= -->
     <section id="about">
-
-        <h2
-            style="
-            color: var(--neon);
-            margin-bottom: 20px;
-            ">
-
-            > WHO_AM_I?
-
-        </h2>
-
-
+        <h2>&gt; WHO_AM_I?</h2>
         <p>
-
-            I am a Developer and Innovator and this Portfolio
-            is Ai assisted <b>high-fidelity web experiences</b>.
-            I blend aesthetic cyberpunk design with clean,
-            functional code.
-
+            I am a Developer, Concept Designer, and Innovator crafting AI-assisted
+            <b>high-fidelity web experiences</b> and custom character art.
+            I blend aesthetic cyberpunk &amp; anime design with clean, functional code.
         </p>
-
     </section>
 
-
-<!-- =========================================================
-         
+    <!-- =========================================================
          PROJECTS
-   ========================================================= -->
-  
-
+    ========================================================= -->
     <section id="apps">
-
-        <h2
-            style="
-            color: var(--neon);
-            margin-bottom: 30px;
-            ">
-
-            > ACTIVE_PROJECTS
-
-        </h2>
-
+        <h2>&gt; ACTIVE_PROJECTS</h2>
 
         <div class="app-grid">
-
-
-            <!-- MUSIC -->
-
+            <!-- NEURAL AUDIO -->
             <div class="card">
+                <div>
+                    <i class="fa-solid fa-music" style="font-size: 30px; color: var(--neon);"></i>
+                    <h3>Neural Audio</h3>
+                    <p>Remote synth streaming synchronized to your digital workflow.</p>
+                </div>
 
-                <i
-                    class="fa-solid fa-music"
-                    style="
-                    font-size: 30px;
-                    color: var(--neon);
-                    ">
-                </i>
+                <div>
+                    <button class="btn-launch" onclick="toggleMiniPlayer()">Toggle Interface</button>
 
-
-                <h3>
-                    Neural Audio
-                </h3>
-
-
-                <p>
-                    Remote streaming synchronized
-                    to your heartbeat.
-                </p>
-
-
-                <button
-                    class="btn-launch"
-                    onclick="toggleMiniPlayer()">
-
-                    Toggle Interface
-
-                </button>
-
-
-                <div
-                    class="mini-player"
-                    id="mini-player">
-
-
-                    <div
-                        id="song-name"
-                        style="
-                        font-size: 12px;
-                        color: var(--neon);
-                        ">
-
-                        TRACK: LEVELS
-
-                    </div>
-
-
-                    <div
-                        class="p-bar-bg"
-                        id="progress-wrap">
-
-                        <div
-                            class="p-bar-fill"
-                            id="progress-fill">
+                    <div class="mini-player" id="mini-player">
+                        <div id="song-name" style="font-size: 12px; color: var(--neon); font-family: monospace;">
+                            TRACK: CYBER_LEVELS
                         </div>
 
+                        <div class="p-bar-bg" id="progress-wrap">
+                            <div class="p-bar-fill" id="progress-fill"></div>
+                        </div>
+
+                        <div class="m-controls">
+                            <button class="m-btn" onclick="prevTrack()" title="Previous">
+                                <i class="fa-solid fa-backward"></i>
+                            </button>
+                            <button class="m-btn" id="play-trigger" onclick="handlePlay()" title="Play/Pause">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+                            <button class="m-btn" onclick="nextTrack()" title="Next">
+                                <i class="fa-solid fa-forward"></i>
+                            </button>
+                        </div>
+
+                        <audio id="audio-element"></audio>
                     </div>
-
-
-                    <div class="m-controls">
-
-
-                        <button
-                            class="m-btn"
-                            onclick="prev()">
-
-                            <i
-                                class="fa-solid fa-backward">
-                            </i>
-
-                        </button>
-
-
-                        <button
-                            class="m-btn"
-                            id="play-trigger"
-                            onclick="handlePlay()">
-
-                            <i
-                                class="fa-solid fa-play">
-                            </i>
-
-                        </button>
-
-
-                        <button
-                            class="m-btn"
-                            onclick="next()">
-
-                            <i
-                                class="fa-solid fa-forward">
-                            </i>
-
-                        </button>
-
-
-                    </div>
-
-
-                    <audio id="audio-element"></audio>
-
                 </div>
-
             </div>
-
-
 
             <!-- MEDI-NET -->
-
             <div class="card">
-
-                <i
-                    class="fa-solid fa-user-doctor"
-                    style="
-                    font-size: 30px;
-                    color: var(--neon);
-                    ">
-                </i>
-
-
-                <h3>
-                    Medi-Net
-                </h3>
-
-
-                <p>
-                    Biometric symptom analysis tool.
-                </p>
-
-
-                <a
-                    href="https://medical-app-eight-beta.vercel.app/"
-                    target="_blank"
-                    class="btn-launch">
-
+                <div>
+                    <i class="fa-solid fa-user-doctor" style="font-size: 30px; color: var(--neon);"></i>
+                    <h3>Medi-Net</h3>
+                    <p>Biometric symptom analysis and diagnostic support tool.</p>
+                </div>
+                <a href="https://medical-app-eight-beta.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-launch">
                     Execute Launch
-
                 </a>
-
             </div>
-
-
 
             <!-- WEATHER -->
-
             <div class="card">
-
-                <i
-                    class="fa-solid fa-cloud-sun"
-                    style="
-                    font-size: 30px;
-                    color: var(--neon);
-                    ">
-                </i>
-
-
-                <h3>
-                    Atmosphere-OS
-                </h3>
-
-
-                <p>
-                    Global satellite weather data visualization.
-                </p>
-
-
-                <a
-                    href="https://w-eather-app.vercel.app/"
-                    target="_blank"
-                    class="btn-launch">
-
+                <div>
+                    <i class="fa-solid fa-cloud-sun" style="font-size: 30px; color: var(--neon);"></i>
+                    <h3>Atmosphere-OS</h3>
+                    <p>Global satellite weather telemetry and data visualization.</p>
+                </div>
+                <a href="https://w-eather-app.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-launch">
                     Execute Launch
-
                 </a>
-
             </div>
-
-
         </div>
-
     </section>
 
-
-
-  <!-- =========================================================
-         
+    <!-- =========================================================
          GALLERY
-    
- ========================================================= -->
-  
-
+    ========================================================= -->
     <section id="visual-archive">
-
-        <h2
-            style="
-            color: var(--neon);
-            margin-bottom: 30px;
-            ">
-
-            > ARTGeneration and CREATION.DB
-
-        </h2>
-
+        <h2>&gt; ART_GENERATION // CREATION.DB</h2>
 
         <div class="art-grid">
-
-
             <div class="art-card">
-
-                <img src="1.web.jpeg">
-
+                <img src="1.web.jpeg" alt="Time and Wear">
                 <div class="art-info">
-
-                    <h4>
-                        TIME ans wear
-                    </h4>
-
-                    <p>
-                        THEME: CHARACTER
-                    </p>
-
+                    <h4>TIME and Wear</h4>
+                    <p>THEME: CHARACTER DESIGN</p>
                 </div>
-
             </div>
 
-
             <div class="art-card">
-
-                <img src="2.web.jpeg">
-
+                <img src="2.web.jpeg" alt="Sketch Art Time and Wear">
                 <div class="art-info">
-
-                    <h4>
-                        Sketch.art TIme annd wear
-                    </h4>
-
-                    <p>
-                        STATUS: ONLINE
-                    </p>
-
+                    <h4>Sketch.art Time and Wear</h4>
+                    <p>STATUS: ONLINE</p>
                 </div>
-
             </div>
 
-
             <div class="art-card">
-
-                <img src="3.web.jpeg">
-
+                <img src="3.web.jpeg" alt="Coffee Time Anime">
                 <div class="art-info">
-
-                    <h4>
-                        coofieTimeAnime
-                    </h4>
-
-                    <p>
-                        STATUS: ONLINE
-                    </p>
-
+                    <h4>CoffeeTimeAnime</h4>
+                    <p>STATUS: ONLINE</p>
                 </div>
-
             </div>
 
-
             <div class="art-card">
-
-                <img src="4.web.jpeg">
-
+                <img src="4.web.jpeg" alt="Over the World Anime">
                 <div class="art-info">
-
-                    <h4>
-                        Over the world Amine
-                    </h4>
-
-                    <p>
-                        STATUS: ONLINE
-                    </p>
-
+                    <h4>Over the World Anime</h4>
+                    <p>STATUS: ONLINE</p>
                 </div>
-
             </div>
 
-
             <div class="art-card">
-
-                <img src="5.web.jpeg">
-
+                <img src="5.web.jpeg" alt="1066 Silver Screen">
                 <div class="art-info">
-
-                    <h4>
-                        1066 Silver Screen
-                    </h4>
-
-                    <p>
-                        STATUS: ONLINE
-                    </p>
-
+                    <h4>1066 Silver Screen</h4>
+                    <p>STATUS: ONLINE</p>
                 </div>
-
             </div>
 
-
             <div class="art-card">
-
-                <img src="6.web.jpeg">
-
+                <img src="6.web.jpeg" alt="Night Owl">
                 <div class="art-info">
-
-                    <h4>
-                        Night owl
-                    </h4>
-
-                    <p>
-                        STATUS: ONLINE
-                    </p>
-
+                    <h4>Night Owl</h4>
+                    <p>STATUS: ONLINE</p>
                 </div>
-
             </div>
 
-
             <div class="art-card">
-
-                <img src="7.web.jpeg">
-
+                <img src="7.web.jpeg" alt="Chibi Fox">
                 <div class="art-info">
-
-                    <h4>
-                        Chibi.fox
-                    </h4>
-
-                    <p>
-                        STATUS: ONLINE
-                    </p>
-
+                    <h4>Chibi.fox</h4>
+                    <p>STATUS: ONLINE</p>
                 </div>
-
             </div>
 
-
             <div class="art-card">
-
-                <img src="133.jpg">
-
+                <img src="133.jpg" alt="Free Day Final Result">
                 <div class="art-info">
-
-                    <h4>
-                        Free Day Final result
-                    </h4>
-
-                    <p>
-                        STATUS: ONLINE
-                    </p>
-
+                    <h4>Free Day Final Result</h4>
+                    <p>STATUS: ONLINE</p>
                 </div>
-
             </div>
 
-
             <div class="art-card">
-
-                <img src="9.web.jpeg">
-
+                <img src="9.web.jpeg" alt="Anime Image">
                 <div class="art-info">
-
-                    <h4>
-                        ANIME IMAGE
-                    </h4>
-
-                    <p>
-                        STATUS: ONLINE
-                    </p>
-
+                    <h4>ANIME IMAGE</h4>
+                    <p>STATUS: ONLINE</p>
                 </div>
-
             </div>
-
-
         </div>
-
     </section>
 
-
-
-  <!-- =========================================================
+    <!-- =========================================================
          SKILLS
-========================================================= -->
-  
-    
-    
+    ========================================================= -->
     <section id="skills">
-
-        <h2
-            style="
-            color: var(--neon);
-            margin-bottom: 20px;
-            ">
-
-            > TECH_STACK
-
-        </h2>
-
+        <h2>&gt; TECH_STACK</h2>
 
         <div class="skill">
-
-
             <div class="skill-label">
-
-                <span>
-                    FRONTEND_ENGINEERING
-                </span>
-
-                <span>
-                    90%
-                </span>
-
+                <span>FRONTEND_ENGINEERING</span>
+                <span>90%</span>
             </div>
-
-
             <div class="bar">
-
-                <div
-                    class="fill"
-                    data-value="90">
-                </div>
-
+                <div class="fill" data-value="90"></div>
             </div>
-
         </div>
-
-
 
         <div class="skill">
-
-
             <div class="skill-label">
-
-                <span>
-                    UI_UX_ARCHITECTURE
-                </span>
-
-                <span>
-                    85%
-                </span>
-
+                <span>UI_UX_ARCHITECTURE</span>
+                <span>85%</span>
             </div>
-
-
             <div class="bar">
-
-                <div
-                    class="fill"
-                    data-value="85">
-                </div>
-
+                <div class="fill" data-value="85"></div>
             </div>
-
         </div>
 
-
+        <div class="skill">
+            <div class="skill-label">
+                <span>CONCEPT_ART_&_STYLING</span>
+                <span>88%</span>
+            </div>
+            <div class="bar">
+                <div class="fill" data-value="88"></div>
+            </div>
+        </div>
     </section>
-
-
 
     <!-- =========================================================
          CONTACT
     ========================================================= -->
-
     <section id="contact">
-
-        <h2
-            style="
-            color: var(--neon);
-            margin-bottom: 20px;
-            ">
-
-            > SEND_ENCRYPTED_MESSAGE
-
-        </h2>
-
+        <h2>&gt; SEND_ENCRYPTED_MESSAGE</h2>
 
         <form id="contactForm">
-
-
-            <input
-                type="text"
-                placeholder="IDENTITY"
-                style="
-                width:100%;
-                padding:15px;
-                background:rgba(0,0,0,0.3);
-                border:1px solid var(--glass);
-                color:white;
-                margin-bottom:10px;
-                "
-                required>
-
-
-            <textarea
-                placeholder="MESSAGE_CONTENT"
-                rows="4"
-                style="
-                width:100%;
-                padding:15px;
-                background:rgba(0,0,0,0.3);
-                border:1px solid var(--glass);
-                color:white;
-                margin-bottom:10px;
-                "
-                required>
-            </textarea>
-
-
-            <button
-                type="submit"
-                class="btn-launch"
-                style="
-                width:100%;
-                border:none;
-                cursor:pointer;
-                ">
-
-                START_UPLINK
-
+            <input type="text" id="senderName" placeholder="IDENTITY // NAME" required>
+            <input type="email" id="senderEmail" placeholder="RETURN_NODE // EMAIL" required>
+            <textarea id="senderMsg" rows="5" placeholder="TRANSMISSION_PAYLOAD // MESSAGE" required></textarea>
+            <button type="submit" class="btn-launch" style="align-self: flex-start;">
+                Transmit Signal
             </button>
-
-
+            <div id="form-status"></div>
         </form>
-
     </section>
-
-
 
     <!-- =========================================================
          FOOTER
     ========================================================= -->
-
     <footer>
-
-
         <div class="social">
-
-
-            <a
-                href="https://github.com/Arundeepyt"
-                target="_blank">
-
-                <i class="fab fa-github"></i>
-
-            </a>
-
-
-            <a
-                href="https://youtube.com/@arudeep1yt"
-                target="_blank">
-
-                <i class="fab fa-youtube"></i>
-
-            </a>
-
-
+            <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+            <a href="#" aria-label="ArtStation"><i class="fa-brands fa-artstation"></i></a>
         </div>
-
-
-        <p
-            style="
-            margin-top:20px;
-            font-size:12px;
-            opacity:0.5;
-            ">
-
-            © 2026 Arun Offfical.Com // SYSTEM_ACTIVE
-
-        </p>
-
-
+        <p>&copy; 2026 ARUN OFFICIAL.COM SYSTEM // ALL RIGHTS RESERVED</p>
     </footer>
 
-
-
     <!-- =========================================================
-         JAVASCRIPT
+         JAVASCRIPT ENGINE
     ========================================================= -->
-
     <script>
+        /* ---------------------------------------------------------
+           1. ANIME DARK MODE TOGGLE
+        --------------------------------------------------------- */
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
 
+        // Load saved theme preference
+        if (localStorage.getItem('arun-theme') === 'anime-dark') {
+            document.body.classList.add('anime-dark');
+            themeIcon.classList.replace('fa-moon', 'fa-wand-magic-sparkles');
+        }
 
-        /* =====================================================
-           AUDIO PLAYER
-        ===================================================== */
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('anime-dark');
+            const isAnime = document.body.classList.contains('anime-dark');
 
-        const audio =
-            document.getElementById("audio-element");
-
-
-        const pFill =
-            document.getElementById("progress-fill");
-
-
-        const pTrig =
-            document.getElementById("play-trigger");
-
-
-        const playlist = [
-
-            {
-                n: "LEVELS",
-                p:
-                    "https://music-app-arun.vercel.app/music/Levels.mp3"
-            },
-
-            {
-                n: "INVINCIBLE",
-                p:
-                    "https://music-app-arun.vercel.app/music/Invincible_1.mp3"
+            if (isAnime) {
+                themeIcon.classList.replace('fa-moon', 'fa-wand-magic-sparkles');
+                localStorage.setItem('arun-theme', 'anime-dark');
+            } else {
+                themeIcon.classList.replace('fa-wand-magic-sparkles', 'fa-moon');
+                localStorage.setItem('arun-theme', 'cyberpunk');
             }
+        });
 
+        /* ---------------------------------------------------------
+           2. SCROLL REVEAL & SKILL BAR ANIMATION
+        --------------------------------------------------------- */
+        const sections = document.querySelectorAll('section');
+        const skillFills = document.querySelectorAll('.fill');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+
+                    // Animate ninja skill bars when skills section enters view
+                    if (entry.target.id === 'skills') {
+                        skillFills.forEach(fill => {
+                            const targetWidth = fill.getAttribute('data-value');
+                            fill.style.width = targetWidth + '%';
+                        });
+                    }
+                }
+            });
+        }, { threshold: 0.15 });
+
+        sections.forEach(sec => observer.observe(sec));
+
+        /* ---------------------------------------------------------
+           3. NEURAL AUDIO MINI-PLAYER
+        --------------------------------------------------------- */
+        const miniPlayer = document.getElementById('mini-player');
+        const audioEl = document.getElementById('audio-element');
+        const songNameEl = document.getElementById('song-name');
+        const playTrigger = document.getElementById('play-trigger');
+        const progressWrap = document.getElementById('progress-wrap');
+        const progressFill = document.getElementById('progress-fill');
+
+        // Replace 'src' paths with your local .mp3 files when ready
+        const playlist = [
+            { title: "TRACK: CYBER_LEVELS", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
+            { title: "TRACK: NEON_DRIFT", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
+            { title: "TRACK: NIGHT_CITY_PROTOCOL", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" }
         ];
 
+        let currentTrack = 0;
+        let isPlaying = false;
 
-        let sIdx = 0;
+        function loadTrack(index) {
+            songNameEl.textContent = playlist[index].title;
+            audioEl.src = playlist[index].src;
+        }
 
-        let playing = false;
-
-
-        audio.src =
-            playlist[0].p;
-
+        loadTrack(currentTrack);
 
         function toggleMiniPlayer() {
-
-            document
-                .getElementById("mini-player")
-                .classList
-                .toggle("active");
-
+            miniPlayer.classList.toggle('active');
         }
-
 
         function handlePlay() {
-
-            if (playing) {
-
-                audio.pause();
-
-                pTrig.innerHTML =
-                    '<i class="fa-solid fa-play"></i>';
-
+            if (isPlaying) {
+                audioEl.pause();
+                playTrigger.innerHTML = '<i class="fa-solid fa-play"></i>';
+                isPlaying = false;
+            } else {
+                audioEl.play();
+                playTrigger.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                isPlaying = true;
             }
-
-            else {
-
-                audio.play();
-
-                pTrig.innerHTML =
-                    '<i class="fa-solid fa-pause"></i>';
-
-            }
-
-
-            playing =
-                !playing;
-
         }
 
-
-        function next() {
-
-            sIdx =
-                (sIdx + 1)
-                % playlist.length;
-
-
-            audio.src =
-                playlist[sIdx].p;
-
-
-            document
-                .getElementById("song-name")
-                .innerText =
-                "TRACK: "
-                + playlist[sIdx].n;
-
-
-            if (playing) {
-
-                audio.play();
-
-            }
-
+        function nextTrack() {
+            currentTrack = (currentTrack + 1) % playlist.length;
+            loadTrack(currentTrack);
+            if (isPlaying) audioEl.play();
         }
 
-
-        function prev() {
-
-            sIdx =
-                (sIdx - 1 + playlist.length)
-                % playlist.length;
-
-
-            audio.src =
-                playlist[sIdx].p;
-
-
-            document
-                .getElementById("song-name")
-                .innerText =
-                "TRACK: "
-                + playlist[sIdx].n;
-
-
-            if (playing) {
-
-                audio.play();
-
-            }
-
+        function prevTrack() {
+            currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+            loadTrack(currentTrack);
+            if (isPlaying) audioEl.play();
         }
 
-
-        audio.ontimeupdate = () => {
-
-            if (audio.duration) {
-
-                pFill.style.width =
-                    (
-                        audio.currentTime /
-                        audio.duration *
-                        100
-                    ) + "%";
-
+        audioEl.addEventListener('timeupdate', () => {
+            if (audioEl.duration) {
+                const percent = (audioEl.currentTime / audioEl.duration) * 100;
+                progressFill.style.width = percent + '%';
             }
+        });
 
-        };
+        audioEl.addEventListener('ended', nextTrack);
 
+        progressWrap.addEventListener('click', (e) => {
+            const width = progressWrap.clientWidth;
+            const clickX = e.offsetX;
+            if (audioEl.duration) {
+                audioEl.currentTime = (clickX / width) * audioEl.duration;
+            }
+        });
 
+        /* ---------------------------------------------------------
+           4. ENCRYPTED CONTACT FORM HANDLER
+        --------------------------------------------------------- */
+        const contactForm = document.getElementById('contactForm');
+        const formStatus = document.getElementById('form-status');
 
-        /* =====================================================
-           NORMAL DARK ↔ ANIME DARK
-        ===================================================== */
-
-        document
-            .getElementById("theme-toggle")
-            .addEventListener(
-                "click",
-                () => {
-
-
-                    document
-                        .body
-                        .classList
-                        .toggle("anime-dark");
-
-
-                    const icon =
-                        document.getElementById(
-                            "theme-icon"
-                        );
-
-
-                    if (
-                        document.body.classList
-                            .contains("anime-dark")
-                    ) {
-
-                        icon.className =
-                            "fa-solid fa-wand-magic-sparkles";
-
-                    }
-
-                    else {
-
-                        icon.className =
-                            "fa-solid fa-moon";
-
-                    }
-
-                }
-            );
-
-
-
-        /* =====================================================
-           SECTION OBSERVER
-        ===================================================== */
-
-        const observer =
-            new IntersectionObserver(
-
-                entries => {
-
-                    entries.forEach(
-                        entry => {
-
-                            if (
-                                entry.isIntersecting
-                            ) {
-
-
-                                entry.target
-                                    .classList
-                                    .add("visible");
-
-
-                                entry.target
-                                    .querySelectorAll(".fill")
-                                    .forEach(
-                                        f => {
-
-                                            f.style.width =
-                                                f.dataset.value
-                                                + "%";
-
-                                        }
-                                    );
-
-                            }
-
-                        }
-                    );
-
-                },
-
-                {
-                    threshold: 0.2
-                }
-
-            );
-
-
-        document
-            .querySelectorAll("section")
-            .forEach(
-                s =>
-                    observer.observe(s)
-            );
-
-
-
-        /* =====================================================
-           CONTACT
-        ===================================================== */
-
-        document
-            .getElementById("contactForm")
-            .addEventListener(
-                "submit",
-                function(e) {
-
-                    e.preventDefault();
-
-
-                    alert(
-                        "UPLINK READY // MESSAGE SYSTEM ACTIVE"
-                    );
-
-                }
-            );
-
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('senderName').value.trim();
+            formStatus.style.display = 'block';
+            formStatus.textContent = `> [ENCRYPTED_PACKET_SENT]: Thank you, ${name}. Signal logged.`;
+            contactForm.reset();
+        });
     </script>
-
 </body>
 
 </html>
-```
-
